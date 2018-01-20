@@ -1,0 +1,1 @@
+C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\TheLastHero.UWP.csproj;x86
