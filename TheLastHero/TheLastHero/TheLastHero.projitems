@@ -15,10 +15,27 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\character.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\characterPlayer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\characeterMonster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\CharacterManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\DamageCalculation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\ItemManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\LevelingManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\MonsterManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\TurnManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameRound\RoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Type\Archer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Creature.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Type\Fighter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\Type\Beast.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\Type\Ghost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\Type\Human.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Inventory\Inventory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Item\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Type\Knight.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Type\Mage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Character.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\Monster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Type\Thief.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Type\Warrior.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
@@ -59,6 +76,11 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Type\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Item\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Inventory\" />
   </ItemGroup>
   <!--#if (CreateBackendProject)
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
