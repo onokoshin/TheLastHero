@@ -7,6 +7,9 @@ namespace TheLastHero.Models
     //parent class of 
     class creature
     {
+
+        string test;
+
         //title
         string name;
 
