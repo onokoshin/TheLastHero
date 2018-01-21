@@ -6664,11 +6664,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.UWP\\TheLastHero.UWP.csproj",
+      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.UWP\\TheLastHero.UWP.csproj",
       "projectName": "TheLastHero.UWP",
-      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.UWP\\TheLastHero.UWP.csproj",
+      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.UWP\\TheLastHero.UWP.csproj",
       "packagesPath": "C:\\Users\\Setup5a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.UWP\\obj\\",
+      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.UWP\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

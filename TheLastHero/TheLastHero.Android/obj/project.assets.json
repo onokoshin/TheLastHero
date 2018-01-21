@@ -694,11 +694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.Android\\TheLastHero.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.Android\\TheLastHero.Android.csproj",
       "projectName": "TheLastHero.Android",
-      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.Android\\TheLastHero.Android.csproj",
+      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.Android\\TheLastHero.Android.csproj",
       "packagesPath": "C:\\Users\\Setup5a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.Android\\obj\\",
+      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

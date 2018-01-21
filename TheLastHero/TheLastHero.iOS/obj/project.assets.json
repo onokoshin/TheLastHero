@@ -702,11 +702,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.iOS\\TheLastHero.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.iOS\\TheLastHero.iOS.csproj",
       "projectName": "TheLastHero.iOS",
-      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.iOS\\TheLastHero.iOS.csproj",
+      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.iOS\\TheLastHero.iOS.csproj",
       "packagesPath": "C:\\Users\\Setup5a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\TheLastHero\\TheLastHero\\TheLastHero.iOS\\obj\\",
+      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

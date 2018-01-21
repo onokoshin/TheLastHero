@@ -10,7 +10,7 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>ec0cc741-fd3e-485c-81be-68815c480690</PackageIdentityName>
     <PackageIdentityPublisher>CN=Pierce Boggan</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\obj\x86\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\obj\x86\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,7 +18,7 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\AppX</LayoutDir>
+    <LayoutDir>C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\AppX</LayoutDir>
     <RegisteredManifestChecksum>0168CCE8CE3CD20A84B85B36F18262BA970BF15913A2A74532040D89DE34F02B</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>ec0cc741-fd3e-485c-81be-68815c480690_1.0.0.0_x86__hma5z8g0e8z20</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>ec0cc741-fd3e-485c-81be-68815c480690_hma5z8g0e8z20!App</RegisteredUserModeAppID>
@@ -28,16 +28,16 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-01-19T23:49:59.086</Modified>
+      <Modified>2018-01-20T01:10:06.779</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\TheLastHero.UWP.exe">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\TheLastHero.UWP.exe">
       <PackagePath>entrypoint\TheLastHero.UWP.exe</PackagePath>
-      <Modified>2018-01-19T23:49:56.526</Modified>
+      <Modified>2018-01-20T01:10:03.419</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Setup5a\.nuget\packages\runtime.win10-x86.microsoft.netcore.universalwindowsplatform\6.0.1\runtimes\win10-x86\nativeassets\uap10.0.15138\clrcompression.dll">
       <PackagePath>clrcompression.dll</PackagePath>
@@ -711,165 +711,165 @@
       <PackagePath>Xamarin.Forms.Xaml.dll</PackagePath>
       <Modified>2017-11-28T10:07:38.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
       <Modified>2018-01-19T23:49:09.073</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-100.png">
       <PackagePath>Assets\LockScreenLogo.scale-100.png</PackagePath>
       <Modified>2018-01-19T23:49:08.487</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-125.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-125.png">
       <PackagePath>Assets\LockScreenLogo.scale-125.png</PackagePath>
       <Modified>2018-01-19T23:49:08.489</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-150.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-150.png">
       <PackagePath>Assets\LockScreenLogo.scale-150.png</PackagePath>
       <Modified>2018-01-19T23:49:08.497</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2018-01-19T23:49:08.500</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-400.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\LockScreenLogo.scale-400.png">
       <PackagePath>Assets\LockScreenLogo.scale-400.png</PackagePath>
       <Modified>2018-01-19T23:49:08.502</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.505</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-125.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-125.png">
       <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.665</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-150.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-150.png">
       <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.668</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.673</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-400.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\SplashScreen.scale-400.png">
       <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.677</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-100.png">
       <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.680</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-125.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-125.png">
       <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.682</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-150.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-150.png">
       <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.688</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.690</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-400.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square150x150Logo.scale-400.png">
       <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.693</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-100.png">
       <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.702</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-125.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-125.png">
       <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.866</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-150.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-150.png">
       <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.868</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.871</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-400.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.scale-400.png">
       <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.874</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-16_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-16_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-16_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.877</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.879</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-32_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-32_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-32_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.889</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-48_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-48_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-48_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.892</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-256_altform-unplated.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Square44x44Logo.targetsize-256_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-256_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.882</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:08.897</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-100.png">
       <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:09.055</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-125.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-125.png">
       <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:09.058</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-150.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-150.png">
       <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:09.060</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:09.063</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-400.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\Assets\Wide310x150Logo.scale-400.png">
       <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2018-01-19T23:49:09.069</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\xamarin_logo.png">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\xamarin_logo.png">
       <PackagePath>xamarin_logo.png</PackagePath>
       <Modified>2018-01-19T23:49:08.484</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\TheLastHero.UWP.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\TheLastHero.UWP.xr.xml">
       <PackagePath>TheLastHero.UWP.xr.xml</PackagePath>
       <Modified>2018-01-19T23:49:55.037</Modified>
     </AppxPackagedFile>
@@ -881,14 +881,14 @@
       <PackagePath>Xamarin.Forms.Platform.UAP\Xamarin.Forms.Platform.UAP.xr.xml</PackagePath>
       <Modified>2017-11-28T10:07:38.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2018-01-19T23:49:58.460</Modified>
+      <Modified>2018-01-20T01:10:05.833</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\TheLastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\Core\TheLastHero.UWP.exe">
+    <AppxPackagedFile Include="C:\Users\Setup5a\source\repos\LastHero\TheLastHero\TheLastHero.UWP\bin\x86\Debug\Core\TheLastHero.UWP.exe">
       <PackagePath>TheLastHero.UWP.exe</PackagePath>
-      <Modified>2018-01-19T23:49:59.078</Modified>
+      <Modified>2018-01-20T01:10:06.779</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
