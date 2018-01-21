@@ -8,7 +8,8 @@ namespace TheLastHero.Models
     class creature
     {
 
-        string test;
+
+        string siyao;
 
         //title
         string name;

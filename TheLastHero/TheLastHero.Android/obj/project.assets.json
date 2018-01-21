@@ -688,32 +688,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Setup5a\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+    "/Users/sxu2/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.Android\\TheLastHero.Android.csproj",
+      "projectUniqueName": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.Android/TheLastHero.Android.csproj",
       "projectName": "TheLastHero.Android",
-      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.Android\\TheLastHero.Android.csproj",
-      "packagesPath": "C:\\Users\\Setup5a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.Android\\obj\\",
+      "projectPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.Android/TheLastHero.Android.csproj",
+      "packagesPath": "/Users/sxu2/.nuget/packages/",
+      "outputPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.Android/obj",
       "projectStyle": "PackageReference",
-      "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Setup5a\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "/Users/sxu2/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "monoandroid80"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -725,29 +717,29 @@
     "frameworks": {
       "monoandroid80": {
         "dependencies": {
+          "Xamarin.Forms": {
+            "target": "Package",
+            "version": "2.5.0.121934"
+          },
           "Xamarin.Android.Support.Design": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
-          },
-          "Xamarin.Android.Support.v4": {
-            "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v7.AppCompat": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
+          },
+          "Xamarin.Android.Support.v4": {
+            "target": "Package",
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v7.CardView": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
+            "version": "25.4.0.2"
           },
           "Xamarin.Android.Support.v7.MediaRouter": {
             "target": "Package",
-            "version": "[25.4.0.2, )"
-          },
-          "Xamarin.Forms": {
-            "target": "Package",
-            "version": "[2.5.0.121934, )"
+            "version": "25.4.0.2"
           }
         }
       }
