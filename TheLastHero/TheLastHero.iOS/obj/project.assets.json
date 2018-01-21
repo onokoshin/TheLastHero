@@ -696,32 +696,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Setup5a\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {}
+    "/Users/sxu2/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.iOS\\TheLastHero.iOS.csproj",
+      "projectUniqueName": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.iOS/TheLastHero.iOS.csproj",
       "projectName": "TheLastHero.iOS",
-      "projectPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.iOS\\TheLastHero.iOS.csproj",
-      "packagesPath": "C:\\Users\\Setup5a\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Setup5a\\source\\repos\\LastHero\\TheLastHero\\TheLastHero.iOS\\obj\\",
+      "projectPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.iOS/TheLastHero.iOS.csproj",
+      "packagesPath": "/Users/sxu2/.nuget/packages/",
+      "outputPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.iOS/obj",
       "projectStyle": "PackageReference",
-      "skipContentFileWrite": true,
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Setup5a\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
+        "/Users/sxu2/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "xamarinios10"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -735,7 +727,7 @@
         "dependencies": {
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[2.5.0.121934, )"
+            "version": "2.5.0.121934"
           }
         }
       }
