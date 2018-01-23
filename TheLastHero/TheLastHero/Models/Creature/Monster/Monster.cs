@@ -7,7 +7,7 @@ namespace TheLastHero.Models
     class monster : creature
     {
         //monster carry up to one item (not equipped item, it's a drop item) 
-        Item item; 
+        public Item item { get; set; }
 
         //monster class constructor 
         public monster()
@@ -26,7 +26,5 @@ namespace TheLastHero.Models
         {
 
         }
-
-
     }
 }

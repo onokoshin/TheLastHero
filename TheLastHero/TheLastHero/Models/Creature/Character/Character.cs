@@ -12,23 +12,19 @@ namespace TheLastHero.Models
         public const int capLevel = 20;
         
         //CHARACTER ONLY
-        int nextLevelExp;
-        int currentExp;
+        public int nextLevelExp { get; set; }
+        public int currentExp { get; set; }
 
-        bool isCapLevel;
+        public bool isCapLevel { get; set; }
 
 
         //Key - location (ex: arm, head, ring), Value - Item 
-        Dictionary<String, Item> equippedItem;
+        public Dictionary<String, Item> equippedItem;
 
         //constructor
         public Character()
         {
             //maybe instantiate equippedItem so that characters can have weapons 
         }
-
-        public int NextLevelExp { get => nextLevelExp; set => nextLevelExp = value; }
-        public int CurrentExp { get => currentExp; set => currentExp = value; }
-        public bool IsCapLevel { get => isCapLevel; set => isCapLevel = value; }
     }
 }
