@@ -18,8 +18,13 @@ namespace TheLastHero.Models
         public bool isCapLevel { get; set; }
 
 
-        //Key - location (ex: arm, head, ring), Value - Item 
-        public Dictionary<String, Item> equippedItem;
+       
+
+        // using enum for location 
+        public enum locations { head, body, feet, leftHand, rightHand, leftFinger, rightFinger  }
+
+        //Key - location is from enum, Value - Item 
+        public Dictionary<locations, Item> equippedItem;
 
         //constructor
         public Character()
