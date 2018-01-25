@@ -10,6 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CharacterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -49,6 +53,9 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Character.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\Monster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterPage.xaml.cs">
+      <DependentUpon>CharacterPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
@@ -77,4 +84,7 @@
   <!--#if (CreateBackendProject)
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
   #endif-->
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)KnightRight.png" />
+  </ItemGroup>
 </Project>

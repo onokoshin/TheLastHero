@@ -66,6 +66,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+    <AndroidResource Include="Resources\drawable\KnightRight.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\KnightRight.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\KnightRight.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\KnightRight.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
