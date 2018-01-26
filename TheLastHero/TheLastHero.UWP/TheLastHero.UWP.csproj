@@ -102,6 +102,7 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="TheLastHero.UWP_TemporaryKey.pfx" />
+    <None Include="KnightRight.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />

@@ -25,9 +25,23 @@ namespace TheLastHero.Models
         //constructor
         public Character()
         {
-            //maybe instantiate equippedItem so that characters can have weapons 
+            //maybe instantiate equippedItem so that characters can have weapons
         }
 
+        public void LevelUp()
+        {
+
+        }
+
+        public int DealDamage(int d)
+        {
+            return 0;
+        }
+
+        public void EquipItem(Item item, locations location)
+        {
+
+        }
 
     }
 }

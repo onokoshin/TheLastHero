@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Image Source="{Binding c0r0}" Grid.Column="0" Grid.Row="0" />
+            <Image Source="KnightRight.png" Grid.Column="0" Grid.Row="0" />
             <Image BackgroundColor="Red" Grid.Column="0" Grid.Row="1" />
             <Image Source="KnightRight.png" Grid.Column="0" Grid.Row="2" />
             <Image Source="KnightRight.png" Grid.Column="0" Grid.Row="3" />
