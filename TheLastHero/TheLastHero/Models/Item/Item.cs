@@ -6,6 +6,11 @@ namespace TheLastHero.Models
     {
         bool None;
 
+        public Item()
+        {
+
+        }
+
         public Item(int round)
         {
             //creature c = new creature();
