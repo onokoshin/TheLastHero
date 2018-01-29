@@ -21,9 +21,11 @@
         </StackLayout>
         <ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
-                <Label>
-                    
-                </Label>
+                <Label>TEAM SKY!</Label>
+                <Label>Team Mebers</Label>
+                <Label>- Koshin Ono</Label>
+                <Label>- Siyao Xu</Label>
+                <Label>- Shuai Yuan</Label>
                 <!--<Label FontSize="22">
                     <Label.FormattedText>
                         <FormattedString>
