@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace TheLastHero.Models
 {
-    class monster : creature
+    public class monster : creature
     {
         //monster carry up to one item (not equipped item, it's a drop item) 
         public Item UniqueDrop { get; set; }

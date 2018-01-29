@@ -6,7 +6,7 @@ namespace TheLastHero.Models
 {
 
     //playerCharacter inherites base attributes and methods from characterbase class
-    class Character : creature
+    public class Character : creature
     {
         //contant set to the maximum level 
         public const int capLevel = 20;

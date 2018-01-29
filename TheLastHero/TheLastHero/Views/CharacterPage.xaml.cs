@@ -12,5 +12,20 @@ namespace TheLastHero.Views
             InitializeComponent();
 
         }
+
+        async void CreateCharacter_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+        }
+
+        async void EditCharacter_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+        }
+
+        async void DeleteCharacter_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+        }
     }
 }

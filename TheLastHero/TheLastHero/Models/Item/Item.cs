@@ -19,7 +19,7 @@ namespace TheLastHero.Models
 
         public Item(int round, bool None)
         {
-            this.None = None; 
+            this.None = None;
 
         }
         public string Id { get; set; }

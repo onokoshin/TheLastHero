@@ -5,7 +5,7 @@ using System.Text;
 namespace TheLastHero.Models
 {
     //parent class of 
-    class creature
+    public class creature
     {
         // unique key to differentiate creatures
         public int id { get; set; }
