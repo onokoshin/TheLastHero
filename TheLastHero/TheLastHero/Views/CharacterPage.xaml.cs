@@ -13,9 +13,14 @@ namespace TheLastHero.Views
 
         }
 
+        void Handle_Clicked(object sender, System.EventArgs e)
+        {
+            Navigation.PushModalAsync(new NavigationPage(new CharacterCreate()));
+        }
+
         async void CreateCharacter_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new CharacterCreate()));
         }
 
         async void EditCharacter_Clicked(object sender, EventArgs e)

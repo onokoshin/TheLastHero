@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.CharacterPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Create" Clicked="CreateCharacter_Clicked" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <Grid x:Name="characterGrid" RowSpacing="1" ColumnSpacing="1" VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand">
             <Grid.RowDefinitions>

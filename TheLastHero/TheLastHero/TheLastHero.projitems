@@ -14,7 +14,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Test.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CharacterCreate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -60,8 +60,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterPage.xaml.cs">
       <DependentUpon>CharacterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Test.xaml.cs">
-      <DependentUpon>Test.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterCreate.cs">
+      <DependentUpon>CharacterCreate.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
