@@ -4,7 +4,7 @@ namespace TheLastHero.Models
 {
     public class Item
     {
-        bool None;
+        bool drop;
 
         public Item()
         {
@@ -17,9 +17,9 @@ namespace TheLastHero.Models
 
         }
 
-        public Item(int round, bool None)
+        public Item(int round, bool drop)
         {
-            this.None = None;
+            this.drop = drop;
 
         }
         public string Id { get; set; }
