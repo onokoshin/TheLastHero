@@ -14,7 +14,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CharacterCreate.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BattlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -29,7 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\LevelingManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\MonsterManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\TurnManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameRound\RoundManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Battle\Battle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Creature.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Inventory\Inventory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item\Item.cs" />
@@ -60,8 +60,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterPage.xaml.cs">
       <DependentUpon>CharacterPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterCreate.cs">
-      <DependentUpon>CharacterCreate.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\BattlePage.xaml.cs">
+      <DependentUpon>BattlePage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TheLastHero.Models;
 
-namespace TheLastHero.GameRound
+namespace TheLastHero.Battle
 {
-    class RoundManager
+
+    class Battle
     {
+
+
+
     }
+
+
 }

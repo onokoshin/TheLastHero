@@ -4,29 +4,36 @@ using System.Text;
 
 namespace TheLastHero.Models
 {
-    public class monster : creature
+    public class Monster : Creature
     {
         //monster carry up to one item (not equipped item, it's a drop item)
         public Item UniqueDrop { get; set; }
 
-        bool drop; 
+        bool drop;
 
         //overloaded constructor 
         //monster attributes will be based on the round being passed from battle engine
         //Ex: round 1 monster - weak attributes, but round 10 monster - strong attributes
         //@param level - level will be passed in depending on which round it is 
-        public monster(int round)
+        public Monster(int round, bool isBoss)
         {
             drop = false;
             Random rand = new Random();
             int randNum = rand.Next(1, 10);
 
-            if(randNum < 6 && round % 3 != 0)
+            if (randNum < 6 && !isBoss)
             {
-                drop = true; 
+                drop = true;
             }
 
-            Item UniqueDrop = new Item(round, drop); 
+            if (drop)
+            {
+                UniqueDrop = new Item(round);
+            }
+            else
+            {
+                UniqueDrop = null;
+            }
             //3, 6, 9...rounds are boss rounds 
             // This is not for initialize 3 times for UniqueDrop 
             //every 3 rounds will be boss rounds with stronger monsters

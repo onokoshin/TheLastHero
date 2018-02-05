@@ -5,7 +5,7 @@ using System.Text;
 namespace TheLastHero.Models
 {
     // parent class of characters and monsters 
-    public class creature
+    public class Creature
     {
         // unique key to differentiate creatures with exact same attributes.
         // Like 3 “Grey Wolf level 3”
@@ -71,7 +71,7 @@ namespace TheLastHero.Models
 
 
         // creature constructor
-        public creature()
+        public Creature()
         {
 
         }
