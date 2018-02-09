@@ -23,13 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\CharacterManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\DamageCalculation.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\ItemManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\LevelingManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\MonsterManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\TurnManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Battle\Battle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Creature.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Inventory\Inventory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item\Item.cs" />
