@@ -4,22 +4,18 @@ namespace TheLastHero.Models
 {
     public class Item
     {
-
-        public Item()
-        {
-
-        }
-
-        public Item(int round)
-        {
-            //creature c = new creature();
-
-        }
-
-
         public string Id { get; set; }
         public string Text { get; set; }
         public string Description { get; set; }
+
+        public Item()
+        {
+        }
+
+        // created items based on level
+        public Item(int level)
+        {
+        }
 
         // There will be 4 types of items: "Weapon", "Armor", "Ring",
         // "Consumable"

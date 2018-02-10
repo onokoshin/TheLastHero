@@ -10,7 +10,6 @@ namespace TheLastHero.Views
         public CharacterPage()
         {
             InitializeComponent();
-
         }
     }
 }

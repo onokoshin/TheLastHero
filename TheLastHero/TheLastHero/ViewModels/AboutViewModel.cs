@@ -9,7 +9,7 @@ namespace TheLastHero.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "The Last Hero";
 
             OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
         }

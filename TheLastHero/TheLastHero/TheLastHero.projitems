@@ -58,6 +58,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\BattlePage.xaml.cs">
       <DependentUpon>BattlePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Battle\Battle.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngine\GameEngine.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
@@ -82,6 +84,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Models\Inventory\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Creature\Character\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Battle\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\Score\" />
   </ItemGroup>
   <!--#if (CreateBackendProject)
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
