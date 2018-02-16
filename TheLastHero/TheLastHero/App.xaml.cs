@@ -13,7 +13,8 @@ namespace TheLastHero
 			InitializeComponent();
 
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            MainPage = new NavigationPage(new OpeningScreen());
         }
 
 		protected override void OnStart ()

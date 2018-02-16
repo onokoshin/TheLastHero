@@ -60,6 +60,10 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Battle\Battle.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\GameEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\OpeningScreen.xaml.cs">
+      <DependentUpon>OpeningScreen.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
@@ -92,5 +96,11 @@
   #endif-->
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)KnightRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\OpeningScreen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
