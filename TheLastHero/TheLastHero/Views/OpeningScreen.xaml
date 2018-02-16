@@ -4,9 +4,9 @@
              x:Class="TheLastHero.Views.OpeningScreen">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Monster Hunting PNW!" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,20,0,0"/>
+            <Label Text="The Last Hero" Style="{DynamicResource TitleStyle}" VerticalOptions="Center" HorizontalOptions="Center" />
 
-            <Image Source="StartPage.JPG" Margin="0,50,0,50"/>
+            <Image Source="StartPage.JPG" Margin="0,20,0,50"/>
 
             <Button Clicked="MainPageButton_OnClicked" Text="TEST TAB SCREENS" VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
 
