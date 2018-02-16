@@ -8,9 +8,9 @@ using TheLastHero.ViewModels;
 
 namespace TheLastHero.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ItemDetailPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ItemDetailPage : ContentPage
+    {
         ItemDetailViewModel viewModel;
 
         public ItemDetailPage(ItemDetailViewModel viewModel)
@@ -26,8 +26,8 @@ namespace TheLastHero.Views
 
             var item = new Item
             {
-                Text = "Item 1",
-                Description = "This is an item description."
+                // Text = "Item 1",
+                //  Description = "This is an item description."
             };
 
             viewModel = new ItemDetailViewModel(item);

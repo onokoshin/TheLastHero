@@ -17,7 +17,7 @@ namespace TheLastHero.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Item";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

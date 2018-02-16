@@ -9,15 +9,18 @@ namespace TheLastHero.Models
         // unique id
         public string Id { get; set; }
 
-        // this is for testing only, will be removed in later version
-        public string Text { get; set; }
-
-        // this is for item description
-        public string Description { get; set; }
-
         // There will be 4 types of items: "Weapon", "Armor", "Ring",
         // "Consumable"
         public string Type { get; set; }
+
+        // The name of the item
+        public string Name { get; set; }
+
+        // HP bonus
+        public int HP { get; set; }
+
+        // MP bouns
+        public int MP { get; set; }
 
         // Lvl means level, and it indicates the item level, the level will determine how powerful the item is,
         // there is a constructor that takes the level as parameter and calculate the Def, Atk, Spd, Agi 
