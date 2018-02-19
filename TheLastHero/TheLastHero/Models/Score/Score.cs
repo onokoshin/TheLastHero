@@ -56,7 +56,15 @@ namespace TheLastHero.Models
 
             // Update all the fields in the Data, except for the Id
             Name = newData.Name;
-            ScoreTotal = ScoreTotal;
+            ScoreTotal = newData.ScoreTotal;
+            GameDate = newData.GameDate;
+            AutoBattle = newData.AutoBattle;
+            MonsterSlainNumber = newData.MonsterSlainNumber;
+            ExperienceGainedTotal = newData.ExperienceGainedTotal;
+            CharacterAtDeathList = newData.CharacterAtDeathList;
+            MonstersKilledList = newData.MonstersKilledList;
+            ItemsDroppedList = newData.ItemsDroppedList;
+
         }
     }
 }

@@ -57,47 +57,47 @@ namespace TheLastHero.Services
                 _itemDataset.Add(data);
             }
 
-            /*    var mockMonsters = new List<Monster>
-                {
-                    new Monster { Id = Guid.NewGuid().ToString(), Name = "First Monster" },
-                    new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster"},
-                    new Monster { Id = Guid.NewGuid().ToString(), Name = "Third Monster" },
-                    new Monster { Id = Guid.NewGuid().ToString(), Name = "Fourth Monster" },
-                    new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster"},
-                    new Monster { Id = Guid.NewGuid().ToString(), Name = "Sixth Monster" },
-                };
+            var mockMonsters = new List<Monster>
+            {
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "First Monster" , Friendly = false, MaxHP = 2000, CurrentHP = 1800, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster", Friendly = false, MaxHP = 523, CurrentHP = 234, Lvl = 15, Atk=0,Def=10, Spd=1, Luk=1},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Third Monster" , Friendly = false, MaxHP = 1200, CurrentHP = 800, Lvl = 2, Atk=0,Def=10, Spd=1, Luk=1},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fourth Monster" , Friendly = false, MaxHP = 900, CurrentHP = 567, Lvl = 6, Atk=0,Def=10, Spd=1, Luk=1},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster" , Friendly = false, MaxHP = 455, CurrentHP = 123, Lvl = 8, Atk=0,Def=10, Spd=1, Luk=1},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Sixth Monster" , Friendly = false, MaxHP = 233, CurrentHP = 12, Lvl = 11, Atk=0,Def=10, Spd=1, Luk=1},
+            };
 
-                foreach (var data in mockMonsters)
-                {
-                    _monsterDataset.Add(data);
-                }
+            foreach (var data in mockMonsters)
+            {
+                _monsterDataset.Add(data);
+            }
+            
+            var mockScores = new List<Score>
+            {
+                new Score { Id = Guid.NewGuid().ToString(), Name = "First Score", ScoreTotal = 12345, GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
+                new Score { Id = Guid.NewGuid().ToString(), Name = "Second Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
+                new Score { Id = Guid.NewGuid().ToString(), Name = "Third Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
+                new Score { Id = Guid.NewGuid().ToString(), Name = "Fourth Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
+                new Score { Id = Guid.NewGuid().ToString(), Name = "Fifth Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
+                new Score { Id = Guid.NewGuid().ToString(), Name = "Sixth Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
+            };
 
-                var mockScores = new List<Score>
-                {
-                    new Score { Id = Guid.NewGuid().ToString(), Name = "First Score", Description="This is an Score description." },
-                    new Score { Id = Guid.NewGuid().ToString(), Name = "Second Score", Description="This is an Score description." },
-                    new Score { Id = Guid.NewGuid().ToString(), Name = "Third Score", Description="This is an Score description." },
-                    new Score { Id = Guid.NewGuid().ToString(), Name = "Fourth Score", Description="This is an Score description." },
-                    new Score { Id = Guid.NewGuid().ToString(), Name = "Fifth Score", Description="This is an Score description." },
-                    new Score { Id = Guid.NewGuid().ToString(), Name = "Sixth Score", Description="This is an Score description." },
-                };
+            foreach (var data in mockScores)
+            {
+                _scoreDataset.Add(data);
+            }
+            
+            var mockCharacters = new List<Character>
+            {
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1},
+            };
 
-                foreach (var data in mockScores)
-                {
-                    _scoreDataset.Add(data);
-                }
-                */
-                var mockCharacters = new List<Character>
-                {
-                    new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90},
-                    new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90},
-                    new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90},
-                };
-
-                foreach (var data in mockCharacters)
-                {
-                    _characterDataset.Add(data);
-                }
+            foreach (var data in mockCharacters)
+            {
+                _characterDataset.Add(data);
+            }
     
         }
 
@@ -140,8 +140,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(_itemDataset);
         }
 
-        //Monster
-        /*
+        
         public async Task<bool> AddAsync_Monster(Monster data)
         {
             _monsterDataset.Add(data);
@@ -180,6 +179,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(_monsterDataset);
         }
 
+        
         // Score
         public async Task<bool> AddAsync_Score(Score data)
         {
@@ -218,7 +218,7 @@ namespace TheLastHero.Services
         {
             return await Task.FromResult(_scoreDataset);
         }
-        */ 
+        
 
         #region Character
         public async Task<bool> AddAsync_Character(Character data)

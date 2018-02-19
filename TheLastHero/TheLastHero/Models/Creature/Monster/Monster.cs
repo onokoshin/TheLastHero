@@ -11,6 +11,12 @@ namespace TheLastHero.Models
 
         public bool Drop;
 
+        //default constructor
+        public Monster()
+        {
+
+        }
+
         //overloaded constructor 
         //monster attributes will be based on the round being passed from battle engine
         //Ex: round 1 monster - weak attributes, but round 10 monster - strong attributes
@@ -73,6 +79,41 @@ namespace TheLastHero.Models
         {
             return UniqueDrop;
         }
+
+        public void Update(Monster newData)
+        {
+            if (newData == null)
+            {
+                return;
+            }
+
+
+            //update all the fields in creature except for Id
+            Name = newData.Name;
+            Friendly = newData.Friendly;
+            ImgSource = newData.ImgSource;
+            MaxHP = newData.MaxHP;
+            CurrentHP = newData.MaxHP;
+            MaxMP = newData.MaxMP;
+            CurrentMP = newData.CurrentMP;
+            Lvl = newData.Lvl;
+            Def = newData.Def;
+            Atk = newData.Atk;
+            Spd = newData.Spd;
+            Luk = newData.Luk;
+            MoveRange = newData.MoveRange;
+            AtkRange = newData.AtkRange;
+            LiveStatus = newData.LiveStatus;
+
+            // Update all the fields in the Monster
+            UniqueDrop = newData.UniqueDrop;
+            Drop = newData.Drop;
+
+
+
+        }
+
+
     }
 
 }

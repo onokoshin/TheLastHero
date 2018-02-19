@@ -14,7 +14,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Character\CharactersPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Characters\CharactersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -53,6 +53,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CharactersViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MonsterDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MonstersViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScoreDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScoreViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -71,9 +75,9 @@
       <DependentUpon>OpeningScreen.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Score.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Score\Score.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemABC\Item.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\Character\CharactersPage.xaml.cs">
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Characters\CharactersPage.xaml.cs">
       <DependentUpon>CharactersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\Items\DeleteItemPage.xaml.cs">
@@ -109,9 +113,9 @@
     <Folder Include="$(MSBuildThisFileDirectory)Models\Battle\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Score\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Items\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\Monster\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\Character\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Views\Score\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Monsters\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Characters\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Scores\" />
   </ItemGroup>
   <!--#if (CreateBackendProject)
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
