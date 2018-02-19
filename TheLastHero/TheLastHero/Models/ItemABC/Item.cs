@@ -50,6 +50,8 @@ namespace TheLastHero.Models
         // This parameter indicates which character is using this item.
         public string EquippedBy { get; set; }
 
+        public string ImgSource { get; set; }
+
         //default construct is left empty in case of the future-use 
         public Item()
         {
@@ -60,6 +62,29 @@ namespace TheLastHero.Models
         {
         }
 
+        public void Update(Item newData)
+        {
+            if (newData == null)
+            {
+                return;
+            }
+
+            // Update all the fields in the Data, except for the Id
+            Name = newData.Name;
+            Type = newData.Type;
+            HP = newData.HP;
+            MP = newData.MP;
+            Lvl = newData.Luk;
+            Def = newData.Def;
+            Atk = newData.Atk;
+            Spd = newData.Spd;
+            Luk = newData.Luk;
+            SpecialAbility = newData.SpecialAbility;
+            EquippableLocation = newData.EquippableLocation;
+            EquippedBy = newData.EquippedBy;
+            ImgSource = newData.ImgSource;
+
+        }
 
     }
 }

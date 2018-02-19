@@ -9,13 +9,13 @@ using Xamarin.Forms.Xaml;
 
 namespace TheLastHero.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class OpeningScreen : ContentPage
-	{
-		public OpeningScreen ()
-		{
-			InitializeComponent();
-		}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class OpeningScreen : ContentPage
+    {
+        public OpeningScreen()
+        {
+            InitializeComponent();
+        }
 
         async void MainPageButton_OnClicked(object sender, EventArgs e)
         {
@@ -27,9 +27,9 @@ namespace TheLastHero.Views
             await Navigation.PushAsync(new BattlePage());
         }
 
-        async void CharacterPageButton_OnClicked(object sender, EventArgs e)
+        async void CharactersPageButton_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CharacterPage());
+            await Navigation.PushAsync(new CharactersPage());
         }
 
         async void MonstersPageButton_OnClicked(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace TheLastHero.Views
 
         async void InventoryPageButton_OnClicked(object sender, EventArgs e)
         {
-           // await Navigation.PushAsync(new Inventory());
+            // await Navigation.PushAsync(new Inventory());
         }
 
         async void ScorePageButton_OnClicked(object sender, EventArgs e)

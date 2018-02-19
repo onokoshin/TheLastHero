@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.ItemDetailPage" Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Clicked="Edit_Clicked" />
+        <ToolbarItem Text="Delete" Clicked="Delete_Clicked" />
+        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="5">
+            <Image Source="{Binding Data.ImgSource}" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name:" FontSize="12" />
+                <Label Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="HP:" FontSize="12" />
+                <Label Text="{Binding Data.HP}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Type:" FontSize="12" />
+                <Label Text="{Binding Data.Type}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Level:" FontSize="12" />
+                <Label Text="{Binding Data.Lvl}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MP:" FontSize="12" />
+                <Label Text="{Binding Data.MP}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Atk:" FontSize="12" />
+                <Label Text="{Binding Data.Atk}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Def:" FontSize="12" />
+                <Label Text="{Binding Data.Def}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Spd:" FontSize="12" />
+                <Label Text="{Binding Data.Spd}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Luk:" FontSize="12" />
+                <Label Text="{Binding Data.Luk}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Special Ability:" FontSize="12" />
+                <Label Text="{Binding Data.SpecialAbility}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Equippable Location:" FontSize="12" />
+                <Label Text="{Binding Data.EquippableLocation}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Equippable Location:" FontSize="12" />
+                <Label Text="{Binding Data.EquippableLocation}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Image Source:" FontSize="12" />
+                <Label Text="{Binding Data.ImgSource}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

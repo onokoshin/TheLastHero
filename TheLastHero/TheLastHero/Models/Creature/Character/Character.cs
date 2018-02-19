@@ -13,7 +13,7 @@ namespace TheLastHero.Models
         // character cannot level up after level 20. 20 will be the maximum
         // level for character in this game, but monster will grow stronger and
         // eventually kill all the heros.
-        public const int capLevel = 20;
+        public const int CapLevel = 20;
 
         /* This integer type property is for calculating how much experience for
          * character to level up
@@ -47,13 +47,13 @@ namespace TheLastHero.Models
         public void LevelUp()
         {
             //Level would only be increased if level is less than capLevel 
-            if (level < capLevel)
+            if (Lvl < CapLevel)
             {
 
                 // read levelup map
                 // update attributes accordingly here
                 // atk += levelMap.get(atk, level)
-                level += 1;
+                Lvl += 1;
             }
         }
         //We override this function from Creature in Character is because Character has weapon which Monster does not have.

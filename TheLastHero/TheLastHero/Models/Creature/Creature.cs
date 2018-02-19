@@ -9,53 +9,55 @@ namespace TheLastHero.Models
     {
         // unique key to differentiate creatures with exact same attributes.
         // Like 3 “Grey Wolf level 3”
-        public int id { get; set; }
+        public int Id { get; set; }
 
         //title 
         //name indicates the name of character or monster 
-        public string name { get; set; }
+        public string Name { get; set; }
         //bool friendly indicates whether the units are on player-side or
         // enemy-side.This attribute will be used to ensure character wouldn’t
         // be able to attack his own teammates, vice-versa for enemy units.
-        public bool friendly { get; set; }
-
+        public bool Friendly { get; set; }
+        // store the path of the image
+        public string ImgSource { get; set; }
         // status 
         // maxHP indicates how much HP character has. This attribute is mapped 
         // to the levelup map. And will be only updated when character levels
         // up.
-        public int maxHP { get; set; }
+        public int MaxHP { get; set; }
         // currentHP is needed because it determines if the character is dead or
         // alive. It will decrease everytime a monster makes a successful attack
         // towards character.
-        public int currentHP { get; set; }
+        public int CurrentHP { get; set; }
         // maxMP shows how much Magic Power a character have. This attribute
         // will be updated during combat. Like after a magical attack and level
         // up or next battle starts.
-        public int maxMP { get; set; }
+        public int MaxMP { get; set; }
         // currentMP is needed because it determine is the character has enough
         // magic power to make magical attack, for example, a mage need enough
         // mp to make multiple attack.
-        public int currentMP { get; set; }
+        public int CurrentMP { get; set; }
         // level is needed because it is related to the core game mechanics
         // every character could level up 
-        public int level { get; set; }
-
+        public int Lvl { get; set; }
+        // type indicates what image will be used for this character
+        public string Type { get; set; }
         // attributes
         // atk indicates what creature attack skills are.
-        public int atk { get; set; }
+        public int Atk { get; set; }
         // def indicates what creature defense skills are.
-        public int def { get; set; }
+        public int Def { get; set; }
         // spd indicates what creature speed skills are.
-        public int spd { get; set; }
+        public int Spd { get; set; }
         // luk indicates what creature missing hits or critical hits are.
         // If we could have critical hits or missing hits, the game will have
         // more fun
         // luk could decide whether creature hit other creatures.
-        public int luk { get; set; }
+        public int Luk { get; set; }
         // movRange indicates what creature moving range is.
-        public int movRange { get; set; }
+        public int MovRange { get; set; }
         // atkRange indicates what creature attacking range is.
-        public int atkRange { get; set; }
+        public int AtkRange { get; set; }
 
         // liveStatus maintains the character’s live status. If return value
         // is true which means the character is alive, false means the character
@@ -67,7 +69,7 @@ namespace TheLastHero.Models
         // not to display characters on the gameboard. 
         // We decide not to use “isDead()” function because we can easily access
         // liveStatus by setter and getter.
-        public bool liveStatus { get; set; }
+        public bool LiveStatus { get; set; }
 
 
         // creature constructor

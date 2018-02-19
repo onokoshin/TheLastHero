@@ -10,12 +10,29 @@
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)App.xaml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CharacterPage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BattlePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\BattlePage.xaml">
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Character\CharactersPage.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Items\DeleteItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Items\EditItemPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Items\ItemDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Items\ItemsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\Items\NewItemPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -27,7 +44,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameEngine\TurnManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Creature.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Inventory\Inventory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Item\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
@@ -41,20 +57,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ItemDetailPage.xaml.cs">
-      <DependentUpon>ItemDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml.cs">
-      <DependentUpon>ItemsPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml.cs">
-      <DependentUpon>NewItemPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Character\Character.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\Monster.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterPage.xaml.cs">
-      <DependentUpon>CharacterPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Views\BattlePage.xaml.cs">
       <DependentUpon>BattlePage.xaml</DependentUpon>
     </Compile>
@@ -63,6 +67,29 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\OpeningScreen.xaml.cs">
       <DependentUpon>OpeningScreen.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Services\iFileHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CharacterDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CharactersViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Score.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ItemABC\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Character\CharactersPage.xaml.cs">
+      <DependentUpon>CharactersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Items\DeleteItemPage.xaml.cs">
+      <DependentUpon>DeleteItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Items\EditItemPage.xaml.cs">
+      <DependentUpon>EditItemPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Items\ItemDetailPage.xaml.cs">
+      <DependentUpon>ItemDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Items\ItemsPage.xaml.cs">
+      <DependentUpon>ItemsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Views\Items\NewItemPage.xaml.cs">
+      <DependentUpon>NewItemPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -73,30 +100,22 @@
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\AboutPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemDetailPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\ItemsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\NewItemPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Models\Item\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Models\ItemABC\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Inventory\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Creature\Character\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Battle\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Score\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Items\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Monster\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Character\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Views\Score\" />
   </ItemGroup>
   <!--#if (CreateBackendProject)
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />
   #endif-->
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)KnightRight.png" />
-  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\OpeningScreen.xaml">
       <SubType>Designer</SubType>

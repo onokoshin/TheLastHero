@@ -28,7 +28,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:CharacterPage />
+                <views:CharactersPage />
             </x:Arguments>
         </NavigationPage>
         <NavigationPage Title="Start">

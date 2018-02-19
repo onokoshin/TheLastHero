@@ -5,9 +5,9 @@ using Xamarin.Forms;
 
 namespace TheLastHero.Views
 {
-    public partial class CharacterPage : ContentPage
+    public partial class CharactersPage : ContentPage
     {
-        public CharacterPage()
+        public CharactersPage()
         {
             InitializeComponent();
         }
