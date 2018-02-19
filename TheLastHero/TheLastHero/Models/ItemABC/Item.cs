@@ -74,7 +74,7 @@ namespace TheLastHero.Models
             Type = newData.Type;
             HP = newData.HP;
             MP = newData.MP;
-            Lvl = newData.Luk;
+            Lvl = newData.Lvl;
             Def = newData.Def;
             Atk = newData.Atk;
             Spd = newData.Spd;

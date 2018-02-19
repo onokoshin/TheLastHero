@@ -18,22 +18,22 @@ namespace TheLastHero.Models
         /* This integer type property is for calculating how much experience for
          * character to level up
          */
-        public int nextLevelExp { get; set; }
+        public int NextLevelExp { get; set; }
         /* This integer type property is for calculating how much experience for
          * character to level up
          */
-        public int currentExp { get; set; }
+        public int CurrentExp { get; set; }
         /* 
         * In default, is CapLevel is set to false because character wouldn’t start at Level 20. When character’s level reaches the capLevel, 20, we will change isCapLevel to true so that the character can no longer reach higher level. 
          */
-        public bool isCapLevel { get; set; }
+        public bool IsCapLevel { get; set; }
 
         // using enum for location of body parts where character can equip item
-        public enum locations { head, body, feet, leftHand, rightHand, leftFinger, rightFinger }
+        public enum Locations { Head, Body, Feet, LeftHand, RightHand, LeftFinger, RightFinger }
 
         //Key - location is from enum, Value - Item 
         // the reason we use dictionary is because, Dictionary structure provide a key and value pair, Dict is perfect for location and item relationship.
-        public Dictionary<locations, Item> equippedItem;
+        public Dictionary<Locations, Item> EquippedItem;
 
         //constructor for character
         public Character()
@@ -68,11 +68,47 @@ namespace TheLastHero.Models
         }
         //This void type method will help character to resign items. If characters get new items and this method will replace the new item for character.
         //This is a reusable block of code and we could use it in different classes.
-        public void EquipItem(Item item, locations location)
+        public void EquipItem(Item item, Locations location)
         {
             //equippedItem[location] = item; 
         }
 
+        public void Update(Character newData)
+        {
+            if (newData == null)
+            {
+                return;
+            }
+
+
+            //update all the fields in creature except for Id
+            Name = newData.Name;
+            Friendly = newData.Friendly;
+            ImgSource = newData.ImgSource;
+            MaxHP = newData.MaxHP;
+            CurrentHP = newData.MaxHP;
+            MaxMP = newData.MaxMP;
+            CurrentMP = newData.CurrentMP;
+            Lvl = newData.Lvl;
+            Def = newData.Def;
+            Atk = newData.Atk;
+            Spd = newData.Spd;
+            Luk = newData.Luk;
+            MoveRange = newData.MoveRange;
+            AtkRange = newData.AtkRange;
+            LiveStatus = newData.LiveStatus; 
+
+            // Update all the fields in the Character except for location <- method? 
+            NextLevelExp = newData.NextLevelExp;
+            CurrentExp = newData.CurrentExp;
+            IsCapLevel = newData.IsCapLevel;
+            //Locations = newData <-----------------------check later!!!!!!!!
+            EquippedItem = newData.EquippedItem; 
+
+
+            
+
+        }
+
     }
 }
-

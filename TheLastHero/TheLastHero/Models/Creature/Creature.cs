@@ -9,7 +9,7 @@ namespace TheLastHero.Models
     {
         // unique key to differentiate creatures with exact same attributes.
         // Like 3 “Grey Wolf level 3”
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         //title 
         //name indicates the name of character or monster 
@@ -55,7 +55,7 @@ namespace TheLastHero.Models
         // luk could decide whether creature hit other creatures.
         public int Luk { get; set; }
         // movRange indicates what creature moving range is.
-        public int MovRange { get; set; }
+        public int MoveRange { get; set; }
         // atkRange indicates what creature attacking range is.
         public int AtkRange { get; set; }
 

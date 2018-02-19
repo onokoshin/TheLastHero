@@ -86,19 +86,19 @@ namespace TheLastHero.Services
                 {
                     _scoreDataset.Add(data);
                 }
-
+                */
                 var mockCharacters = new List<Character>
                 {
-                    new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", Description = "This is a Character description"},
-                    new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", Description = "This is a Character description"},
-                    new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", Description = "This is a Character description"},
+                    new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90},
+                    new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90},
+                    new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90},
                 };
 
                 foreach (var data in mockCharacters)
                 {
                     _characterDataset.Add(data);
                 }
-    */
+    
         }
 
         // Item
@@ -218,7 +218,7 @@ namespace TheLastHero.Services
         {
             return await Task.FromResult(_scoreDataset);
         }
-
+        */ 
 
         #region Character
         public async Task<bool> AddAsync_Character(Character data)
@@ -260,7 +260,7 @@ namespace TheLastHero.Services
         }
 
         #endregion
-        */
+        
 
 
     }

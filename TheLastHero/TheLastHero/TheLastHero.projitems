@@ -45,9 +45,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Creature.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Inventory\Inventory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AboutViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CharacterDetailViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CharactersViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemDetailViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ItemsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml.cs">
@@ -68,9 +71,6 @@
       <DependentUpon>OpeningScreen.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Services\iFileHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CharacterDetailViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\CharactersViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Score.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemABC\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\Character\CharactersPage.xaml.cs">

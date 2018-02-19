@@ -9,26 +9,26 @@ namespace TheLastHero.Models
         //monster carry up to one item (not equipped item, it's a drop item)
         public Item UniqueDrop { get; set; }
 
-        bool drop;
+        public bool Drop;
 
         //overloaded constructor 
         //monster attributes will be based on the round being passed from battle engine
         //Ex: round 1 monster - weak attributes, but round 10 monster - strong attributes
         //@param level - level will be passed in depending on which round it is 
-        public Monster(int round, bool isBoss)
+        public Monster(int Round, bool IsBoss)
         {
-            drop = false;
-            Random rand = new Random();
-            int randNum = rand.Next(1, 10);
+            Drop = false;
+            Random Rand = new Random();
+            int RandNum = Rand.Next(1, 10);
 
-            if (randNum < 6 && !isBoss)
+            if (RandNum < 6 && !IsBoss)
             {
-                drop = true;
+                Drop = true;
             }
 
-            if (drop)
+            if (Drop)
             {
-                UniqueDrop = new Item(round);
+                UniqueDrop = new Item(Round);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace TheLastHero.Models
         //Items will return to item pool
         //dropItem is a basic function, it is nice to have it so we can reuse
         // it wherever needed. Like battle engine.
-        public Item dropItem()
+        public Item DropItem()
         {
             return UniqueDrop;
         }

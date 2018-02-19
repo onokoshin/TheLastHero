@@ -31,13 +31,13 @@ namespace TheLastHero.Services
          Task<bool> DeleteAsync_Score(Score data);
          Task<Score> GetAsync_Score(string id);
          Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false);
-
+         */
          Task<bool> AddAsync_Character(Character data);
          Task<bool> UpdateAsync_Character(Character data);
          Task<bool> DeleteAsync_Character(Character data);
          Task<Character> GetAsync_Character(string id);
          Task<IEnumerable<Character>> GetAllAsync_Character(bool forceRefresh = false);
- */
+ 
 
 
     }

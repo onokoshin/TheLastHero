@@ -56,6 +56,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,26 +74,6 @@
     <AndroidResource Include="Resources\drawable-hdpi\KnightRight.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\KnightRight.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\KnightRight.png" />
-    <AndroidResource Include="Resources\drawable\ClothBody.png" />
-    <AndroidResource Include="Resources\drawable\ClothFeet.png" />
-    <AndroidResource Include="Resources\drawable\ClothHead.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ClothBody.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ClothFeet.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\ClothHead.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ClothBody.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ClothFeet.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\ClothHead.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ClothBody.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ClothFeet.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\ClothHead.png" />
-    <AndroidResource Include="Resources\drawable\Staff3.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\Staff3.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\Staff3.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\Staff3.png" />
-    <AndroidResource Include="Resources\drawable\Ring.png" />
-    <AndroidResource Include="Resources\drawable-hdpi\Ring.png" />
-    <AndroidResource Include="Resources\drawable-xhdpi\Ring.png" />
-    <AndroidResource Include="Resources\drawable-xxhdpi\Ring.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
