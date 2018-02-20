@@ -114,11 +114,11 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\KnightRight.png" />
     <BundleResource Include="Resources\Main.png" />
+    <BundleResource Include="Resources\Ring.png" />
     <BundleResource Include="Resources\ClothBody.png" />
     <BundleResource Include="Resources\ClothFeet.png" />
     <BundleResource Include="Resources\ClothHead.png" />
     <BundleResource Include="Resources\Staff3.png" />
-    <BundleResource Include="Resources\Ring.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

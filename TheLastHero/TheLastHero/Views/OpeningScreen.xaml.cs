@@ -34,7 +34,7 @@ namespace TheLastHero.Views
 
         async void MonstersPageButton_OnClicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new Monster());
+            await Navigation.PushAsync(new MonstersPage());
         }
 
         async void ItemPageButton_OnClicked(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace TheLastHero.Views
 
         async void ScorePageButton_OnClicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new Score());
+            await Navigation.PushAsync(new ScoresPage());
         }
 
 

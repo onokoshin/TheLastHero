@@ -989,11 +989,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.iOS/TheLastHero.iOS.csproj",
+      "projectUniqueName": "/Users/sxu2/Projects/onokoshin/TheLastHero.git/TheLastHero/TheLastHero.iOS/TheLastHero.iOS.csproj",
       "projectName": "TheLastHero.iOS",
-      "projectPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.iOS/TheLastHero.iOS.csproj",
+      "projectPath": "/Users/sxu2/Projects/onokoshin/TheLastHero.git/TheLastHero/TheLastHero.iOS/TheLastHero.iOS.csproj",
       "packagesPath": "/Users/sxu2/.nuget/packages/",
-      "outputPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.iOS/obj",
+      "outputPath": "/Users/sxu2/Projects/onokoshin/TheLastHero.git/TheLastHero/TheLastHero.iOS/obj",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/sxu2/.config/NuGet/NuGet.Config"

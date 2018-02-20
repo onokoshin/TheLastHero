@@ -35,7 +35,7 @@ namespace TheLastHero.ViewModels
 
         public MonstersViewModel()
         {
-            Title = "Monster List";
+            /*Title = "Monster List";
             Dataset = new ObservableCollection<Monster>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
@@ -65,7 +65,7 @@ namespace TheLastHero.ViewModels
 
                 _needsRefresh = true;
 
-            });
+            });*/
         }
 
         // Return True if a refresh is needed

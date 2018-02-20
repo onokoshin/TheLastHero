@@ -9,27 +9,26 @@ using TheLastHero.ViewModels;
 namespace TheLastHero.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CharactersPage : ContentPage
+    public partial class MonstersPage : ContentPage
     {
         // ReSharper disable once NotAccessedField.Local
-        private CharactersViewModel _viewModel;
+        private MonstersViewModel _viewModel;
 
-        public CharactersPage()
+        public MonstersPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new CharactersViewModel();
+            BindingContext = _viewModel = new MonstersViewModel();
         }
 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var data = args.SelectedItem as Character;
+            var data = args.SelectedItem as Monster;
             if (data == null)
             {
                 return;
             }
 
-            await Navigation.PushAsync(new CharacterDetailPage(new CharacterDetailViewModel(data)));
-
+            await Navigation.PushAsync(new MonsterDetailPage(new MonstersDetailViewModel(data)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -37,7 +36,7 @@ namespace TheLastHero.Views
 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewCharacterPage());
+            await Navigation.PushAsync(new NewMonsterPage());
         }
 
         protected override void OnAppearing()

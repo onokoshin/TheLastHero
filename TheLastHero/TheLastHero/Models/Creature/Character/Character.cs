@@ -96,17 +96,17 @@ namespace TheLastHero.Models
             Luk = newData.Luk;
             MoveRange = newData.MoveRange;
             AtkRange = newData.AtkRange;
-            LiveStatus = newData.LiveStatus; 
-
+            LiveStatus = newData.LiveStatus;
+            Type = newData.Type;
             // Update all the fields in the Character except for location <- method? 
             NextLevelExp = newData.NextLevelExp;
             CurrentExp = newData.CurrentExp;
             IsCapLevel = newData.IsCapLevel;
             //Locations = newData <-----------------------check later!!!!!!!!
-            EquippedItem = newData.EquippedItem; 
+            EquippedItem = newData.EquippedItem;
 
 
-            
+
 
         }
 

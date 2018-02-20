@@ -857,11 +857,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.Android/TheLastHero.Android.csproj",
+      "projectUniqueName": "/Users/sxu2/Projects/onokoshin/TheLastHero.git/TheLastHero/TheLastHero.Android/TheLastHero.Android.csproj",
       "projectName": "TheLastHero.Android",
-      "projectPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.Android/TheLastHero.Android.csproj",
+      "projectPath": "/Users/sxu2/Projects/onokoshin/TheLastHero.git/TheLastHero/TheLastHero.Android/TheLastHero.Android.csproj",
       "packagesPath": "/Users/sxu2/.nuget/packages/",
-      "outputPath": "/Users/sxu2/Projects/onokoshin/TheLastHero/TheLastHero/TheLastHero.Android/obj",
+      "outputPath": "/Users/sxu2/Projects/onokoshin/TheLastHero.git/TheLastHero/TheLastHero.Android/obj",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/sxu2/.config/NuGet/NuGet.Config"
