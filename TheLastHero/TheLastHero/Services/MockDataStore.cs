@@ -71,7 +71,7 @@ namespace TheLastHero.Services
             {
                 _monsterDataset.Add(data);
             }
-            
+
             var mockScores = new List<Score>
             {
                 new Score { Id = Guid.NewGuid().ToString(), Name = "First Score", ScoreTotal = 12345, GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
@@ -86,19 +86,19 @@ namespace TheLastHero.Services
             {
                 _scoreDataset.Add(data);
             }
-            
+
             var mockCharacters = new List<Character>
             {
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1, Type="Human"},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human"},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human"},
             };
 
             foreach (var data in mockCharacters)
             {
                 _characterDataset.Add(data);
             }
-    
+
         }
 
         // Item
@@ -140,7 +140,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(_itemDataset);
         }
 
-        
+
         public async Task<bool> AddAsync_Monster(Monster data)
         {
             _monsterDataset.Add(data);
@@ -179,7 +179,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(_monsterDataset);
         }
 
-        
+
         // Score
         public async Task<bool> AddAsync_Score(Score data)
         {
@@ -218,7 +218,7 @@ namespace TheLastHero.Services
         {
             return await Task.FromResult(_scoreDataset);
         }
-        
+
 
         #region Character
         public async Task<bool> AddAsync_Character(Character data)
@@ -260,7 +260,7 @@ namespace TheLastHero.Services
         }
 
         #endregion
-        
+
 
 
     }
