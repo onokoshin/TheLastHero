@@ -33,7 +33,7 @@ namespace TheLastHero.Views
 
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new NewScorePage());
         }
 
         protected override void OnAppearing()

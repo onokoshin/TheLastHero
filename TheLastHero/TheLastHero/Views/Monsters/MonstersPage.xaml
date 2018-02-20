@@ -1,38 +1,43 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TheLastHero.Views.MonstersPage"
-              Title="{Binding Title}"
-             x:Name="BrowseMonstersPage">
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.MonstersPage" Title="{Binding Title}" x:Name="BrowseMonstersPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            
-            <Label Text="Monster List"></Label>
-            
-            <ListView x:Name="ItemsListView" 
-                ItemsSource="{Binding Dataset}"
-                VerticalOptions="FillAndExpand"
-                 HasUnevenRows="true"
-                 RefreshCommand="{Binding LoadItemsCommand}"
-                 IsPullToRefreshEnabled="true"
-                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                 CachingStrategy="RecycleElement"
-                 ItemSelected="OnItemSelected">
+            <Label Text="Monster List">
+            </Label>
+            <ListView x:Name="ItemsListView" ItemsSource="{Binding Dataset}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Name}" 
-                       LineBreakMode="NoWrap" 
-                       Style="{DynamicResource ListItemTextStyle}" 
-                       FontSize="16" />
-                                <Label Text="{Binding Description}" 
-                       LineBreakMode="NoWrap"
-                       Style="{DynamicResource ListItemDetailTextStyle}"
-                       FontSize="13" />
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding ImgSource}" />
+                                <StackLayout VerticalOptions="Center">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Name}" TextColor="Purple" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="18" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Type:" FontSize="12" />
+                                        <Label Text="{Binding Type}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
+                                        <Label Text="HP:" FontSize="12" />
+                                        <Label Text="{Binding MaxHP}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="MP:" FontSize="12" />
+                                        <Label Text="{Binding MaxMP}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="Atk:" FontSize="12" />
+                                        <Label Text="{Binding Atk}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Lvl:" FontSize="12" />
+                                        <Label Text="{Binding Lvl}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
+                                        <Label Text="Def:" FontSize="12" />
+                                        <Label Text="{Binding Def}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="Spd:" FontSize="12" />
+                                        <Label Text="{Binding Spd}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="Luk:" FontSize="12" />
+                                        <Label Text="{Binding Luk}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                    </StackLayout>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

@@ -1,22 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             x:Class="TheLastHero.Views.NewMonsterPage">
-    
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.NewMonsterPage">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
-
-    <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-
-            <Label Text="Monster Create Page" FontSize="Small" />
-
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Data.Name}" FontSize="Small" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Data.Description}" FontSize="Small" Margin="0" />
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="5">
+            <Image Source="{Binding Data.ImgSource}" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name:" FontSize="12" />
+                <Entry Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Type:" FontSize="12" />
+                <Entry Text="{Binding Data.Type}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Friendly:" FontSize="12" />
+                <Entry Text="{Binding Data.Friendly}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ImgSource:" FontSize="12" />
+                <Entry Text="{Binding Data.ImgSource}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MaxHP:" FontSize="12" />
+                <Entry Text="{Binding Data.MaxHP}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="CurrentHP:" FontSize="12" />
+                <Entry Text="{Binding Data.CurrentHP}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MaxMP:" FontSize="12" />
+                <Entry Text="{Binding Data.MaxMP}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="CurrentMP:" FontSize="12" />
+                <Entry Text="{Binding Data.CurrentMP}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Lvl:" FontSize="12" />
+                <Entry Text="{Binding Data.Lvl}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Atk:" FontSize="12" />
+                <Entry Text="{Binding Data.Atk}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Def:" FontSize="12" />
+                <Entry Text="{Binding Data.Def}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Spd:" FontSize="12" />
+                <Entry Text="{Binding Data.Spd}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Luk:" FontSize="12" />
+                <Entry Text="{Binding Data.Luk}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MoveRange:" FontSize="12" />
+                <Entry Text="{Binding Data.MoveRange}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="AtkRange:" FontSize="12" />
+                <Entry Text="{Binding Data.AtkRange}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="LiveStatus:" FontSize="12" />
+                <Entry Text="{Binding Data.LiveStatus}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="UniqueDrop:" FontSize="12" />
+                <Entry Text="{Binding Data.UniqueDrop}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Drop:" FontSize="12" />
+                <Entry Text="{Binding Data.Drop}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>

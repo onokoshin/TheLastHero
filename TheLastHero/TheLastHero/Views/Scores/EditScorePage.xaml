@@ -1,24 +1,48 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TheLastHero.Views.EditScorePage"           
-             Title="{Binding Title}">
-    
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.EditScorePage" Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
-
-    <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
-
-            <Label Text="Score Edit Page" FontSize="Small" />
-
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Data.Name}" FontSize="Small" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Data.Description}" FontSize="Small" Margin="0" />
+    <ScrollView>
+        <StackLayout Spacing="10" Padding="5">
+            <Image Source="{Binding Data.ImgSource}" />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name:" FontSize="12" />
+                <Entry Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ScoreTotal:" FontSize="12" />
+                <Entry Text="{Binding Data.ScoreTotal}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="GameDate:" FontSize="12" />
+                <Entry Text="{Binding Data.GameDate}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="AutoBattle:" FontSize="12" />
+                <Entry Text="{Binding Data.AutoBattle}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MonsterSlainNumber:" FontSize="12" />
+                <Entry Text="{Binding Data.MonsterSlainNumber}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ExperienceGainedTotal:" FontSize="12" />
+                <Entry Text="{Binding Data.ExperienceGainedTotal}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="CharacterAtDeathList:" FontSize="12" />
+                <Entry Text="{Binding Data.CharacterAtDeathList}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MonstersKilledList:" FontSize="12" />
+                <Entry Text="{Binding Data.MonstersKilledList}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ItemsDropedList:" FontSize="12" />
+                <Entry Text="{Binding Data.ItemsDropedList}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
         </StackLayout>
-    </ContentPage.Content>
-    
+    </ScrollView>
 </ContentPage>

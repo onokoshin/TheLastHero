@@ -18,7 +18,7 @@ namespace TheLastHero.Views
 
             Data = new Score
             {
-                Name = "Item name",
+                Name = "Score name",
                 Id = Guid.NewGuid().ToString()
             };
 

@@ -35,37 +35,37 @@ namespace TheLastHero.ViewModels
 
         public ScoresViewModel()
         {
-            /*  Title = "Score List";
-              Dataset = new ObservableCollection<Score>();
-              LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+            Title = "Score List";
+            Dataset = new ObservableCollection<Score>();
+            LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
-              MessagingCenter.Subscribe<DeleteScorePage, Score>(this, "DeleteData", async (obj, data) =>
-              {
-                  Dataset.Remove(data);
-                  await DataStore.DeleteAsync_Score(data);
-              });
+            MessagingCenter.Subscribe<DeleteScorePage, Score>(this, "DeleteData", async (obj, data) =>
+            {
+                Dataset.Remove(data);
+                await DataStore.DeleteAsync_Score(data);
+            });
 
-              MessagingCenter.Subscribe<NewScorePage, Score>(this, "AddData", async (obj, data) =>
-              {
-                  Dataset.Add(data);
-                  await DataStore.AddAsync_Score(data);
-              });
+            MessagingCenter.Subscribe<NewScorePage, Score>(this, "AddData", async (obj, data) =>
+            {
+                Dataset.Add(data);
+                await DataStore.AddAsync_Score(data);
+            });
 
-              MessagingCenter.Subscribe<EditScorePage, Score>(this, "EditData", async (obj, data) =>
-              {
+            MessagingCenter.Subscribe<EditScorePage, Score>(this, "EditData", async (obj, data) =>
+            {
                   // Find the Score, then update it
                   var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
-                  if (myData == null)
-                  {
-                      return;
-                  }
+                if (myData == null)
+                {
+                    return;
+                }
 
-                  myData.Update(data);
-                  await DataStore.UpdateAsync_Score(myData);
+                myData.Update(data);
+                await DataStore.UpdateAsync_Score(myData);
 
-                  _needsRefresh = true;
+                _needsRefresh = true;
 
-              });*/
+            });
         }
 
         // Return True if a refresh is needed

@@ -104,7 +104,7 @@ namespace TheLastHero.Models
             MoveRange = newData.MoveRange;
             AtkRange = newData.AtkRange;
             LiveStatus = newData.LiveStatus;
-
+            Type = newData.Type;
             // Update all the fields in the Monster
             UniqueDrop = newData.UniqueDrop;
             Drop = newData.Drop;
