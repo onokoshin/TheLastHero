@@ -45,11 +45,11 @@ namespace TheLastHero.Services
         {
             var mockItems = new List<Item>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Hat", HP=0, MP=5, Type = HEAD, Lvl=3, Atk=0,Def=10, Spd=1, Luk=1,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="ClothHead.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Rope", HP=2, MP=20, Type = BODY, Lvl=1, Atk=0,Def=5, Spd=1, Luk=1,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="ClothBody.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Shoes", HP=10, MP=5, Type = FEET, Lvl=1, Atk=0,Def=2, Spd=5, Luk=1,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="ClothFeet.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Staff", HP=0, MP=0, Type = LEFTHAND, Lvl=1, Atk=100,Def=2, Spd=5, Luk=1,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="Staff3.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Ring", HP=0, MP=5, Type = LEFTFINGER, Lvl=1, Atk=2,Def=5, Spd=1, Luk=1,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="Ring.png"}
+                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Hat", HP=8, MP=5, Type = "Armor", Lvl=3, Atk=10,Def=10, Spd=2, Luk=1,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="ClothHead.png"},
+                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Rope", HP=2, MP=20, Type = "Armor", Lvl=1, Atk=12,Def=5, Spd=1, Luk=2,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="ClothBody.png"},
+                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Shoes", HP=10, MP=5, Type = "Armor", Lvl=2, Atk=9,Def=2, Spd=5, Luk=5,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="ClothFeet.png"},
+                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Staff", HP=0, MP=0, Type = "Weapon", Lvl=4, Atk=100,Def=2, Spd=5, Luk=7,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="Staff3.png"},
+                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Ring", HP=5, MP=15, Type = "Ring", Lvl=5, Atk=98,Def=5, Spd=7, Luk=9,SpecialAbility="null", EquippableLocation="null", EquippedBy="null", ImgSource="Ring.png"}
             };
 
             foreach (var data in mockItems)
@@ -59,12 +59,12 @@ namespace TheLastHero.Services
 
             var mockMonsters = new List<Monster>
             {
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "First Monster" , Friendly = false, MaxHP = 2000, CurrentHP = 1800, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster", Friendly = false, MaxHP = 523, CurrentHP = 234, Lvl = 15, Atk=0,Def=10, Spd=1, Luk=1},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Third Monster" , Friendly = false, MaxHP = 1200, CurrentHP = 800, Lvl = 2, Atk=0,Def=10, Spd=1, Luk=1},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fourth Monster" , Friendly = false, MaxHP = 900, CurrentHP = 567, Lvl = 6, Atk=0,Def=10, Spd=1, Luk=1},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster" , Friendly = false, MaxHP = 455, CurrentHP = 123, Lvl = 8, Atk=0,Def=10, Spd=1, Luk=1},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Sixth Monster" , Friendly = false, MaxHP = 233, CurrentHP = 12, Lvl = 11, Atk=0,Def=10, Spd=1, Luk=1},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "First Monster" , Friendly = false, MaxHP = 2000, CurrentHP = 1800, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="RavenLeft.png",UniqueDrop= new Item()},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster", Friendly = false, MaxHP = 523, CurrentHP = 234, Lvl = 15, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="TigerLeft.png",UniqueDrop= new Item()},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Third Monster" , Friendly = false, MaxHP = 1200, CurrentHP = 800, Lvl = 2, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="WolfLeft.png",UniqueDrop= new Item()},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fourth Monster" , Friendly = false, MaxHP = 900, CurrentHP = 567, Lvl = 6, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Human", ImgSource="BossLeft.png",UniqueDrop= new Item()},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster" , Friendly = false, MaxHP = 455, CurrentHP = 123, Lvl = 8, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Ghost", ImgSource="SkeletonLeft.png",UniqueDrop= new Item()},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Sixth Monster" , Friendly = false, MaxHP = 233, CurrentHP = 12, Lvl = 11, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Ghost", ImgSource="SkeletonLeft2.png",UniqueDrop= new Item()},
             };
 
             foreach (var data in mockMonsters)
@@ -74,7 +74,7 @@ namespace TheLastHero.Services
 
             var mockScores = new List<Score>
             {
-                new Score { Id = Guid.NewGuid().ToString(), Name = "First Score", ScoreTotal = 12345, GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
+                new Score { Id = Guid.NewGuid().ToString(), Name = "First Score", ScoreTotal = 12345, GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50},
                 new Score { Id = Guid.NewGuid().ToString(), Name = "Second Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
                 new Score { Id = Guid.NewGuid().ToString(), Name = "Third Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
                 new Score { Id = Guid.NewGuid().ToString(), Name = "Fourth Score", ScoreTotal = 12345,  GameDate = new DateTime(2018, 02, 18), MonsterSlainNumber = 50 },
@@ -89,9 +89,9 @@ namespace TheLastHero.Services
 
             var mockCharacters = new List<Character>
             {
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1, Type="Human"},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human"},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human"},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1, Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="KnightLeft.png"},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="MageLeft.png"},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="WarriorLeft.png"},
             };
 
             foreach (var data in mockCharacters)

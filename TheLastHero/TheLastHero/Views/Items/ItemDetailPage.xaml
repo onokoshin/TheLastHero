@@ -7,7 +7,7 @@
     </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout Spacing="10" Padding="5">
-            <Image Source="{Binding Data.ImgSource}" />
+            <Image Source="{Binding Data.ImgSource}" MinimumHeightRequest="100" WidthRequest="120" HeightRequest="120" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Name:" FontSize="12" />
                 <Label Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />

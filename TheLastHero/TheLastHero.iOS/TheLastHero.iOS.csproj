@@ -112,13 +112,76 @@
     <BundleResource Include="Resources\Icon-Small%402x.png" />
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <BundleResource Include="Resources\KnightRight.png" />
-    <BundleResource Include="Resources\Main.png" />
-    <BundleResource Include="Resources\Ring.png" />
     <BundleResource Include="Resources\ClothBody.png" />
     <BundleResource Include="Resources\ClothFeet.png" />
+    <BundleResource Include="Resources\ClothHands.png" />
     <BundleResource Include="Resources\ClothHead.png" />
+    <BundleResource Include="Resources\ClothLegs.png" />
+    <BundleResource Include="Resources\HeavyLatherHands.png" />
+    <BundleResource Include="Resources\HeavyLeatherBody.png" />
+    <BundleResource Include="Resources\HeavyLeatherFeet.png" />
+    <BundleResource Include="Resources\HeavyLeatherHead.png" />
+    <BundleResource Include="Resources\HeavyLeatherLegs.png" />
+    <BundleResource Include="Resources\LeatherBody.png" />
+    <BundleResource Include="Resources\LeatherFeet.png" />
+    <BundleResource Include="Resources\LeatherHands.png" />
+    <BundleResource Include="Resources\LeatherHead.png" />
+    <BundleResource Include="Resources\LeatherLegs.png" />
+    <BundleResource Include="Resources\PlateBody.png" />
+    <BundleResource Include="Resources\PlateFeet.png" />
+    <BundleResource Include="Resources\PlateHands.png" />
+    <BundleResource Include="Resources\PlateHead.png" />
+    <BundleResource Include="Resources\PlateLegs.png" />
+    <BundleResource Include="Resources\Ring.png" />
+    <BundleResource Include="Resources\ArcherLeft.png" />
+    <BundleResource Include="Resources\ArcherRight.png" />
+    <BundleResource Include="Resources\FighterLeft.png" />
+    <BundleResource Include="Resources\FighterRight.png" />
+    <BundleResource Include="Resources\KnightLeft.png" />
+    <BundleResource Include="Resources\KnightRight.png" />
+    <BundleResource Include="Resources\MageLeft.png" />
+    <BundleResource Include="Resources\MageRight.png" />
+    <BundleResource Include="Resources\ThiefLeft.png" />
+    <BundleResource Include="Resources\ThiefRight.png" />
+    <BundleResource Include="Resources\WarriorLeft.png" />
+    <BundleResource Include="Resources\WarriorRight.png" />
+    <BundleResource Include="Resources\HighlightGreen.png" />
+    <BundleResource Include="Resources\HighlightRed.png" />
+    <BundleResource Include="Resources\Main.png" />
+    <BundleResource Include="Resources\BossLeft.png" />
+    <BundleResource Include="Resources\BossRight.png" />
+    <BundleResource Include="Resources\CatLeft.png" />
+    <BundleResource Include="Resources\CatRight.png" />
+    <BundleResource Include="Resources\HawkLeft.png" />
+    <BundleResource Include="Resources\HawkRight.png" />
+    <BundleResource Include="Resources\HeronLeft.png" />
+    <BundleResource Include="Resources\HeronRight.png" />
+    <BundleResource Include="Resources\RavenLeft.png" />
+    <BundleResource Include="Resources\RavenRight.png" />
+    <BundleResource Include="Resources\SkeletonLeft.png" />
+    <BundleResource Include="Resources\SkeletonLeft2.png" />
+    <BundleResource Include="Resources\SkeletonLeft3.png" />
+    <BundleResource Include="Resources\SkeletonRight.png" />
+    <BundleResource Include="Resources\SkeletonRight2.png" />
+    <BundleResource Include="Resources\SkeletonRight3.png" />
+    <BundleResource Include="Resources\TigerLeft.png" />
+    <BundleResource Include="Resources\TigerRight.png" />
+    <BundleResource Include="Resources\WolfLeft.png" />
+    <BundleResource Include="Resources\WolfRight.png" />
+    <BundleResource Include="Resources\Bow.png" />
+    <BundleResource Include="Resources\Bow2.png" />
+    <BundleResource Include="Resources\Bow3.png" />
+    <BundleResource Include="Resources\Dagger.png" />
+    <BundleResource Include="Resources\GreatSword.png" />
+    <BundleResource Include="Resources\Staff0.png" />
+    <BundleResource Include="Resources\Staff1.png" />
+    <BundleResource Include="Resources\Staff2.png" />
     <BundleResource Include="Resources\Staff3.png" />
+    <BundleResource Include="Resources\Sword.png" />
+    <BundleResource Include="Resources\Grass.png" />
+    <BundleResource Include="Resources\Lava.png" />
+    <BundleResource Include="Resources\Sand.png" />
+    <BundleResource Include="Resources\HighlightGrey.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -158,6 +221,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\icon.png" />
   </ItemGroup>
   <Import Project="..\TheLastHero\TheLastHero.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
