@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace TheLastHero.Models
 {
@@ -9,7 +10,7 @@ namespace TheLastHero.Models
     {
         // unique key to differentiate creatures with exact same attributes.
         // Like 3 “Grey Wolf level 3”
-        public string Id { get; set; }
+
 
         //title 
         //name indicates the name of character or monster 

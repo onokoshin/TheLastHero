@@ -8,12 +8,26 @@ using Xamarin.Forms;
 using TheLastHero.Models;
 using TheLastHero.Views;
 using System.Linq;
-using TheLastHero.Views;
 
 namespace TheLastHero.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
+        // Make this a singleton so it only exist one time because holds all the data records in memory
+        private static ItemsViewModel _instance;
+
+        public static ItemsViewModel Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new ItemsViewModel();
+                }
+                return _instance;
+            }
+        }
+
         public ObservableCollection<Item> Dataset { get; set; }
         public Command LoadDataCommand { get; set; }
 
@@ -67,6 +81,13 @@ namespace TheLastHero.ViewModels
 
             return false;
         }
+
+        // Sets the need to refresh
+        public void SetNeedsRefresh(bool value)
+        {
+            _needsRefresh = value;
+        }
+
 
         private async Task ExecuteLoadDataCommand()
         {

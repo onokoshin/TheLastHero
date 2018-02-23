@@ -1,4 +1,5 @@
 ﻿using System;
+using SQLite;
 
 namespace TheLastHero.Models
 {
@@ -7,6 +8,7 @@ namespace TheLastHero.Models
     public class Item
     {
         // unique id
+        [PrimaryKey]
         public string Id { get; set; }
 
         // There will be 4 types of items: "Weapon", "Armor", "Ring",

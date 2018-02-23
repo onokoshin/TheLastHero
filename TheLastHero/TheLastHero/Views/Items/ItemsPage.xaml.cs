@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Linq;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using TheLastHero.Models;
-
 using TheLastHero.ViewModels;
 
 namespace TheLastHero.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemsPage : ContentPage
     {
         private ItemsViewModel _viewModel;
@@ -18,7 +16,7 @@ namespace TheLastHero.Views
         public ItemsPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new ItemsViewModel();
+            BindingContext = _viewModel = ItemsViewModel.Instance;
         }
 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

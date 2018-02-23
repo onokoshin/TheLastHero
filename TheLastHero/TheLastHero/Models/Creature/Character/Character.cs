@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace TheLastHero.Models
 {
@@ -8,7 +9,8 @@ namespace TheLastHero.Models
     //Character inherites Creature's attributes and methods from characterbase class
     public class Character : Creature
     {
-
+        [PrimaryKey]
+        public string Id { get; set; }
         // contant set to the maximum level
         // character cannot level up after level 20. 20 will be the maximum
         // level for character in this game, but monster will grow stronger and

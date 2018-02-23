@@ -58,4 +58,46 @@
             </ScrollView>
         </Grid>
     </StackLayout>
+    <StackLayout 
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="StartAndExpand" 
+                Orientation="Vertical"
+                >
+
+        <StackLayout
+                HorizontalOptions="Start"
+                Orientation="Horizontal">
+
+            <Label 
+                FontSize="Small"
+                Text="Use Mock DataStore"
+                HorizontalTextAlignment="Start"
+                HorizontalOptions="Start"
+                />
+
+            <Switch 
+                x:Name="SettingDataSource"
+                HorizontalOptions="Center"
+                Toggled="Switch_OnToggled"/>
+        </StackLayout>
+
+        <StackLayout
+                HorizontalOptions="Start"
+                Orientation="Horizontal">
+
+            <Label 
+                FontSize="Small"
+                Text="Clear Database"
+                    HorizontalTextAlignment="Start"
+                    HorizontalOptions="Start"
+                />
+
+            <Button  
+                    Text="Clear" 
+                    Clicked="ClearDatabase_Command" 
+                    HorizontalOptions="Center"
+                    TextColor="Black" />
+        </StackLayout>
+
+    </StackLayout>
 </ContentPage>

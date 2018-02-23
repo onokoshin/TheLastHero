@@ -17,7 +17,8 @@ namespace TheLastHero.Views
         public MonstersPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new MonstersViewModel();
+            BindingContext = _viewModel = MonstersViewModel.Instance;
+            //BindingContext = _viewModel = new MonstersViewModel();
         }
 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

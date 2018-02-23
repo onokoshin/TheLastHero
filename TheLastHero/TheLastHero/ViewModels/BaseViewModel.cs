@@ -12,20 +12,54 @@ namespace TheLastHero.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore DataStore => DependencyService.Get<IDataStore>() ?? MockDataStore.Instance;
+        //public IDataStore DataStore => DependencyService.Get<IDataStore>() ?? MockDataStore.Instance;
 
-        bool isBusy = false;
-        public bool IsBusy
+        #region RefactorLater
+
+        private IDataStore DataStoreMock => DependencyService.Get<IDataStore>() ?? MockDataStore.Instance;
+        private IDataStore DataStoreSql => DependencyService.Get<IDataStore>() ?? SQLDataStore.Instance;
+
+        public IDataStore DataStore;
+        public BaseViewModel()
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+            SetDataStore(DataStoreEnum.Sql);
         }
 
-        string title = string.Empty;
+        public enum DataStoreEnum { Unknown = 0, Sql = 1, Mock = 2 }
+
+        public void SetDataStore(DataStoreEnum data)
+        {
+            switch (data)
+            {
+                case DataStoreEnum.Mock:
+                    DataStore = DataStoreMock;
+                    break;
+
+                case DataStoreEnum.Sql:
+                    DataStore = DataStoreSql;
+                    break;
+                case DataStoreEnum.Unknown:
+                default:
+                    DataStore = DataStoreSql;
+                    break;
+            }
+        }
+
+
+        #endregion
+
+        private bool _isBusy = false;
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set { SetProperty(ref _isBusy, value); }
+        }
+
+        private string _title = string.Empty;
         public string Title
         {
-            get { return title; }
-            set { SetProperty(ref title, value); }
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

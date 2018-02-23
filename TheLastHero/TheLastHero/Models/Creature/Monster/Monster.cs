@@ -1,20 +1,23 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using SQLite;
 
 namespace TheLastHero.Models
 {
     public class Monster : Creature
     {
+        [PrimaryKey]
+        public string Id { get; set; }
         //monster carry up to one item (not equipped item, it's a drop item)
-        public Item UniqueDrop { get; set; }
+        //public Item UniqueDrop { get; set; }
 
         public bool Drop;
 
         //default constructor
         public Monster()
         {
-
+            //UniqueDrop = new Item();
         }
 
         //overloaded constructor 
@@ -34,11 +37,11 @@ namespace TheLastHero.Models
 
             if (Drop)
             {
-                UniqueDrop = new Item(Round);
+                //UniqueDrop = new Item(Round);
             }
             else
             {
-                UniqueDrop = null;
+                //UniqueDrop = null;
             }
             //3, 6, 9...rounds are boss rounds 
             // This is not for initialize 3 times for UniqueDrop 
@@ -75,10 +78,10 @@ namespace TheLastHero.Models
         //Items will return to item pool
         //dropItem is a basic function, it is nice to have it so we can reuse
         // it wherever needed. Like battle engine.
-        public Item DropItem()
-        {
-            return UniqueDrop;
-        }
+        //public Item DropItem()
+        //{
+        //    return UniqueDrop;
+        //}
 
         public void Update(Monster newData)
         {
@@ -106,7 +109,7 @@ namespace TheLastHero.Models
             LiveStatus = newData.LiveStatus;
             Type = newData.Type;
             // Update all the fields in the Monster
-            UniqueDrop = newData.UniqueDrop;
+            //UniqueDrop = newData.UniqueDrop;
             Drop = newData.Drop;
 
 
