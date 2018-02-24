@@ -11,6 +11,8 @@ namespace TheLastHero.Models
         // Like 3 “Grey Wolf level 3”
         public string Id { get; set; }
 
+        public int xPosition { get; set; }
+        public int yPosition { get; set; }
         //title 
         //name indicates the name of character or monster 
         public string Name { get; set; }

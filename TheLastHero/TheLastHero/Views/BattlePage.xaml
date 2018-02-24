@@ -4,7 +4,8 @@
         <StackLayout Orientation="Vertical">
             <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
                 <Label Text="Binding Data.GameRound" />
-                <Button Clicked="Demo_Clicked" Text="NEXT" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+                <Button Clicked="Next_Clicked" Text="NEXT" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+                <Button Clicked="Reset_Clicked" Text="Reset" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             </StackLayout>
             <Frame Padding="0" Margin="0">
                 <Grid x:Name="characterGrid" RowSpacing="-6" ColumnSpacing="0" Padding="0" Margin="0" VerticalOptions="Start" HorizontalOptions="Center">

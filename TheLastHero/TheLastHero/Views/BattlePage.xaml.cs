@@ -2,11 +2,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using TheLastHero.GameEngines;
 using TheLastHero.Models;
 using TheLastHero.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 /** This is our battle controller. all logical actions related to battle are 
  * written here. We will use a Queue structure for turn management, the queue 
@@ -57,19 +59,31 @@ namespace TheLastHero.Views
         public BattlePage()
         {
             InitializeComponent();
-            _viewModel = GameEngineViewModel.Instance;
-            _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
-            _viewModel.gameEngine.SetAllBackground("Grass.png");
-            _viewModel.gameEngine.battleMapTop[0, 1] = "MageRight.png";
-            _viewModel.gameEngine.battleMapTop[0, 2] = "KnightRight.png";
-            _viewModel.gameEngine.battleMapTop[0, 3] = "ThiefRight.png";
-            _viewModel.gameEngine.battleMapTop[0, 4] = "ArcherRight.png";
-            _viewModel.gameEngine.battleMapTop[4, 1] = "WolfLeft.png";
-            _viewModel.gameEngine.battleMapTop[4, 2] = "WolfLeft.png";
-            _viewModel.gameEngine.battleMapTop[4, 3] = "WolfLeft.png";
-            _viewModel.gameEngine.battleMapTop[4, 4] = "WolfLeft.png";
-            _viewModel.gameEngine.ConsoleDialog = "HelloWorld";
-            _viewModel.gameEngine.RefreshAllCell();
+            BindingContext = _viewModel = GameEngineViewModel.Instance;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            BindingContext = null;
+
+            if (ToolbarItems.Count > 0)
+            {
+                ToolbarItems.RemoveAt(0);
+            }
+
+            InitializeComponent();
+
+            if (_viewModel.CharacterDataset.Count == 0)
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+            else if (_viewModel.NeedsRefresh())
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+
             BindingContext = _viewModel;
         }
 
@@ -79,13 +93,17 @@ namespace TheLastHero.Views
 
         }
 
-        public void Demo_Clicked(object sender, EventArgs e)
+        public void Next_Clicked(object sender, EventArgs e)
         {
             // do something
             //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";
-            _viewModel.gameEngine.battleMapSelection[0, 1] = "HighlightGreen.png";
-            _viewModel.gameEngine.battleMapSelection[1, 1] = "HighlightRed.png";
-            _viewModel.gameEngine.battleMapSelection[0, 0] = "HighlightRed.png";
+            _viewModel.gameEngine.battleMapSelection[1, 1] = "HighlightGreen.png";
+            _viewModel.gameEngine.battleMapSelection[2, 1] = "HighlightRed.png";
+            _viewModel.gameEngine.battleMapSelection[1, 0] = "HighlightRed.png";
+            _viewModel.gameEngine.battleMapSelection[1, 2] = "HighlightRed.png";
+
+            _viewModel.gameEngine.battleMapTop[0, 1] = "";
+            _viewModel.gameEngine.battleMapTop[1, 1] = "MageRight.png";
 
             _viewModel.gameEngine.RefreshAllCell();
             _viewModel.gameEngine.ConsoleDialog = "Clicked";
@@ -93,6 +111,30 @@ namespace TheLastHero.Views
             BindingContext = _viewModel;
         }
 
+
+        public void Reset_Clicked(object sender, EventArgs e)
+        {
+            // do something
+            //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";
+            _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
+            _viewModel.gameEngine.SetAllBackground("Grass.png");
+            _viewModel.gameEngine.SetAllTop("");
+
+            foreach (var c in _viewModel.CharacterDataset)
+            {
+                _viewModel.gameEngine.battleMapTop[c.xPosition, c.yPosition] = c.ImgSource;
+            }
+
+            foreach (var m in _viewModel.MonsterDataset)
+            {
+                _viewModel.gameEngine.battleMapTop[m.xPosition, m.yPosition] = m.ImgSource;
+            }
+
+            _viewModel.gameEngine.RefreshAllCell();
+            _viewModel.gameEngine.ConsoleDialog = "Reset Clicked";
+            BindingContext = null;
+            BindingContext = _viewModel;
+        }
 
         //After every creature died, we will update our new battle map.
         public void UpdateGrid(Grid map, int[][] mapAry)

@@ -1,6 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using TheLastHero.GameEngines;
+using TheLastHero.Models;
+using System.Threading.Tasks;
+using System;
+using System.Diagnostics;
 
 namespace TheLastHero.ViewModels
 {
@@ -8,6 +12,8 @@ namespace TheLastHero.ViewModels
     {
 
         public string cell;
+
+
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static GameEngineViewModel _instance;
 
@@ -26,15 +32,73 @@ namespace TheLastHero.ViewModels
         public GameEngine gameEngine { get; set; }
         //public Command LoadDataCommand { get; set; }
 
+
+        public ObservableCollection<Character> CharacterDataset { get; set; }
+        public ObservableCollection<Monster> MonsterDataset { get; set; }
+        // public ObservableCollection<Character> ItemDataset { get; set; }
+
+        public Command LoadDataCommand { get; set; }
+        private bool _needsRefresh;
+
+
         public GameEngineViewModel()
         {
-            gameEngine = new GameEngine();
 
+            CharacterDataset = new ObservableCollection<Character>();
+            MonsterDataset = new ObservableCollection<Monster>();
+            LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+            gameEngine = new GameEngine();
         }
 
 
+        private async Task ExecuteLoadDataCommand()
+        {
+            if (IsBusy)
+                return;
 
+            IsBusy = true;
 
+            try
+            {
+                CharacterDataset.Clear();
+                var cdataset = await DataStore.GetAllAsync_Character(true);
+                var mdataset = await DataStore.GetAllAsync_Monster(true);
+                //var idataset = await DataStore.GetAllAsync_Character(true);
+                foreach (var data in cdataset)
+                {
+                    CharacterDataset.Add(data);
+                }
+                foreach (var data in mdataset)
+                {
+                    MonsterDataset.Add(data);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+        // Return True if a refresh is needed
+        // It sets the refresh flag to false
+        public bool NeedsRefresh()
+        {
+            if (_needsRefresh)
+            {
+                _needsRefresh = false;
+                return true;
+            }
+            return false;
+        }
+
+        // Sets the need to refresh
+        public void SetNeedsRefresh(bool value)
+        {
+            _needsRefresh = value;
+        }
     }
 }
 

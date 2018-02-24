@@ -246,6 +246,17 @@ namespace TheLastHero.GameEngines
             }
         }
 
+        public void SetAllTop(string img)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    battleMapTop[i, j] = img;
+                }
+            }
+        }
+
         public void RefreshAllCell()
         {
             cell_00_selection = battleMapSelection[0, 0];
@@ -283,7 +294,7 @@ namespace TheLastHero.GameEngines
             cell_02_top = battleMapTop[0, 2];
             cell_03_top = battleMapTop[0, 3];
             cell_04_top = battleMapTop[0, 4];
-            cell_05_top = battleMapTop[0, 4];
+            cell_05_top = battleMapTop[0, 5];
             cell_10_top = battleMapTop[1, 0];
             cell_11_top = battleMapTop[1, 1];
             cell_12_top = battleMapTop[1, 2];

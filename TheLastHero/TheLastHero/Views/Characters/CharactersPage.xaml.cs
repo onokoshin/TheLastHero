@@ -17,7 +17,7 @@ namespace TheLastHero.Views
         public CharactersPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new CharactersViewModel();
+            BindingContext = _viewModel = CharactersViewModel.Instance;
         }
 
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
