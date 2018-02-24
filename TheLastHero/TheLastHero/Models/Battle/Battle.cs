@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using TheLastHero.GameEngine;
+using TheLastHero.GameEngines;
 using Xamarin.Forms;
 
 namespace TheLastHero.Models.Battle
 {
     public class Battle
     {
-        
+
         // The data structure list contains selected six characters passed from    SelectCharacterPage
         public List<Character> characters;
 
@@ -19,8 +19,9 @@ namespace TheLastHero.Models.Battle
         // List of Items 
         public List<Item> itemPool;
 
-        //use 2d array to instantiate a battlemap 6 x 4
-        int[,] battleMap = new int[6, 4];
+
+
 
     }
+
 }

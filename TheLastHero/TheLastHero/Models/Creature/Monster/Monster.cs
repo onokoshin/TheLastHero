@@ -7,7 +7,7 @@ namespace TheLastHero.Models
     public class Monster : Creature
     {
         //monster carry up to one item (not equipped item, it's a drop item)
-        public Item UniqueDrop { get; set; }
+        public string UniqueDropID { get; set; }
 
         public bool Drop;
 
@@ -34,11 +34,12 @@ namespace TheLastHero.Models
 
             if (Drop)
             {
-                UniqueDrop = new Item(Round);
+                Item item = new Item(Round);
+                UniqueDropID = item.Id;
             }
             else
             {
-                UniqueDrop = null;
+                UniqueDropID = "";
             }
             //3, 6, 9...rounds are boss rounds 
             // This is not for initialize 3 times for UniqueDrop 
@@ -75,9 +76,9 @@ namespace TheLastHero.Models
         //Items will return to item pool
         //dropItem is a basic function, it is nice to have it so we can reuse
         // it wherever needed. Like battle engine.
-        public Item DropItem()
+        public String DropItem()
         {
-            return UniqueDrop;
+            return UniqueDropID;
         }
 
         public void Update(Monster newData)
@@ -106,7 +107,7 @@ namespace TheLastHero.Models
             LiveStatus = newData.LiveStatus;
             Type = newData.Type;
             // Update all the fields in the Monster
-            UniqueDrop = newData.UniqueDrop;
+            UniqueDropID = newData.UniqueDropID;
             Drop = newData.Drop;
 
 

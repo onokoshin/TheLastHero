@@ -4,7 +4,7 @@ using System.Text;
 using TheLastHero.Models;
 using Xamarin.Forms;
 
-namespace TheLastHero.GameEngine
+namespace TheLastHero.GameEngines
 {
     class TurnManager
     {

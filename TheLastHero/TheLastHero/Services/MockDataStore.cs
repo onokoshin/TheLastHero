@@ -10,6 +10,19 @@ namespace TheLastHero.Services
     public class MockDataStore : IDataStore
     {
 
+        private List<Item> _itemDataset = new List<Item>();
+        private List<Monster> _monsterDataset = new List<Monster>();
+        private List<Score> _scoreDataset = new List<Score>();
+        private List<Character> _characterDataset = new List<Character>();
+
+        const string HEAD = "HEAD";
+        const string BODY = "BODY";
+        const string FEET = "FEET";
+        const string LEFTHAND = "LEFTHAND";
+        const string RIGHTHAND = "RIGHTHAND";
+        const string LEFTFINGER = "LEFTFINGER";
+        const string RIGHTFINGER = "RIGHTFINGER";
+
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static MockDataStore _instance;
 
@@ -24,22 +37,6 @@ namespace TheLastHero.Services
                 return _instance;
             }
         }
-
-
-        private List<Item> _itemDataset = new List<Item>();
-        private List<Monster> _monsterDataset = new List<Monster>();
-        private List<Score> _scoreDataset = new List<Score>();
-        private List<Character> _characterDataset = new List<Character>();
-
-        const string HEAD = "HEAD";
-        const string BODY = "BODY";
-        const string FEET = "FEET";
-        const string LEFTHAND = "LEFTHAND";
-        const string RIGHTHAND = "RIGHTHAND";
-        const string LEFTFINGER = "LEFTFINGER";
-        const string RIGHTFINGER = "RIGHTFINGER";
-
-
 
         private MockDataStore()
         {
@@ -59,12 +56,12 @@ namespace TheLastHero.Services
 
             var mockMonsters = new List<Monster>
             {
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "First Monster" , Friendly = false, MaxHP = 2000, CurrentHP = 1800, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="RavenLeft.png",UniqueDrop= new Item()},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster", Friendly = false, MaxHP = 523, CurrentHP = 234, Lvl = 15, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="TigerLeft.png",UniqueDrop= new Item()},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Third Monster" , Friendly = false, MaxHP = 1200, CurrentHP = 800, Lvl = 2, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="WolfLeft.png",UniqueDrop= new Item()},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fourth Monster" , Friendly = false, MaxHP = 900, CurrentHP = 567, Lvl = 6, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Human", ImgSource="BossLeft.png",UniqueDrop= new Item()},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster" , Friendly = false, MaxHP = 455, CurrentHP = 123, Lvl = 8, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Ghost", ImgSource="SkeletonLeft.png",UniqueDrop= new Item()},
-                new Monster { Id = Guid.NewGuid().ToString(), Name = "Sixth Monster" , Friendly = false, MaxHP = 233, CurrentHP = 12, Lvl = 11, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Ghost", ImgSource="SkeletonLeft2.png",UniqueDrop= new Item()},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "First Monster" , Friendly = false, MaxHP = 2000, CurrentHP = 1800, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="RavenLeft.png",UniqueDropID=""},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster", Friendly = false, MaxHP = 523, CurrentHP = 234, Lvl = 15, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="TigerLeft.png",UniqueDropID=""},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Third Monster" , Friendly = false, MaxHP = 1200, CurrentHP = 800, Lvl = 2, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Beast", ImgSource="WolfLeft.png",UniqueDropID=""},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fourth Monster" , Friendly = false, MaxHP = 900, CurrentHP = 567, Lvl = 6, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Human", ImgSource="BossLeft.png",UniqueDropID= ""},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster" , Friendly = false, MaxHP = 455, CurrentHP = 123, Lvl = 8, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Ghost", ImgSource="SkeletonLeft.png",UniqueDropID=""},
+                new Monster { Id = Guid.NewGuid().ToString(), Name = "Sixth Monster" , Friendly = false, MaxHP = 233, CurrentHP = 12, Lvl = 11, Atk=0,Def=10, Spd=1, Luk=1, AtkRange=2, CurrentMP=100, Drop=false, LiveStatus=true, MaxMP=100, MoveRange=3, Type="Ghost", ImgSource="SkeletonLeft2.png",UniqueDropID= ""},
             };
 
             foreach (var data in mockMonsters)
