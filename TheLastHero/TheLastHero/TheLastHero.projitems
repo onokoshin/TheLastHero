@@ -195,6 +195,7 @@
       <DependentUpon>NewScorePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GameEngineViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Script.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
