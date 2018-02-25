@@ -1,94 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.BattlePage">
     <ContentPage.Content>
-        <Grid x:Name="characterGrid" RowSpacing="-6" ColumnSpacing="0" VerticalOptions="Start" HorizontalOptions="Center">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Image Source="Grass.png" Grid.Column="0" Grid.Row="0" />
-            <Image Source="Grass.png" Grid.Column="0" Grid.Row="1" />
-            <Image Source="Grass.png" Grid.Column="0" Grid.Row="2" />
-            <Image Source="Grass.png" Grid.Column="0" Grid.Row="3" />
-            <Image Source="Grass.png" Grid.Column="0" Grid.Row="4" />
-            <Image Source="Grass.png" Grid.Column="0" Grid.Row="5" />
-            <Image Source="Grass.png" Grid.Column="1" Grid.Row="0" />
-            <Image Source="Grass.png" Grid.Column="1" Grid.Row="1" />
-            <Image Source="Grass.png" Grid.Column="1" Grid.Row="2" />
-            <Image Source="Grass.png" Grid.Column="1" Grid.Row="3" />
-            <Image Source="Grass.png" Grid.Column="1" Grid.Row="4" />
-            <Image Source="Grass.png" Grid.Column="1" Grid.Row="5" />
-            <Image Source="Grass.png" Grid.Column="2" Grid.Row="0" />
-            <Image Source="Grass.png" Grid.Column="2" Grid.Row="1" />
-            <Image Source="Grass.png" Grid.Column="2" Grid.Row="2" />
-            <Image Source="Grass.png" Grid.Column="2" Grid.Row="3" />
-            <Image Source="Grass.png" Grid.Column="2" Grid.Row="4" />
-            <Image Source="Grass.png" Grid.Column="2" Grid.Row="5" />
-            <Image Source="Grass.png" Grid.Column="3" Grid.Row="0" />
-            <Image Source="Grass.png" Grid.Column="3" Grid.Row="1" />
-            <Image Source="Grass.png" Grid.Column="3" Grid.Row="2" />
-            <Image Source="Grass.png" Grid.Column="3" Grid.Row="3" />
-            <Image Source="Grass.png" Grid.Column="3" Grid.Row="4" />
-            <Image Source="Grass.png" Grid.Column="3" Grid.Row="5" />
-            <Image Source="Grass.png" Grid.Column="4" Grid.Row="0" />
-            <Image Source="Grass.png" Grid.Column="4" Grid.Row="1" />
-            <Image Source="Grass.png" Grid.Column="4" Grid.Row="2" />
-            <Image Source="Grass.png" Grid.Column="4" Grid.Row="3" />
-            <Image Source="Grass.png" Grid.Column="4" Grid.Row="4" />
-            <Image Source="Grass.png" Grid.Column="4" Grid.Row="5" />
-            <Image Source="HighlightGrey.png" Grid.Column="0" Grid.Row="0" />
-            <Image Source="HighlightGrey.png" Grid.Column="0" Grid.Row="1" />
-            <Image Source="HighlightGrey.png" Grid.Column="0" Grid.Row="2" />
-            <Image Source="HighlightGrey.png" Grid.Column="0" Grid.Row="3" />
-            <Image Source="HighlightGrey.png" Grid.Column="0" Grid.Row="4" />
-            <Image Source="HighlightGrey.png" Grid.Column="0" Grid.Row="5" />
-            <Image Source="HighlightGrey.png" Grid.Column="1" Grid.Row="0" />
-            <Image Source="HighlightGrey.png" Grid.Column="1" Grid.Row="1" />
-            <Image Source="HighlightGrey.png" Grid.Column="1" Grid.Row="2" />
-            <Image Source="HighlightGrey.png" Grid.Column="1" Grid.Row="3" />
-            <Image Source="HighlightGrey.png" Grid.Column="1" Grid.Row="4" />
-            <Image Source="HighlightGrey.png" Grid.Column="1" Grid.Row="5" />
-            <Image Source="HighlightGrey.png" Grid.Column="2" Grid.Row="0" />
-            <Image Source="HighlightGrey.png" Grid.Column="2" Grid.Row="1" />
-            <Image Source="HighlightGrey.png" Grid.Column="2" Grid.Row="2" />
-            <Image Source="HighlightGrey.png" Grid.Column="2" Grid.Row="3" />
-            <Image Source="HighlightGrey.png" Grid.Column="2" Grid.Row="4" />
-            <Image Source="HighlightGrey.png" Grid.Column="2" Grid.Row="5" />
-            <Image Source="HighlightGrey.png" Grid.Column="3" Grid.Row="0" />
-            <Image Source="HighlightGrey.png" Grid.Column="3" Grid.Row="1" />
-            <Image Source="HighlightGrey.png" Grid.Column="3" Grid.Row="2" />
-            <Image Source="HighlightGrey.png" Grid.Column="3" Grid.Row="3" />
-            <Image Source="HighlightGrey.png" Grid.Column="3" Grid.Row="4" />
-            <Image Source="HighlightGrey.png" Grid.Column="3" Grid.Row="5" />
-            <Image Source="HighlightGrey.png" Grid.Column="4" Grid.Row="0" />
-            <Image Source="HighlightGrey.png" Grid.Column="4" Grid.Row="1" />
-            <Image Source="HighlightGrey.png" Grid.Column="4" Grid.Row="2" />
-            <Image Source="HighlightGrey.png" Grid.Column="4" Grid.Row="3" />
-            <Image Source="HighlightGrey.png" Grid.Column="4" Grid.Row="4" />
-            <Image Source="HighlightGrey.png" Grid.Column="4" Grid.Row="5" />
-            <Image Source="ArcherRight.png" Grid.Column="0" Grid.Row="0" />
-            <Image Source="FighterRight.png" Grid.Column="0" Grid.Row="1" />
-            <Image Source="KnightRight.png" Grid.Column="0" Grid.Row="2" />
-            <Image Source="WarriorRight.png" Grid.Column="0" Grid.Row="3" />
-            <Image Source="MageRight.png" Grid.Column="0" Grid.Row="4" />
-            <Image Source="ThiefRight.png" Grid.Column="0" Grid.Row="5" />
-            <Image Source="WolfLeft.png" Grid.Column="4" Grid.Row="0" />
-            <Image Source="WolfLeft.png" Grid.Column="4" Grid.Row="1" />
-            <Image Source="WolfLeft.png" Grid.Column="4" Grid.Row="2" />
-            <Image Source="WolfLeft.png" Grid.Column="4" Grid.Row="3" />
-            <Image Source="WolfLeft.png" Grid.Column="4" Grid.Row="4" />
-            <Image Source="WolfLeft.png" Grid.Column="4" Grid.Row="5" />
-        </Grid>
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                <Label Text="Binding Data.GameRound" />
+                <Button Clicked="Next_Clicked" Text="NEXT" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+                <Button Clicked="Reset_Clicked" Text="Reset" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+            </StackLayout>
+            <Frame Padding="0" Margin="0">
+                <Grid x:Name="characterGrid" RowSpacing="-6" ColumnSpacing="0" Padding="0" Margin="0" VerticalOptions="Start" HorizontalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{Binding gameEngine.cell_00_bottom}" Grid.Row="0" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_01_bottom}" Grid.Row="1" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_02_bottom}" Grid.Row="2" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_03_bottom}" Grid.Row="3" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_04_bottom}" Grid.Row="4" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_05_bottom}" Grid.Row="5" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_10_bottom}" Grid.Row="0" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_11_bottom}" Grid.Row="1" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_12_bottom}" Grid.Row="2" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_13_bottom}" Grid.Row="3" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_14_bottom}" Grid.Row="4" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_15_bottom}" Grid.Row="5" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_20_bottom}" Grid.Row="0" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_21_bottom}" Grid.Row="1" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_22_bottom}" Grid.Row="2" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_23_bottom}" Grid.Row="3" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_24_bottom}" Grid.Row="4" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_25_bottom}" Grid.Row="5" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_30_bottom}" Grid.Row="0" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_31_bottom}" Grid.Row="1" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_32_bottom}" Grid.Row="2" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_33_bottom}" Grid.Row="3" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_34_bottom}" Grid.Row="4" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_35_bottom}" Grid.Row="5" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_40_bottom}" Grid.Row="0" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_41_bottom}" Grid.Row="1" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_42_bottom}" Grid.Row="2" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_43_bottom}" Grid.Row="3" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_44_bottom}" Grid.Row="4" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_45_bottom}" Grid.Row="5" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_00_selection}" Grid.Row="0" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_01_selection}" Grid.Row="1" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_02_selection}" Grid.Row="2" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_03_selection}" Grid.Row="3" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_04_selection}" Grid.Row="4" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_05_selection}" Grid.Row="5" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_10_selection}" Grid.Row="0" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_11_selection}" Grid.Row="1" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_12_selection}" Grid.Row="2" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_13_selection}" Grid.Row="3" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_14_selection}" Grid.Row="4" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_15_selection}" Grid.Row="5" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_20_selection}" Grid.Row="0" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_21_selection}" Grid.Row="1" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_22_selection}" Grid.Row="2" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_23_selection}" Grid.Row="3" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_24_selection}" Grid.Row="4" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_25_selection}" Grid.Row="5" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_30_selection}" Grid.Row="0" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_31_selection}" Grid.Row="1" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_32_selection}" Grid.Row="2" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_33_selection}" Grid.Row="3" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_34_selection}" Grid.Row="4" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_35_selection}" Grid.Row="5" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_40_selection}" Grid.Row="0" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_41_selection}" Grid.Row="1" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_42_selection}" Grid.Row="2" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_43_selection}" Grid.Row="3" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_44_selection}" Grid.Row="4" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_45_selection}" Grid.Row="5" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_00_top}" Grid.Row="0" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_01_top}" Grid.Row="1" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_02_top}" Grid.Row="2" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_03_top}" Grid.Row="3" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_04_top}" Grid.Row="4" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_05_top}" Grid.Row="5" Grid.Column="0" />
+                    <Image Source="{Binding gameEngine.cell_10_top}" Grid.Row="0" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_11_top}" Grid.Row="1" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_12_top}" Grid.Row="2" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_13_top}" Grid.Row="3" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_14_top}" Grid.Row="4" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_15_top}" Grid.Row="5" Grid.Column="1" />
+                    <Image Source="{Binding gameEngine.cell_20_top}" Grid.Row="0" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_21_top}" Grid.Row="1" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_22_top}" Grid.Row="2" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_23_top}" Grid.Row="3" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_24_top}" Grid.Row="4" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_25_top}" Grid.Row="5" Grid.Column="2" />
+                    <Image Source="{Binding gameEngine.cell_30_top}" Grid.Row="0" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_31_top}" Grid.Row="1" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_32_top}" Grid.Row="2" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_33_top}" Grid.Row="3" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_34_top}" Grid.Row="4" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_35_top}" Grid.Row="5" Grid.Column="3" />
+                    <Image Source="{Binding gameEngine.cell_40_top}" Grid.Row="0" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_41_top}" Grid.Row="1" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_42_top}" Grid.Row="2" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_43_top}" Grid.Row="3" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_44_top}" Grid.Row="4" Grid.Column="4" />
+                    <Image Source="{Binding gameEngine.cell_45_top}" Grid.Row="5" Grid.Column="4" />
+                </Grid>
+            </Frame>
+            <Label Text="{Binding gameEngine.ConsoleDialog}" BackgroundColor="Black" TextColor="White" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

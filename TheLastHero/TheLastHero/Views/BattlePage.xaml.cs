@@ -2,9 +2,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TheLastHero.GameEngine;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using TheLastHero.GameEngines;
 using TheLastHero.Models;
+using TheLastHero.ViewModels;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 /** This is our battle controller. all logical actions related to battle are 
  * written here. We will use a Queue structure for turn management, the queue 
@@ -49,18 +53,127 @@ namespace TheLastHero.Views
     {
         // Batstle map is a grid layout  
         Grid battleGrid = new Grid();
-
+        private GameEngineViewModel _viewModel;
+        Script _script = new Script();
         //Constructor 
         public BattlePage()
         {
             InitializeComponent();
+            _script.scriptCounter = 1;
+            _viewModel = GameEngineViewModel.Instance;
+
+            _viewModel.gameEngine.SetAllTop("");
+            _viewModel.gameEngine.SetAllBackground("Grass.png");
+            _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
+            for (int i = 0; i < _script.GetScripts()[0].Length; i = i + 5)
+            {
+
+                _viewModel.gameEngine.battleMapTop[_script.GetScripts()[0][i + 1], _script.GetScripts()[0][i + 2]] = _script.imgAry[_script.GetScripts()[0][i + 4]];
+
+            }
+            _viewModel.gameEngine.RefreshAllCell();
+            /*_viewModel.gameEngine.battleMapTop[0, 0] = "KnightRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 1] = "MageRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 2] = "WarriorRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 3] = "ArcherRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 4] = "FighterRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 5] = "ThiefRight.png";
+            _viewModel.gameEngine.battleMapTop[4, 0] = "HeronLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 1] = "TigerLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 2] = "WolfLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 3] = "HawkLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 4] = "SkeletonLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 5] = "SkeletonLeft2.png";
+            _viewModel.gameEngine.RefreshAllCell();*/
+            BindingContext = _viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            BindingContext = null;
+
+            if (ToolbarItems.Count > 0)
+            {
+                ToolbarItems.RemoveAt(0);
+            }
+
+            InitializeComponent();
+
+            if (_viewModel.CharacterDataset.Count == 0)
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+            else if (_viewModel.NeedsRefresh())
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+
+            BindingContext = _viewModel;
+        }
+
+        public void UpdateConsoleDialog(string input)
+        {
+
+
+        }
+
+        public void Next_Clicked(object sender, EventArgs e)
+        {
+            // do something
+            _viewModel.gameEngine.SetAllTop("");
+            for (int i = 0; i < _script.GetScripts()[_script.scriptCounter].Length; i = i + 5)
+            {
+
+                _viewModel.gameEngine.battleMapTop[_script.GetScripts()[_script.scriptCounter][i + 1], _script.GetScripts()[_script.scriptCounter][i + 2]] = _script.imgAry[_script.GetScripts()[_script.scriptCounter][i + 4]];
+
+            }
+            _viewModel.gameEngine.RefreshAllCell();
+
+
+            _script.scriptCounter++;
+            _viewModel.gameEngine.ConsoleDialog = "Clicked";
+
+            BindingContext = null;
+            BindingContext = _viewModel;
+
+        }
+
+
+        public void Reset_Clicked(object sender, EventArgs e)
+        {
+            _script.scriptCounter = 1;
+            // do something
+            //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";
+            _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
+            _viewModel.gameEngine.SetAllBackground("Grass.png");
+            _viewModel.gameEngine.SetAllTop("");
+
+            foreach (var c in _viewModel.CharacterDataset)
+            {
+                _viewModel.gameEngine.battleMapTop[c.xPosition, c.yPosition] = c.ImgSource;
+            }
+
+            foreach (var m in _viewModel.MonsterDataset)
+            {
+                _viewModel.gameEngine.battleMapTop[m.xPosition, m.yPosition] = m.ImgSource;
+            }
+
+            _viewModel.gameEngine.RefreshAllCell();
+            _viewModel.gameEngine.ConsoleDialog = "Reset Clicked";
+            BindingContext = null;
+            BindingContext = _viewModel;
         }
 
         //After every creature died, we will update our new battle map.
         public void UpdateGrid(Grid map, int[][] mapAry)
         {
 
+
         }
+
+
     }
 }
 

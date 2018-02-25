@@ -10,6 +10,19 @@ namespace TheLastHero.Services
     public class MockDataStore : IDataStore
     {
 
+        private List<Item> _itemDataset = new List<Item>();
+        private List<Monster> _monsterDataset = new List<Monster>();
+        private List<Score> _scoreDataset = new List<Score>();
+        private List<Character> _characterDataset = new List<Character>();
+
+        const string HEAD = "HEAD";
+        const string BODY = "BODY";
+        const string FEET = "FEET";
+        const string LEFTHAND = "LEFTHAND";
+        const string RIGHTHAND = "RIGHTHAND";
+        const string LEFTFINGER = "LEFTFINGER";
+        const string RIGHTFINGER = "RIGHTFINGER";
+
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static MockDataStore _instance;
 
@@ -24,22 +37,6 @@ namespace TheLastHero.Services
                 return _instance;
             }
         }
-
-
-        private List<Item> _itemDataset = new List<Item>();
-        private List<Monster> _monsterDataset = new List<Monster>();
-        private List<Score> _scoreDataset = new List<Score>();
-        private List<Character> _characterDataset = new List<Character>();
-
-        const string HEAD = "HEAD";
-        const string BODY = "BODY";
-        const string FEET = "FEET";
-        const string LEFTHAND = "LEFTHAND";
-        const string RIGHTHAND = "RIGHTHAND";
-        const string LEFTFINGER = "LEFTFINGER";
-        const string RIGHTFINGER = "RIGHTFINGER";
-
-
 
         private MockDataStore()
         {
@@ -89,9 +86,13 @@ namespace TheLastHero.Services
 
             var mockCharacters = new List<Character>
             {
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1, Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="KnightLeft.png"},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="MageLeft.png"},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 90, Friendly = true, Lvl = 12, Atk=0,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="WarriorLeft.png"},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 12, Atk=99,Def=10, Spd=1, Luk=1, Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="KnightRight.png",xPosition=0,yPosition=0},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 12, Atk=99,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="MageRight.png",xPosition=0,yPosition=1},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 12, Atk=99,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="WarriorRight.png",xPosition=0,yPosition=2},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Fourth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 12, Atk=99,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="ArcherRight.png",xPosition=0,yPosition=3},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Fifth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 12, Atk=99,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="FighterRight.png",xPosition=0,yPosition=4},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Sixth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 12, Atk=99,Def=10, Spd=1, Luk=1,Type="Human", AtkRange=2, CurrentExp=20, CurrentMP=30, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=35000, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="ThiefRight.png",xPosition=0,yPosition=5},
+
             };
 
             foreach (var data in mockCharacters)

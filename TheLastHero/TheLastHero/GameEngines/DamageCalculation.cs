@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TheLastHero.GameEngine
+namespace TheLastHero.GameEngines
 {
     class DamageCalculation
     {
