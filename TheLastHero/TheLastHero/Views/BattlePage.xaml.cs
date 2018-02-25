@@ -55,17 +55,29 @@ namespace TheLastHero.Views
         private GameEngineViewModel _viewModel;
         Script _script = new Script();
 
+
         //Constructor 
         public BattlePage()
         {
             InitializeComponent();
             _viewModel = GameEngineViewModel.Instance;
 
+            ResetQueue();
+
+
             _script.scriptCounter = 1;
             RunScript(_script, 0);
 
 
+
+
             BindingContext = _viewModel;
+        }
+
+
+        public void newRound()
+        {
+
         }
 
         public void UpdateConsoleDialog(string input)
@@ -76,6 +88,20 @@ namespace TheLastHero.Views
 
         private void RunScript(Script s, int s_num)
         {
+            // its this creature's turn
+            if (_viewModel.gameEngine.nextOneQueue.Count > 0 && s_num != 0)
+            {
+                var c = _viewModel.gameEngine.nextOneQueue.Dequeue();
+
+                _viewModel.gameEngine.ConsoleDialog = "it's this >" + c.Name + "< turn";
+
+                _viewModel.gameEngine.nextOneQueue.Enqueue(c);
+            }
+            else
+            {
+                _viewModel.gameEngine.ConsoleDialog = "empty queue";
+            }
+
             _viewModel.gameEngine.SetAllTop("");
             _viewModel.gameEngine.SetAllBackground("Grass.png");
             _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
@@ -84,6 +110,7 @@ namespace TheLastHero.Views
                 _viewModel.gameEngine.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = s.imgAry[s.GetScripts()[s_num][i + 4]];
             }
             _viewModel.gameEngine.RefreshAllCell();
+
         }
 
 
@@ -118,15 +145,30 @@ namespace TheLastHero.Views
 
             RunScript(_script, _script.scriptCounter);
             _script.scriptCounter++;
-            _viewModel.gameEngine.ConsoleDialog = "Clicked";
 
             BindingContext = null;
             BindingContext = _viewModel;
 
         }
 
+        public void ResetQueue()
+        {
+            if (_viewModel.CreatureDataset.Count > 0)
+            {
+                _viewModel.gameEngine.nextOneQueue.Clear();
+                foreach (Creature c in _viewModel.CreatureDataset)
+                {
+
+                    _viewModel.gameEngine.nextOneQueue.Enqueue(c);
+                }
+
+            }
+        }
+
         public void Reset_Clicked(object sender, EventArgs e)
         {
+            ResetQueue();
+
             _script.scriptCounter = 1;
             // do something
             //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";

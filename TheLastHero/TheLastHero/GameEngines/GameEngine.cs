@@ -29,7 +29,7 @@ namespace TheLastHero.GameEngines
         private int currentRound;
         // this queue tells game turn manager which creature is next to be able to move around, attack, or // equip it
         // The queue stores characters and monsters in an order of speed, in other words, they are stored in an order of which creature moves next 
-        private Queue<Creature> nextOneQueue;
+        public Queue<Creature> nextOneQueue { get; set; } = new Queue<Creature>();
 
         //use 2d array to instantiate a battlemap 6 x 5
         public string[,] battleMapTop = new string[5, 6];
@@ -131,6 +131,8 @@ namespace TheLastHero.GameEngines
         public GameEngine()
         {
         }
+
+
 
         // This method will be called upon beginning of the game, character movement,         
         //   monster movement, character die, monster die events. 

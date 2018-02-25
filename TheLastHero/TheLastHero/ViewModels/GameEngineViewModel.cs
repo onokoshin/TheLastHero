@@ -5,6 +5,8 @@ using TheLastHero.Models;
 using System.Threading.Tasks;
 using System;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace TheLastHero.ViewModels
 {
@@ -35,6 +37,7 @@ namespace TheLastHero.ViewModels
 
         public ObservableCollection<Character> CharacterDataset { get; set; }
         public ObservableCollection<Monster> MonsterDataset { get; set; }
+        public ObservableCollection<Creature> CreatureDataset { get; set; }
         // public ObservableCollection<Character> ItemDataset { get; set; }
 
         public Command LoadDataCommand { get; set; }
@@ -43,12 +46,15 @@ namespace TheLastHero.ViewModels
 
         public GameEngineViewModel()
         {
-
             CharacterDataset = new ObservableCollection<Character>();
             MonsterDataset = new ObservableCollection<Monster>();
+            CreatureDataset = new ObservableCollection<Creature>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+
             gameEngine = new GameEngine();
+
         }
+
 
 
         private async Task ExecuteLoadDataCommand()
@@ -61,17 +67,27 @@ namespace TheLastHero.ViewModels
             try
             {
                 CharacterDataset.Clear();
+                MonsterDataset.Clear();
+                CreatureDataset.Clear();
                 var cdataset = await DataStore.GetAllAsync_Character(true);
                 var mdataset = await DataStore.GetAllAsync_Monster(true);
                 //var idataset = await DataStore.GetAllAsync_Character(true);
                 foreach (var data in cdataset)
                 {
                     CharacterDataset.Add(data);
+                    CreatureDataset.Add(data);
                 }
                 foreach (var data in mdataset)
                 {
                     MonsterDataset.Add(data);
+                    CreatureDataset.Add(data);
                 }
+                CreatureDataset = new ObservableCollection<Creature>(CreatureDataset.OrderByDescending(i => i.Spd));
+                foreach (Creature c in CreatureDataset)
+                {
+                    gameEngine.nextOneQueue.Enqueue(c);
+                }
+
             }
             catch (Exception ex)
             {

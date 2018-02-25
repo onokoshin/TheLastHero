@@ -22,7 +22,7 @@ namespace TheLastHero.ViewModels
         public IDataStore DataStore;
         public BaseViewModel()
         {
-            SetDataStore(DataStoreEnum.Sql);
+            SetDataStore(DataStoreEnum.Mock);
         }
 
         public enum DataStoreEnum { Unknown = 0, Sql = 1, Mock = 2 }

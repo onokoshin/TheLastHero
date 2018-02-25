@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TheLastHero.Models; 
+using TheLastHero.Models;
 using TheLastHero.ViewModels;
 //using Item = TheLastHero.Models.Item;
 //using Character = TheLastHero.Models.Character;
@@ -30,10 +30,10 @@ namespace TheLastHero.Services
 
         private SQLDataStore()
         {
-            Item i = new Item(); 
-            Character chara = new Character(); 
+            Item i = new Item();
+            Character chara = new Character();
             Monster test = new Monster();
-            
+
             App.Database.CreateTableAsync<Item>().Wait();
             App.Database.CreateTableAsync<Character>().Wait();
             App.Database.CreateTableAsync<Monster>().Wait();
@@ -62,7 +62,7 @@ namespace TheLastHero.Services
         // Tells the View Models to update themselves.
         private void NotifyViewModelsOfDataChange()
         {
-            ItemsViewModel.Instance.SetNeedsRefresh(true);          
+            ItemsViewModel.Instance.SetNeedsRefresh(true);
             CharactersViewModel.Instance.SetNeedsRefresh(true);
             MonstersViewModel.Instance.SetNeedsRefresh(true);
             ScoresViewModel.Instance.SetNeedsRefresh(true);
@@ -102,10 +102,10 @@ namespace TheLastHero.Services
             await AddAsync_Character(new Character { Id = Guid.NewGuid().ToString(), Name = "Sixth Character", Lvl = 3 });
 
             await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "First Monster" });
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster"});
+            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "Second Monster" });
             await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "Third Monster" });
             await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "Fourth Monster" });
-            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster"});
+            await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "Fifth Monster" });
             await AddAsync_Monster(new Monster { Id = Guid.NewGuid().ToString(), Name = "Sixth Monster" });
 
             await AddAsync_Score(new Score { Id = Guid.NewGuid().ToString(), Name = "First Score", ScoreTotal = 111 });
