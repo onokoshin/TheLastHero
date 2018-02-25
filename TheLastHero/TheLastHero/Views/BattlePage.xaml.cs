@@ -54,12 +54,38 @@ namespace TheLastHero.Views
         // Batstle map is a grid layout  
         Grid battleGrid = new Grid();
         private GameEngineViewModel _viewModel;
-
+        Script _script = new Script();
         //Constructor 
         public BattlePage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = GameEngineViewModel.Instance;
+            _script.scriptCounter = 1;
+            _viewModel = GameEngineViewModel.Instance;
+
+            _viewModel.gameEngine.SetAllTop("");
+            _viewModel.gameEngine.SetAllBackground("Grass.png");
+            _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
+            for (int i = 0; i < _script.GetScripts()[0].Length; i = i + 5)
+            {
+
+                _viewModel.gameEngine.battleMapTop[_script.GetScripts()[0][i + 1], _script.GetScripts()[0][i + 2]] = _script.imgAry[_script.GetScripts()[0][i + 4]];
+
+            }
+            _viewModel.gameEngine.RefreshAllCell();
+            /*_viewModel.gameEngine.battleMapTop[0, 0] = "KnightRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 1] = "MageRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 2] = "WarriorRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 3] = "ArcherRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 4] = "FighterRight.png";
+            _viewModel.gameEngine.battleMapTop[0, 5] = "ThiefRight.png";
+            _viewModel.gameEngine.battleMapTop[4, 0] = "HeronLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 1] = "TigerLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 2] = "WolfLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 3] = "HawkLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 4] = "SkeletonLeft.png";
+            _viewModel.gameEngine.battleMapTop[4, 5] = "SkeletonLeft2.png";
+            _viewModel.gameEngine.RefreshAllCell();*/
+            BindingContext = _viewModel;
         }
 
         protected override void OnAppearing()
@@ -96,24 +122,28 @@ namespace TheLastHero.Views
         public void Next_Clicked(object sender, EventArgs e)
         {
             // do something
-            //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";
-            _viewModel.gameEngine.battleMapSelection[1, 1] = "HighlightGreen.png";
-            _viewModel.gameEngine.battleMapSelection[2, 1] = "HighlightRed.png";
-            _viewModel.gameEngine.battleMapSelection[1, 0] = "HighlightRed.png";
-            _viewModel.gameEngine.battleMapSelection[1, 2] = "HighlightRed.png";
+            _viewModel.gameEngine.SetAllTop("");
+            for (int i = 0; i < _script.GetScripts()[_script.scriptCounter].Length; i = i + 5)
+            {
 
-            _viewModel.gameEngine.battleMapTop[0, 1] = "";
-            _viewModel.gameEngine.battleMapTop[1, 1] = "MageRight.png";
+                _viewModel.gameEngine.battleMapTop[_script.GetScripts()[_script.scriptCounter][i + 1], _script.GetScripts()[_script.scriptCounter][i + 2]] = _script.imgAry[_script.GetScripts()[_script.scriptCounter][i + 4]];
 
+            }
             _viewModel.gameEngine.RefreshAllCell();
+
+
+            _script.scriptCounter++;
             _viewModel.gameEngine.ConsoleDialog = "Clicked";
+
             BindingContext = null;
             BindingContext = _viewModel;
+
         }
 
 
         public void Reset_Clicked(object sender, EventArgs e)
         {
+            _script.scriptCounter = 1;
             // do something
             //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";
             _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
