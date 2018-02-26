@@ -9,10 +9,11 @@ using TheLastHero.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
+
 /** This is our battle controller. all logical actions related to battle are 
  * written here. We will use a Queue structure for turn management, the queue 
  * takes all creatures based on their speed. Hence, the queue is in an order of 
- * which creature goes next. The queue is declared as “nextOneQueue” in our code 
+ * which creature goes next. The queue is declared as “ speedQueue” in our code 
  * below.  In order to store creatures into a queue in a proper order, we are
  * going to sort both character list and monster list. Then we will compare head 
  * of each list’s creature’s speed to determine which creature would be enqueued
@@ -64,7 +65,6 @@ namespace TheLastHero.Views
 
             ResetQueue();
 
-
             _script.scriptCounter = 1;
             RunScript(_script, 0);
 
@@ -88,26 +88,124 @@ namespace TheLastHero.Views
 
         private void RunScript(Script s, int s_num)
         {
+            string hp = "";
+            bool moved = false;
+            bool attacked = false;
             // its this creature's turn
-            if (_viewModel.gameEngine.nextOneQueue.Count > 0 && s_num != 0)
+            if (_viewModel.gameEngine.speedQueue.Count > 0 && s_num != 0)
             {
-                var c = _viewModel.gameEngine.nextOneQueue.Dequeue();
 
-                _viewModel.gameEngine.ConsoleDialog = "it's this >" + c.Name + "< turn";
+                Queue<Creature> swapQueue = new Queue<Creature>();
 
-                _viewModel.gameEngine.nextOneQueue.Enqueue(c);
+                while (_viewModel.gameEngine.speedQueue.Count > 0)
+                {
+                    Creature c = _viewModel.gameEngine.speedQueue.Dequeue();
+                    bool matchAndDead = false;
+                    for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
+                    {
+                        if (c.demoID == s.GetScripts()[s_num][i + 4])
+                        {
+                            hp = s.GetScripts()[s_num][i + 3].ToString();
+                            if (s.GetScripts()[s_num][i + 5] == 1)
+                            {
+                                moved = true;
+                            }
+                            if (s.GetScripts()[s_num][i + 6] == 1)
+                            {
+                                attacked = true;
+                            }
+                            //found and dead
+                            if (s.GetScripts()[s_num][i] == 0)
+                            {
+                                matchAndDead = true;
+                            }
+                        }
+
+                    }
+                    if (!matchAndDead)
+                    {
+                        swapQueue.Enqueue(c);
+                    }
+                }
+
+
+                while (swapQueue.Count > 0)
+                {
+                    Creature c = swapQueue.Dequeue();
+                    _viewModel.gameEngine.speedQueue.Enqueue(c);
+                }
+
+
+                var currentCreature = _viewModel.gameEngine.speedQueue.Dequeue();
+                for (int i = 4; i > 0; i--)
+                {
+                    _viewModel.gameEngine.DialogCache[i] = _viewModel.gameEngine.DialogCache[i - 1];
+                }
+                _viewModel.gameEngine.DialogCache[0] = "Turn " + _script.scriptCounter + ": " + currentCreature.Name + " " + hp + "HP ";
+
+                if (attacked && !moved)
+                {
+                    _viewModel.gameEngine.DialogCache[0] += "is attacking";
+
+                }
+                else if (attacked && moved)
+                {
+                    _viewModel.gameEngine.DialogCache[0] += " moved and is attacking";
+
+                }
+                else
+                {
+                    _viewModel.gameEngine.DialogCache[0] += " moved";
+
+                }
+
+                _viewModel.gameEngine.ConsoleDialog1 = _viewModel.gameEngine.DialogCache[0] + "\n"
+                    + _viewModel.gameEngine.DialogCache[1] + "\n"
+                    + _viewModel.gameEngine.DialogCache[2] + "\n"
+                    + _viewModel.gameEngine.DialogCache[3] + "\n"
+                    + _viewModel.gameEngine.DialogCache[4];
+
+                _viewModel.gameEngine.speedQueue.Enqueue(currentCreature);
+                //  set Dead
+
+
+                /* for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
+                 {
+                     //found and dead
+                     if (s.GetScripts()[s_num][i + 4] == c.demoID && s.GetScripts()[s_num][i] == 0)
+                     {
+                         isDead = true;
+                     }//otherwise
+
+                 }
+                 if (!isDead)
+                 {
+                     _viewModel.gameEngine. speedQueue.Enqueue(c);
+
+                 }*/
+
             }
             else
             {
-                _viewModel.gameEngine.ConsoleDialog = "empty queue";
+                _viewModel.gameEngine.ConsoleDialog1 = "empty queue";
             }
 
             _viewModel.gameEngine.SetAllTop("");
             _viewModel.gameEngine.SetAllBackground("Grass.png");
             _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
-            for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 5)
+            for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
             {
-                _viewModel.gameEngine.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = s.imgAry[s.GetScripts()[s_num][i + 4]];
+                if (s.GetScripts()[s_num][i] == 1)
+                {
+                    _viewModel.gameEngine.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = s.imgAry[s.GetScripts()[s_num][i + 4]];
+
+                }
+                else
+                {
+
+                    _viewModel.gameEngine.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = "";
+
+                }
             }
             _viewModel.gameEngine.RefreshAllCell();
 
@@ -155,11 +253,11 @@ namespace TheLastHero.Views
         {
             if (_viewModel.CreatureDataset.Count > 0)
             {
-                _viewModel.gameEngine.nextOneQueue.Clear();
+                _viewModel.gameEngine.speedQueue.Clear();
                 foreach (Creature c in _viewModel.CreatureDataset)
                 {
 
-                    _viewModel.gameEngine.nextOneQueue.Enqueue(c);
+                    _viewModel.gameEngine.speedQueue.Enqueue(c);
                 }
 
             }
@@ -169,6 +267,7 @@ namespace TheLastHero.Views
         {
             ResetQueue();
 
+            _viewModel.gameEngine.ClearDialogCache();
             _script.scriptCounter = 1;
             // do something
             //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";
@@ -187,7 +286,7 @@ namespace TheLastHero.Views
             }
 
             _viewModel.gameEngine.RefreshAllCell();
-            _viewModel.gameEngine.ConsoleDialog = "Reset Clicked";
+            _viewModel.gameEngine.ConsoleDialog1 = "Reset Clicked";
             BindingContext = null;
             BindingContext = _viewModel;
         }

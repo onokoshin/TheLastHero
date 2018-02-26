@@ -85,7 +85,7 @@ namespace TheLastHero.ViewModels
                 CreatureDataset = new ObservableCollection<Creature>(CreatureDataset.OrderByDescending(i => i.Spd));
                 foreach (Creature c in CreatureDataset)
                 {
-                    gameEngine.nextOneQueue.Enqueue(c);
+                    gameEngine. speedQueue.Enqueue(c);
                 }
 
             }

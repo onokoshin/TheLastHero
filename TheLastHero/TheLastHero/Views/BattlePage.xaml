@@ -116,7 +116,7 @@
                     <Image Source="{Binding gameEngine.cell_45_top}" Grid.Row="5" Grid.Column="4" />
                 </Grid>
             </Frame>
-            <Label Text="{Binding gameEngine.ConsoleDialog}" BackgroundColor="Black" TextColor="White" />
+            <Label HeightRequest="90" Text="{Binding gameEngine.ConsoleDialog1}" BackgroundColor="Black" TextColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

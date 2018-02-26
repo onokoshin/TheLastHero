@@ -13,8 +13,8 @@ namespace TheLastHero.GameEngines
         // Every four rounds, game engine will generate a new boss monster
         const int BOSSROUND = 4;
 
-        public string ConsoleDialog { get; set; }
-
+        public string[] DialogCache { get; set; } = new string[5];
+        public string ConsoleDialog1 { get; set; }
 
         // damage calculations are done inside this helper class. It has member function such as 
         // applyDamage(Creature attacker, Creature defender)
@@ -29,7 +29,7 @@ namespace TheLastHero.GameEngines
         private int currentRound;
         // this queue tells game turn manager which creature is next to be able to move around, attack, or // equip it
         // The queue stores characters and monsters in an order of speed, in other words, they are stored in an order of which creature moves next 
-        public Queue<Creature> nextOneQueue { get; set; } = new Queue<Creature>();
+        public Queue<Creature>  speedQueue { get; set; } = new Queue<Creature>();
 
         //use 2d array to instantiate a battlemap 6 x 5
         public string[,] battleMapTop = new string[5, 6];
@@ -138,12 +138,12 @@ namespace TheLastHero.GameEngines
         //   monster movement, character die, monster die events. 
         public void startGame()
         {
-            nextOneQueue = new Queue<Creature>();
+             speedQueue = new Queue<Creature>();
 
             //TurnManager turnManager = new TurnManager();
 
             // game starts
-            // nextOneQueue = InitializeQueue(monsters, characters);
+            //  speedQueue = InitializeQueue(monsters, characters);
             while (true)
             {
                 // If either number of characters or number of monster equals zero, the battle is over.
@@ -155,9 +155,19 @@ namespace TheLastHero.GameEngines
                 {
                     // we will generate a new set of monsters for a new round 
                 }
-                nextOneQueue.Dequeue();
+                 speedQueue.Dequeue();
 
             }
+        }
+
+        public void ClearDialogCache()
+        {
+
+            for (int i = 0; i < 5; i++)
+            {
+                DialogCache[i] = "";
+            }
+
         }
 
         // Using queue data structure to store characters and monster in an order of which creature moves next based on a creature’s speed 
@@ -176,7 +186,7 @@ namespace TheLastHero.GameEngines
         {
 
             //dequeue when creature died
-            var Creature = nextOneQueue.Dequeue();
+            var Creature =  speedQueue.Dequeue();
 
             //Check whether the creature is still alive
             // if (!creature.liveStatus)
