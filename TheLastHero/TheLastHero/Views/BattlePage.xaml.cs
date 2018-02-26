@@ -191,7 +191,18 @@ namespace TheLastHero.Views
             }
 
             _viewModel.gameEngine.SetAllTop("");
-            _viewModel.gameEngine.SetAllBackground("Grass.png");
+
+            if (s.scriptCounter < 41)
+            {
+                _viewModel.gameEngine.SetAllBackground("Grass.png");
+
+            }
+            else
+            {
+                _viewModel.gameEngine.SetAllBackground("Lava.png");
+
+            }
+
             _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
             for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
             {
@@ -237,15 +248,24 @@ namespace TheLastHero.Views
             BindingContext = _viewModel;
         }
 
-        public void Next_Clicked(object sender, EventArgs e)
+        public async void Next_ClickedAsync(object sender, EventArgs e)
         {
             // do something
+            if (true)
+            //if (_script.scriptCounter == 44)
+            {
+                await Navigation.PushAsync(new GameOver());
+            }
+            else
+            {
+                RunScript(_script, _script.scriptCounter);
+                _script.scriptCounter++;
+                BindingContext = null;
+                BindingContext = _viewModel;
 
-            RunScript(_script, _script.scriptCounter);
-            _script.scriptCounter++;
+            }
 
-            BindingContext = null;
-            BindingContext = _viewModel;
+
 
         }
 
