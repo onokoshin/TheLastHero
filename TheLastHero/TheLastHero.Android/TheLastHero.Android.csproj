@@ -64,6 +64,7 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
+    <None Include="Resources\StartPage.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -143,6 +144,8 @@
     <AndroidResource Include="Resources\drawable\Lava.png" />
     <AndroidResource Include="Resources\drawable\Sand.png" />
     <AndroidResource Include="Resources\drawable\HighlightGrey.png" />
+    <AndroidResource Include="Resources\drawable\GameOver.png" />
+    <AndroidResource Include="Resources\drawable\StartPage.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

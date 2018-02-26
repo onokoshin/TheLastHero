@@ -14,7 +14,10 @@ namespace TheLastHero.Views
 
         async void ScorePageButton_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ScoresPage());
+            Navigation.InsertPageBefore(new ScoresPage(), Navigation.NavigationStack[1]);
+
+            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+
         }
     }
 }

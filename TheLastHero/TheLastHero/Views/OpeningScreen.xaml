@@ -3,7 +3,7 @@
     <ContentPage.Content>
         <StackLayout Padding="50, 0, 50, 0">
             <Label Text="The Last Hero" Style="{DynamicResource TitleStyle}" VerticalOptions="Center" HorizontalOptions="Center" />
-            <Image Source="StartPage.JPG" Margin="0,20,0,50" />
+            <Image Source="StartPage.png" />
             <Button Clicked="MainPageButton_OnClicked" Text="TEST TAB SCREENS" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             <Button Clicked="BattlePageButton_OnClicked" Text="BEGIN GAME" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             <Button Clicked="CharactersPageButton_OnClicked" Text="CHARACTERS" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />

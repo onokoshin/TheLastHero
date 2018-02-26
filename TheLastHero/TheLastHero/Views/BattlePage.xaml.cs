@@ -91,7 +91,7 @@ namespace TheLastHero.Views
             string hp = "";
             bool moved = false;
             bool attacked = false;
-            // its this creature's turn
+            // dequeue current creature from speed queue
             if (_viewModel.gameEngine.speedQueue.Count > 0 && s_num != 0)
             {
 
@@ -114,7 +114,7 @@ namespace TheLastHero.Views
                             {
                                 attacked = true;
                             }
-                            //found and dead
+                            // remove dead creature
                             if (s.GetScripts()[s_num][i] == 0)
                             {
                                 matchAndDead = true;
@@ -135,29 +135,38 @@ namespace TheLastHero.Views
                     _viewModel.gameEngine.speedQueue.Enqueue(c);
                 }
 
-
-                var currentCreature = _viewModel.gameEngine.speedQueue.Dequeue();
-                for (int i = 4; i > 0; i--)
+                if (_viewModel.gameEngine.speedQueue.Count > 0)
                 {
-                    _viewModel.gameEngine.DialogCache[i] = _viewModel.gameEngine.DialogCache[i - 1];
-                }
-                _viewModel.gameEngine.DialogCache[0] = "Turn " + _script.scriptCounter + ": " + currentCreature.Name + " " + hp + "HP ";
+                    var currentCreature = _viewModel.gameEngine.speedQueue.Dequeue();
+                    for (int i = 4; i > 0; i--)
+                    {
+                        _viewModel.gameEngine.DialogCache[i] = _viewModel.gameEngine.DialogCache[i - 1];
+                    }
+                    _viewModel.gameEngine.DialogCache[0] = "Turn " + _script.scriptCounter + ": " + currentCreature.Name + " " + hp + "HP ";
 
-                if (attacked && !moved)
-                {
-                    _viewModel.gameEngine.DialogCache[0] += "is attacking";
+                    if (attacked && !moved)
+                    {
+                        _viewModel.gameEngine.DialogCache[0] += "is attacking";
 
-                }
-                else if (attacked && moved)
-                {
-                    _viewModel.gameEngine.DialogCache[0] += " moved and is attacking";
+                    }
+                    else if (attacked && moved)
+                    {
+                        _viewModel.gameEngine.DialogCache[0] += " moved and is attacking";
 
+                    }
+                    else
+                    {
+                        _viewModel.gameEngine.DialogCache[0] += " moved";
+
+                    }
+
+                    _viewModel.gameEngine.speedQueue.Enqueue(currentCreature);
                 }
                 else
                 {
-                    _viewModel.gameEngine.DialogCache[0] += " moved";
-
+                    _viewModel.gameEngine.DialogCache[0] = "Game Over";
                 }
+
 
                 _viewModel.gameEngine.ConsoleDialog1 = _viewModel.gameEngine.DialogCache[0] + "\n"
                     + _viewModel.gameEngine.DialogCache[1] + "\n"
@@ -165,24 +174,8 @@ namespace TheLastHero.Views
                     + _viewModel.gameEngine.DialogCache[3] + "\n"
                     + _viewModel.gameEngine.DialogCache[4];
 
-                _viewModel.gameEngine.speedQueue.Enqueue(currentCreature);
                 //  set Dead
 
-
-                /* for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
-                 {
-                     //found and dead
-                     if (s.GetScripts()[s_num][i + 4] == c.demoID && s.GetScripts()[s_num][i] == 0)
-                     {
-                         isDead = true;
-                     }//otherwise
-
-                 }
-                 if (!isDead)
-                 {
-                     _viewModel.gameEngine. speedQueue.Enqueue(c);
-
-                 }*/
 
             }
             else
@@ -190,22 +183,24 @@ namespace TheLastHero.Views
                 _viewModel.gameEngine.ConsoleDialog1 = "empty queue";
             }
 
+            // update grid
             _viewModel.gameEngine.SetAllTop("");
 
-            if (s.scriptCounter < 41)
+            if (s.scriptCounter < 34)
             {
                 _viewModel.gameEngine.SetAllBackground("Grass.png");
 
             }
             else
             {
-                _viewModel.gameEngine.SetAllBackground("Lava.png");
+                _viewModel.gameEngine.SetAllBackground("Sand.png");
 
             }
 
             _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
             for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
             {
+
                 if (s.GetScripts()[s_num][i] == 1)
                 {
                     _viewModel.gameEngine.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = s.imgAry[s.GetScripts()[s_num][i + 4]];
@@ -252,9 +247,13 @@ namespace TheLastHero.Views
         {
             // do something
             if (true)
-            //if (_script.scriptCounter == 44)
+            //if (_script.scriptCounter > 49)
             {
-                await Navigation.PushAsync(new GameOver());
+
+                Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
+
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+
             }
             else
             {
