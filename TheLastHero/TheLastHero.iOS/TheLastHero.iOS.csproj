@@ -182,6 +182,8 @@
     <BundleResource Include="Resources\Lava.png" />
     <BundleResource Include="Resources\Sand.png" />
     <BundleResource Include="Resources\HighlightGrey.png" />
+    <BundleResource Include="Resources\StartPage.png" />
+    <BundleResource Include="Resources\GameOver.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
