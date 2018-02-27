@@ -56,34 +56,48 @@ namespace TheLastHero.Views
         private GameEngineViewModel _viewModel;
         Script _script = new Script();
 
-
         //Constructor 
         public BattlePage()
         {
             InitializeComponent();
             _viewModel = GameEngineViewModel.Instance;
 
-            ResetQueue();
+            // auto play only
+            //ResetQueue();
 
-            _script.scriptCounter = 1;
-            RunScript(_script, 0);
+            //_script.scriptCounter = 1;
+            //RunScript(_script, 0);
 
+            _viewModel.battle.SetAllBackground("Grass.png");
 
-
+            _viewModel.battle.RefreshAllCell();
 
             BindingContext = _viewModel;
         }
 
-
-        public void newRound()
+        protected override void OnAppearing()
         {
+            base.OnAppearing();
 
-        }
+            BindingContext = null;
 
-        public void UpdateConsoleDialog(string input)
-        {
+            if (ToolbarItems.Count > 0)
+            {
+                ToolbarItems.RemoveAt(0);
+            }
 
+            InitializeComponent();
 
+            if (_viewModel.CharacterDataset.Count == 0)
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+            else if (_viewModel.NeedsRefresh())
+            {
+                _viewModel.LoadDataCommand.Execute(null);
+            }
+
+            BindingContext = _viewModel;
         }
 
         private void RunScript(Script s, int s_num)
@@ -184,87 +198,36 @@ namespace TheLastHero.Views
             }
 
             // update grid
-            _viewModel.gameEngine.SetAllTop("");
+            _viewModel.battle.SetAllTop("");
 
             if (s.scriptCounter < 34)
             {
-                _viewModel.gameEngine.SetAllBackground("Grass.png");
+                _viewModel.battle.SetAllBackground("Grass.png");
 
             }
             else
             {
-                _viewModel.gameEngine.SetAllBackground("Sand.png");
+                _viewModel.battle.SetAllBackground("Sand.png");
 
             }
 
-            _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
+            _viewModel.battle.SetAllSelection("HighlightGrey.png");
             for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
             {
 
                 if (s.GetScripts()[s_num][i] == 1)
                 {
-                    _viewModel.gameEngine.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = s.imgAry[s.GetScripts()[s_num][i + 4]];
+                    _viewModel.battle.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = s.imgAry[s.GetScripts()[s_num][i + 4]];
 
                 }
                 else
                 {
 
-                    _viewModel.gameEngine.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = "";
+                    _viewModel.battle.battleMapTop[s.GetScripts()[s_num][i + 1], s.GetScripts()[s_num][i + 2]] = "";
 
                 }
             }
-            _viewModel.gameEngine.RefreshAllCell();
-
-        }
-
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            BindingContext = null;
-
-            if (ToolbarItems.Count > 0)
-            {
-                ToolbarItems.RemoveAt(0);
-            }
-
-            InitializeComponent();
-
-            if (_viewModel.CharacterDataset.Count == 0)
-            {
-                _viewModel.LoadDataCommand.Execute(null);
-            }
-            else if (_viewModel.NeedsRefresh())
-            {
-                _viewModel.LoadDataCommand.Execute(null);
-            }
-
-            BindingContext = _viewModel;
-        }
-
-        public async void Next_ClickedAsync(object sender, EventArgs e)
-        {
-            // do something
-            if (true)
-            //if (_script.scriptCounter > 49)
-            {
-
-                Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
-
-                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
-
-            }
-            else
-            {
-                RunScript(_script, _script.scriptCounter);
-                _script.scriptCounter++;
-                BindingContext = null;
-                BindingContext = _viewModel;
-
-            }
-
-
+            _viewModel.battle.RefreshAllCell();
 
         }
 
@@ -275,12 +238,33 @@ namespace TheLastHero.Views
                 _viewModel.gameEngine.speedQueue.Clear();
                 foreach (Creature c in _viewModel.CreatureDataset)
                 {
-
                     _viewModel.gameEngine.speedQueue.Enqueue(c);
                 }
+            }
+        }
+
+        public void Next_Clicked(object sender, EventArgs e)
+        {
+            // do something
+            //if (true)
+
+            _viewModel.battle.cell_00_bottom = "Sand.png";
+            if (_script.scriptCounter > 49)
+            {
+                Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+            }
+            else
+            {
+                RunScript(_script, _script.scriptCounter);
+                _script.scriptCounter++;
+                BindingContext = null;
+                BindingContext = _viewModel;
 
             }
         }
+
+
 
         public void Reset_Clicked(object sender, EventArgs e)
         {
@@ -290,33 +274,77 @@ namespace TheLastHero.Views
             _script.scriptCounter = 1;
             // do something
             //_viewModel.Data.battle.battleMapTop[0, 0] = "KnightRight.png";
-            _viewModel.gameEngine.SetAllSelection("HighlightGrey.png");
-            _viewModel.gameEngine.SetAllBackground("Grass.png");
-            _viewModel.gameEngine.SetAllTop("");
+            _viewModel.battle.SetAllSelection("HighlightGrey.png");
+            _viewModel.battle.SetAllBackground("Grass.png");
+            _viewModel.battle.SetAllTop("");
 
             foreach (var c in _viewModel.CharacterDataset)
             {
-                _viewModel.gameEngine.battleMapTop[c.xPosition, c.yPosition] = c.ImgSource;
+                _viewModel.battle.battleMapTop[c.xPosition, c.yPosition] = c.ImgSource;
             }
 
             foreach (var m in _viewModel.MonsterDataset)
             {
-                _viewModel.gameEngine.battleMapTop[m.xPosition, m.yPosition] = m.ImgSource;
+                _viewModel.battle.battleMapTop[m.xPosition, m.yPosition] = m.ImgSource;
             }
 
-            _viewModel.gameEngine.RefreshAllCell();
+            _viewModel.battle.RefreshAllCell();
             _viewModel.gameEngine.ConsoleDialog1 = "Reset Clicked";
             BindingContext = null;
             BindingContext = _viewModel;
         }
 
-        //After every creature died, we will update our new battle map.
-        public void UpdateGrid(Grid map, int[][] mapAry)
+        public void HandleButtonClicked(int x, int y)
         {
+            // clean highlight
+            _viewModel.battle.SetAllSelection("HighlightGrey.png");
 
+            _viewModel.gameEngine.ConsoleDialog1 = x.ToString() + " " + y.ToString();
+            _viewModel.battle.battleMapSelection[x, y] = "HighlightGreen.png";
+            if (x > 0)
+                _viewModel.battle.battleMapSelection[x - 1, y] = "HighlightRed.png";
+            if (x < 4)
+                _viewModel.battle.battleMapSelection[x + 1, y] = "HighlightRed.png";
+            if (y > 0)
+                _viewModel.battle.battleMapSelection[x, y - 1] = "HighlightRed.png";
+            if (y < 5)
+                _viewModel.battle.battleMapSelection[x, y + 1] = "HighlightRed.png";
 
+            _viewModel.battle.RefreshAllCell();
+
+            BindingContext = null;
+            BindingContext = _viewModel;
         }
 
-
+        public void Cell00Clicked(object sender, EventArgs e) { HandleButtonClicked(0, 0); }
+        public void Cell01Clicked(object sender, EventArgs e) { HandleButtonClicked(0, 1); }
+        public void Cell02Clicked(object sender, EventArgs e) { HandleButtonClicked(0, 2); }
+        public void Cell03Clicked(object sender, EventArgs e) { HandleButtonClicked(0, 3); }
+        public void Cell04Clicked(object sender, EventArgs e) { HandleButtonClicked(0, 4); }
+        public void Cell05Clicked(object sender, EventArgs e) { HandleButtonClicked(0, 5); }
+        public void Cell10Clicked(object sender, EventArgs e) { HandleButtonClicked(1, 0); }
+        public void Cell11Clicked(object sender, EventArgs e) { HandleButtonClicked(1, 1); }
+        public void Cell12Clicked(object sender, EventArgs e) { HandleButtonClicked(1, 2); }
+        public void Cell13Clicked(object sender, EventArgs e) { HandleButtonClicked(1, 3); }
+        public void Cell14Clicked(object sender, EventArgs e) { HandleButtonClicked(1, 4); }
+        public void Cell15Clicked(object sender, EventArgs e) { HandleButtonClicked(1, 5); }
+        public void Cell20Clicked(object sender, EventArgs e) { HandleButtonClicked(2, 0); }
+        public void Cell21Clicked(object sender, EventArgs e) { HandleButtonClicked(2, 1); }
+        public void Cell22Clicked(object sender, EventArgs e) { HandleButtonClicked(2, 2); }
+        public void Cell23Clicked(object sender, EventArgs e) { HandleButtonClicked(2, 3); }
+        public void Cell24Clicked(object sender, EventArgs e) { HandleButtonClicked(2, 4); }
+        public void Cell25Clicked(object sender, EventArgs e) { HandleButtonClicked(2, 5); }
+        public void Cell30Clicked(object sender, EventArgs e) { HandleButtonClicked(3, 0); }
+        public void Cell31Clicked(object sender, EventArgs e) { HandleButtonClicked(3, 1); }
+        public void Cell32Clicked(object sender, EventArgs e) { HandleButtonClicked(3, 2); }
+        public void Cell33Clicked(object sender, EventArgs e) { HandleButtonClicked(3, 3); }
+        public void Cell34Clicked(object sender, EventArgs e) { HandleButtonClicked(3, 4); }
+        public void Cell35Clicked(object sender, EventArgs e) { HandleButtonClicked(3, 5); }
+        public void Cell40Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 0); }
+        public void Cell41Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 1); }
+        public void Cell42Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 2); }
+        public void Cell43Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 3); }
+        public void Cell44Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 4); }
+        public void Cell45Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 5); }
     }
 }

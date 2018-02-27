@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.BattlePage">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical" BackgroundColor="Black">
             <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
-                <Label Text="Binding Data.GameRound" />
-                <Button Clicked="Next_ClickedAsync" Text="NEXT" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+                <Label Text="Binding GameEngine.GameRound" />
+                <Button Clicked="Next_Clicked" Text="NEXT" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
                 <Button Clicked="Reset_Clicked" Text="Reset" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             </StackLayout>
-            <Frame Padding="0" Margin="0">
+            <Frame Padding="0" Margin="0" BackgroundColor="Black" OutlineColor="White">
                 <Grid x:Name="characterGrid" RowSpacing="-6" ColumnSpacing="0" Padding="0" Margin="0" VerticalOptions="Start" HorizontalOptions="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -24,99 +24,129 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{Binding gameEngine.cell_00_bottom}" Grid.Row="0" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_01_bottom}" Grid.Row="1" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_02_bottom}" Grid.Row="2" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_03_bottom}" Grid.Row="3" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_04_bottom}" Grid.Row="4" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_05_bottom}" Grid.Row="5" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_10_bottom}" Grid.Row="0" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_11_bottom}" Grid.Row="1" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_12_bottom}" Grid.Row="2" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_13_bottom}" Grid.Row="3" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_14_bottom}" Grid.Row="4" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_15_bottom}" Grid.Row="5" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_20_bottom}" Grid.Row="0" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_21_bottom}" Grid.Row="1" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_22_bottom}" Grid.Row="2" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_23_bottom}" Grid.Row="3" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_24_bottom}" Grid.Row="4" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_25_bottom}" Grid.Row="5" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_30_bottom}" Grid.Row="0" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_31_bottom}" Grid.Row="1" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_32_bottom}" Grid.Row="2" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_33_bottom}" Grid.Row="3" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_34_bottom}" Grid.Row="4" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_35_bottom}" Grid.Row="5" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_40_bottom}" Grid.Row="0" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_41_bottom}" Grid.Row="1" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_42_bottom}" Grid.Row="2" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_43_bottom}" Grid.Row="3" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_44_bottom}" Grid.Row="4" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_45_bottom}" Grid.Row="5" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_00_selection}" Grid.Row="0" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_01_selection}" Grid.Row="1" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_02_selection}" Grid.Row="2" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_03_selection}" Grid.Row="3" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_04_selection}" Grid.Row="4" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_05_selection}" Grid.Row="5" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_10_selection}" Grid.Row="0" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_11_selection}" Grid.Row="1" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_12_selection}" Grid.Row="2" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_13_selection}" Grid.Row="3" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_14_selection}" Grid.Row="4" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_15_selection}" Grid.Row="5" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_20_selection}" Grid.Row="0" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_21_selection}" Grid.Row="1" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_22_selection}" Grid.Row="2" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_23_selection}" Grid.Row="3" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_24_selection}" Grid.Row="4" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_25_selection}" Grid.Row="5" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_30_selection}" Grid.Row="0" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_31_selection}" Grid.Row="1" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_32_selection}" Grid.Row="2" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_33_selection}" Grid.Row="3" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_34_selection}" Grid.Row="4" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_35_selection}" Grid.Row="5" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_40_selection}" Grid.Row="0" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_41_selection}" Grid.Row="1" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_42_selection}" Grid.Row="2" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_43_selection}" Grid.Row="3" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_44_selection}" Grid.Row="4" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_45_selection}" Grid.Row="5" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_00_top}" Grid.Row="0" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_01_top}" Grid.Row="1" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_02_top}" Grid.Row="2" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_03_top}" Grid.Row="3" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_04_top}" Grid.Row="4" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_05_top}" Grid.Row="5" Grid.Column="0" />
-                    <Image Source="{Binding gameEngine.cell_10_top}" Grid.Row="0" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_11_top}" Grid.Row="1" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_12_top}" Grid.Row="2" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_13_top}" Grid.Row="3" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_14_top}" Grid.Row="4" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_15_top}" Grid.Row="5" Grid.Column="1" />
-                    <Image Source="{Binding gameEngine.cell_20_top}" Grid.Row="0" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_21_top}" Grid.Row="1" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_22_top}" Grid.Row="2" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_23_top}" Grid.Row="3" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_24_top}" Grid.Row="4" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_25_top}" Grid.Row="5" Grid.Column="2" />
-                    <Image Source="{Binding gameEngine.cell_30_top}" Grid.Row="0" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_31_top}" Grid.Row="1" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_32_top}" Grid.Row="2" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_33_top}" Grid.Row="3" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_34_top}" Grid.Row="4" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_35_top}" Grid.Row="5" Grid.Column="3" />
-                    <Image Source="{Binding gameEngine.cell_40_top}" Grid.Row="0" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_41_top}" Grid.Row="1" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_42_top}" Grid.Row="2" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_43_top}" Grid.Row="3" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_44_top}" Grid.Row="4" Grid.Column="4" />
-                    <Image Source="{Binding gameEngine.cell_45_top}" Grid.Row="5" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_00_bottom}" Grid.Row="0" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_01_bottom}" Grid.Row="1" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_02_bottom}" Grid.Row="2" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_03_bottom}" Grid.Row="3" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_04_bottom}" Grid.Row="4" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_05_bottom}" Grid.Row="5" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_10_bottom}" Grid.Row="0" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_11_bottom}" Grid.Row="1" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_12_bottom}" Grid.Row="2" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_13_bottom}" Grid.Row="3" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_14_bottom}" Grid.Row="4" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_15_bottom}" Grid.Row="5" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_20_bottom}" Grid.Row="0" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_21_bottom}" Grid.Row="1" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_22_bottom}" Grid.Row="2" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_23_bottom}" Grid.Row="3" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_24_bottom}" Grid.Row="4" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_25_bottom}" Grid.Row="5" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_30_bottom}" Grid.Row="0" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_31_bottom}" Grid.Row="1" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_32_bottom}" Grid.Row="2" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_33_bottom}" Grid.Row="3" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_34_bottom}" Grid.Row="4" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_35_bottom}" Grid.Row="5" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_40_bottom}" Grid.Row="0" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_41_bottom}" Grid.Row="1" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_42_bottom}" Grid.Row="2" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_43_bottom}" Grid.Row="3" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_44_bottom}" Grid.Row="4" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_45_bottom}" Grid.Row="5" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_00_selection}" Grid.Row="0" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_01_selection}" Grid.Row="1" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_02_selection}" Grid.Row="2" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_03_selection}" Grid.Row="3" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_04_selection}" Grid.Row="4" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_05_selection}" Grid.Row="5" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_10_selection}" Grid.Row="0" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_11_selection}" Grid.Row="1" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_12_selection}" Grid.Row="2" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_13_selection}" Grid.Row="3" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_14_selection}" Grid.Row="4" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_15_selection}" Grid.Row="5" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_20_selection}" Grid.Row="0" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_21_selection}" Grid.Row="1" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_22_selection}" Grid.Row="2" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_23_selection}" Grid.Row="3" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_24_selection}" Grid.Row="4" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_25_selection}" Grid.Row="5" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_30_selection}" Grid.Row="0" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_31_selection}" Grid.Row="1" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_32_selection}" Grid.Row="2" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_33_selection}" Grid.Row="3" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_34_selection}" Grid.Row="4" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_35_selection}" Grid.Row="5" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_40_selection}" Grid.Row="0" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_41_selection}" Grid.Row="1" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_42_selection}" Grid.Row="2" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_43_selection}" Grid.Row="3" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_44_selection}" Grid.Row="4" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_45_selection}" Grid.Row="5" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_00_top}" Grid.Row="0" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_01_top}" Grid.Row="1" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_02_top}" Grid.Row="2" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_03_top}" Grid.Row="3" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_04_top}" Grid.Row="4" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_05_top}" Grid.Row="5" Grid.Column="0" />
+                    <Image Source="{Binding battle.cell_10_top}" Grid.Row="0" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_11_top}" Grid.Row="1" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_12_top}" Grid.Row="2" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_13_top}" Grid.Row="3" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_14_top}" Grid.Row="4" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_15_top}" Grid.Row="5" Grid.Column="1" />
+                    <Image Source="{Binding battle.cell_20_top}" Grid.Row="0" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_21_top}" Grid.Row="1" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_22_top}" Grid.Row="2" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_23_top}" Grid.Row="3" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_24_top}" Grid.Row="4" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_25_top}" Grid.Row="5" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_30_top}" Grid.Row="0" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_31_top}" Grid.Row="1" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_32_top}" Grid.Row="2" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_33_top}" Grid.Row="3" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_34_top}" Grid.Row="4" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_35_top}" Grid.Row="5" Grid.Column="3" />
+                    <Image Source="{Binding battle.cell_40_top}" Grid.Row="0" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_41_top}" Grid.Row="1" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_42_top}" Grid.Row="2" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_43_top}" Grid.Row="3" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_44_top}" Grid.Row="4" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_45_top}" Grid.Row="5" Grid.Column="4" />
+                    <Button Clicked="Cell00Clicked" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
+                    <Button Clicked="Cell01Clicked" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="0" />
+                    <Button Clicked="Cell02Clicked" BackgroundColor="Transparent" Grid.Row="2" Grid.Column="0" />
+                    <Button Clicked="Cell03Clicked" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="0" />
+                    <Button Clicked="Cell04Clicked" BackgroundColor="Transparent" Grid.Row="4" Grid.Column="0" />
+                    <Button Clicked="Cell05Clicked" BackgroundColor="Transparent" Grid.Row="5" Grid.Column="0" />
+                    <Button Clicked="Cell10Clicked" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="1" />
+                    <Button Clicked="Cell11Clicked" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="1" />
+                    <Button Clicked="Cell12Clicked" BackgroundColor="Transparent" Grid.Row="2" Grid.Column="1" />
+                    <Button Clicked="Cell13Clicked" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="1" />
+                    <Button Clicked="Cell14Clicked" BackgroundColor="Transparent" Grid.Row="4" Grid.Column="1" />
+                    <Button Clicked="Cell15Clicked" BackgroundColor="Transparent" Grid.Row="5" Grid.Column="1" />
+                    <Button Clicked="Cell20Clicked" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="2" />
+                    <Button Clicked="Cell21Clicked" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="2" />
+                    <Button Clicked="Cell22Clicked" BackgroundColor="Transparent" Grid.Row="2" Grid.Column="2" />
+                    <Button Clicked="Cell23Clicked" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="2" />
+                    <Button Clicked="Cell24Clicked" BackgroundColor="Transparent" Grid.Row="4" Grid.Column="2" />
+                    <Button Clicked="Cell25Clicked" BackgroundColor="Transparent" Grid.Row="5" Grid.Column="2" />
+                    <Button Clicked="Cell30Clicked" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="3" />
+                    <Button Clicked="Cell31Clicked" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="3" />
+                    <Button Clicked="Cell32Clicked" BackgroundColor="Transparent" Grid.Row="2" Grid.Column="3" />
+                    <Button Clicked="Cell33Clicked" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="3" />
+                    <Button Clicked="Cell34Clicked" BackgroundColor="Transparent" Grid.Row="4" Grid.Column="3" />
+                    <Button Clicked="Cell35Clicked" BackgroundColor="Transparent" Grid.Row="5" Grid.Column="3" />
+                    <Button Clicked="Cell40Clicked" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="4" />
+                    <Button Clicked="Cell41Clicked" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="4" />
+                    <Button Clicked="Cell42Clicked" BackgroundColor="Transparent" Grid.Row="2" Grid.Column="4" />
+                    <Button Clicked="Cell43Clicked" BackgroundColor="Transparent" Grid.Row="3" Grid.Column="4" />
+                    <Button Clicked="Cell44Clicked" BackgroundColor="Transparent" Grid.Row="4" Grid.Column="4" />
+                    <Button Clicked="Cell45Clicked" BackgroundColor="Transparent" Grid.Row="5" Grid.Column="4" />
                 </Grid>
             </Frame>
-            <Label HeightRequest="90" Text="{Binding gameEngine.ConsoleDialog1}" BackgroundColor="Black" TextColor="White" />
+            <Label HeightRequest="90" Text="{Binding battle.ConsoleDialog1}" BackgroundColor="Black" TextColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

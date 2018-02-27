@@ -42,16 +42,10 @@ namespace TheLastHero.Views
             await Navigation.PushAsync(new ItemsPage());
         }
 
-        async void InventoryPageButton_OnClicked(object sender, EventArgs e)
-        {
-            // await Navigation.PushAsync(new Inventory());
-        }
-
         async void ScorePageButton_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ScoresPage());
         }
-
 
     }
 }
