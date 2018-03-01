@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using TheLastHero.GameEngines;
-using Xamarin.Forms;
+﻿using System.Collections.Generic;
 
 namespace TheLastHero.Models.Battle
 {
     public class Battle
     {
         // Every four rounds, game engine will generate a new boss monster
-        const int BOSSROUND = 4;
+        //const int BOSSROUND = 4;
+
+        public const string HIGHLIGHTGREEN = "HighlightGreen.png";
+        public const string HIGHLIGHTRED = "HighlightRed.png";
+        public const string HIGHLIGHTGREY = "HighlightGrey.png";
+        public const string GRASS = "Grass.png";
+        public const string LAVA = "Lava.png";
+        public const string SAND = "Sand.png";
+
+        public string title { get; set; }
 
         // The data structure list contains selected six characters passed from    SelectCharacterPage
         public List<Character> characters;
@@ -116,36 +121,6 @@ namespace TheLastHero.Models.Battle
         public string cell_43_selection { get; set; }
         public string cell_44_selection { get; set; }
         public string cell_45_selection { get; set; }
-
-        // This method will generate monsters for each round. Initially, the game will have 
-        // six monsters and each four rounds, the method will generate a boss monster to       
-        // characters
-        public List<Monster> GenerateMonsters(int curRound)
-        {
-
-            //Check whether the monster is the boss monster
-            bool isBoss = false;
-
-            // After every three rounds, our game will generate a new boss monster
-            if (curRound % BOSSROUND == 0)
-            {
-                isBoss = true;
-                Monster monster = new Monster(curRound, isBoss);
-
-            }
-            else
-            {
-                // Generate normal monsters
-
-                for (int i = 0; i < 6; i++)
-                {
-                    Monster monster = new Monster(curRound, isBoss);
-                    monsters.Add(monster);
-                }
-
-            }
-            return monsters;
-        }
 
         public void SetAllSelection(string img)
         {

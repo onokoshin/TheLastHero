@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.BattlePage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TheLastHero.Views.BattlePage" Title="{Binding battle.title}">
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical" BackgroundColor="Black">
-            <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
-                <Label Text="Binding GameEngine.GameRound" />
+        <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Horizontal" VerticalOptions="Center" Margin="0" Padding="-1">
+                <Image Source="KnightRight.png" HeightRequest="60" />
                 <Button Clicked="Next_Clicked" Text="NEXT" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
                 <Button Clicked="Reset_Clicked" Text="Reset" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             </StackLayout>
-            <Frame Padding="0" Margin="0" BackgroundColor="Black" OutlineColor="White">
+            <StackLayout VerticalOptions="Start">
                 <Grid x:Name="characterGrid" RowSpacing="-6" ColumnSpacing="0" Padding="0" Margin="0" VerticalOptions="Start" HorizontalOptions="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -145,8 +145,8 @@
                     <Button Clicked="Cell44Clicked" BackgroundColor="Transparent" Grid.Row="4" Grid.Column="4" />
                     <Button Clicked="Cell45Clicked" BackgroundColor="Transparent" Grid.Row="5" Grid.Column="4" />
                 </Grid>
-            </Frame>
-            <Label HeightRequest="90" Text="{Binding battle.ConsoleDialog1}" BackgroundColor="Black" TextColor="White" />
+            </StackLayout>
+            <Label HeightRequest="90" Text="{Binding battle.ConsoleDialog1}" BackgroundColor="Silver" VerticalOptions="FillAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -14,13 +14,13 @@ namespace TheLastHero.ViewModels
     public class GameEngineViewModel : BaseViewModel
     {
 
+
         public GameEngine gameEngine { get; set; }
         public Battle battle { get; set; }
-        //public Command LoadDataCommand { get; set; }
 
         public ObservableCollection<Character> CharacterDataset { get; set; }
         public ObservableCollection<Monster> MonsterDataset { get; set; }
-        public ObservableCollection<Creature> CreatureDataset { get; set; }
+        //public ObservableCollection<Creature> CreatureDataset { get; set; }
         public ObservableCollection<Item> ItemDataset { get; set; }
         public Command LoadDataCommand { get; set; }
 
@@ -43,18 +43,20 @@ namespace TheLastHero.ViewModels
             }
         }
 
-        public GameEngineViewModel()
+        private GameEngineViewModel()
         {
             CharacterDataset = new ObservableCollection<Character>();
             MonsterDataset = new ObservableCollection<Monster>();
-            CreatureDataset = new ObservableCollection<Creature>();
+            //CreatureDataset = new ObservableCollection<Creature>();
             ItemDataset = new ObservableCollection<Item>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
-            gameEngine = new GameEngine();
+            gameEngine = GameEngine.Instance;
             battle = new Battle();
 
         }
+
+
 
         private async Task ExecuteLoadDataCommand()
         {
@@ -67,30 +69,27 @@ namespace TheLastHero.ViewModels
             {
                 CharacterDataset.Clear();
                 MonsterDataset.Clear();
-                CreatureDataset.Clear();
                 ItemDataset.Clear();
                 var cdataset = await DataStore.GetAllAsync_Character(true);
                 var mdataset = await DataStore.GetAllAsync_Monster(true);
                 var idataset = await DataStore.GetAllAsync_Item(true);
+
+                //CreatureDataset.Clear();
                 foreach (var data in cdataset)
                 {
                     CharacterDataset.Add(data);
-                    CreatureDataset.Add(data);
+                    //CreatureDataset.Add(data);
                 }
                 foreach (var data in mdataset)
                 {
                     MonsterDataset.Add(data);
-                    CreatureDataset.Add(data);
+                    //CreatureDataset.Add(data);
                 }
                 foreach (var data in idataset)
                 {
                     ItemDataset.Add(data);
                 }
-                CreatureDataset = new ObservableCollection<Creature>(CreatureDataset.OrderByDescending(i => i.Spd));
-                foreach (Creature c in CreatureDataset)
-                {
-                    gameEngine.speedQueue.Enqueue(c);
-                }
+                //CreatureDataset = new ObservableCollection<Creature>(CreatureDataset.OrderByDescending(i => i.Spd));
 
             }
             catch (Exception ex)
@@ -102,6 +101,7 @@ namespace TheLastHero.ViewModels
                 IsBusy = false;
             }
         }
+
 
         // Return True if a refresh is needed
         // It sets the refresh flag to false
@@ -120,6 +120,43 @@ namespace TheLastHero.ViewModels
         {
             _needsRefresh = value;
         }
+
+
+        /*public void BuildSpeedQueue()
+        {
+            if (CreatureDataset.Count > 0)
+            {
+                gameEngine.speedQueue.Clear();
+                foreach (Creature c in CreatureDataset)
+                {
+                    gameEngine.speedQueue.Enqueue(c);
+                }
+            }
+        }*/
+        public void BuildCharacterQueue()
+        {
+            if (CharacterDataset.Count > 0)
+            {
+                gameEngine.characterQueue.Clear();
+                foreach (Character c in CharacterDataset)
+                {
+                    gameEngine.characterQueue.Enqueue(c);
+                }
+            }
+        }
+        public void BuildMonsterQueue()
+        {
+            if (MonsterDataset.Count > 0)
+            {
+                gameEngine.monsterQueue.Clear();
+                foreach (Monster m in MonsterDataset)
+                {
+                    gameEngine.monsterQueue.Enqueue(m);
+                }
+            }
+        }
+
+
     }
 }
 

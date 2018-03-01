@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using TheLastHero.GameEngines;
 using TheLastHero.Models;
+using TheLastHero.Models.Battle;
 using TheLastHero.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Internals;
+using System.Linq;
 
 
 /** This is our battle controller. all logical actions related to battle are 
@@ -55,24 +52,130 @@ namespace TheLastHero.Views
         //Grid battleGrid = new Grid();
         private GameEngineViewModel _viewModel;
         Script _script = new Script();
+        Character curCharacter = new Character();
+        Monster curMonster = new Monster();
+        Creature curCreature = new Creature();
 
         //Constructor 
         public BattlePage()
         {
             InitializeComponent();
             _viewModel = GameEngineViewModel.Instance;
+            // read sqldatabase or mockdatabase
+            _viewModel.LoadDataCommand.Execute(null);
+            // start with level 1 by default
+            _viewModel.gameEngine.currentRound = 1;
+            //create speedqueue and render map
+            InitializeBattle();
 
-            // auto play only
-            //ResetQueue();
+
+            //????should we use 2 queues characterqueue and monsterqueue,
+            // creature queue doesn make sense because we dont need another sets
+            // of creature, we already have character and monsters
+
+
+
+            if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
+            {
+                bool monsterTurn = true;
+
+                // determine weather character or monster
+                if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
+                {
+                    monsterTurn = false;
+                }
+
+                if (monsterTurn)
+                {
+                    // monster turn
+                    curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+                    while (_viewModel.gameEngine.monsterQueue.Count > 0 && !_viewModel.gameEngine.monsterQueue.Peek().Friendly)
+                    {
+                        //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
+
+                        curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+                        _viewModel.battle.battleMapSelection[curMonster.xPosition, curMonster.yPosition] = Battle.HIGHLIGHTGREEN;
+
+                        if (curMonster.LiveStatus)
+                            _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
+                        curMonster = null;
+                    }
+                }
+                else
+                {
+                    // character turn dequeue and hold dont enqueue.
+                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+
+                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+
+
+                }
+
+
+
+                // while monster is true
+                // auto move, auto attack, no highlight
+
+                //until character
+                // highlight character, highlight move grid, highlight attack grit
+                // wait for click
+
+            }
+            else
+            {
+                //empty characters or empty monsters, error!
+            }
 
             //_script.scriptCounter = 1;
             //RunScript(_script, 0);
-
-            _viewModel.battle.SetAllBackground("Grass.png");
-
             _viewModel.battle.RefreshAllCell();
-
             BindingContext = _viewModel;
+        }
+
+
+
+        private void InitializeBattle()
+        {
+
+            int round = _viewModel.gameEngine.currentRound;
+            _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+            _viewModel.battle.SetAllTop("");
+
+            if (round <= 3)
+            {
+                _viewModel.battle.title = "Elwynn Forest Lvl 1-3";
+                _viewModel.battle.SetAllBackground(Battle.GRASS);
+            }
+            else if (round > 3 && round <= 6)
+            {
+                _viewModel.battle.title = "Dun Morogh Lvl 4-6";
+                _viewModel.battle.SetAllBackground(Battle.SAND);
+            }
+            else if (round > 6 && round <= 9)
+            {
+                _viewModel.battle.title = "Tanaris Lvl 7-9";
+                _viewModel.battle.SetAllBackground(Battle.GRASS);
+            }
+            else
+            {
+                _viewModel.battle.title = "Redridge Mountains Lvl???";
+                _viewModel.battle.SetAllBackground(Battle.LAVA);
+            }
+            _viewModel.BuildMonsterQueue();
+            _viewModel.BuildCharacterQueue();
+            RenderCreatures();
+        }
+
+        private void RenderCreatures()
+        {
+            foreach (Character c in _viewModel.CharacterDataset)
+            {
+                _viewModel.battle.battleMapTop[c.xPosition, c.yPosition] = c.ImgSource;
+            }
+            foreach (Monster m in _viewModel.MonsterDataset)
+            {
+                _viewModel.battle.battleMapTop[m.xPosition, m.yPosition] = m.ImgSource;
+            }
         }
 
         protected override void OnAppearing()
@@ -100,7 +203,7 @@ namespace TheLastHero.Views
             BindingContext = _viewModel;
         }
 
-        private void RunScript(Script s, int s_num)
+        /*private void RunScript(Script s, int s_num)
         {
             string hp = "";
             bool moved = false;
@@ -117,7 +220,7 @@ namespace TheLastHero.Views
                     bool matchAndDead = false;
                     for (int i = 0; i < s.GetScripts()[s_num].Length; i = i + 7)
                     {
-                        if (c.demoID == s.GetScripts()[s_num][i + 4])
+                        if (c.ID == s.GetScripts()[s_num][i + 4])
                         {
                             hp = s.GetScripts()[s_num][i + 3].ToString();
                             if (s.GetScripts()[s_num][i + 5] == 1)
@@ -229,46 +332,96 @@ namespace TheLastHero.Views
             }
             _viewModel.battle.RefreshAllCell();
 
-        }
+        }*/
 
-        public void ResetQueue()
-        {
-            if (_viewModel.CreatureDataset.Count > 0)
-            {
-                _viewModel.gameEngine.speedQueue.Clear();
-                foreach (Creature c in _viewModel.CreatureDataset)
-                {
-                    _viewModel.gameEngine.speedQueue.Enqueue(c);
-                }
-            }
-        }
+
 
         public void Next_Clicked(object sender, EventArgs e)
         {
-            // do something
-            //if (true)
 
-            _viewModel.battle.cell_00_bottom = "Sand.png";
-            if (_script.scriptCounter > 49)
+            _viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
+
+
+            if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
             {
-                Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
-                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+                bool monsterTurn = true;
+
+                // determine weather character or monster
+                if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
+                {
+                    monsterTurn = false;
+                }
+
+                if (monsterTurn)
+                {
+                    // monster turn
+                    curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+                    while (_viewModel.gameEngine.monsterQueue.Count > 0
+                           && !_viewModel.gameEngine.monsterQueue.Peek().Friendly
+                           && (_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
+                    {
+                        //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
+
+                        curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+
+                        if (curMonster.LiveStatus)
+                            _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
+                        curMonster = null;
+                    }
+                }
+                else
+                {
+                    // character turn dequeue and hold dont enqueue.
+                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+                    _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+
+
+                }
+
+
+
+                // while monster is true
+                // auto move, auto attack, no highlight
+
+                //until character
+                // highlight character, highlight move grid, highlight attack grit
+                // wait for click
+
             }
             else
             {
-                RunScript(_script, _script.scriptCounter);
-                _script.scriptCounter++;
-                BindingContext = null;
-                BindingContext = _viewModel;
-
+                //empty characters or empty monsters, error!
             }
+
+            //_script.scriptCounter = 1;
+            //RunScript(_script, 0);
+            _viewModel.battle.RefreshAllCell();
+            BindingContext = null;
+            BindingContext = _viewModel;
+
+            /* _viewModel.battle.cell_00_bottom = "Sand.png";
+             if (_script.scriptCounter > 49)
+             {
+                 Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
+                 Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
+             }
+             else
+             {
+                 //RunScript(_script, _script.scriptCounter);
+                 //_script.scriptCounter++;
+                 BindingContext = null;
+                 BindingContext = _viewModel;
+
+             }*/
         }
 
 
 
         public void Reset_Clicked(object sender, EventArgs e)
         {
-            ResetQueue();
+            _viewModel.BuildCharacterQueue();
+            _viewModel.BuildMonsterQueue();
 
             _viewModel.gameEngine.ClearDialogCache();
             _script.scriptCounter = 1;
@@ -296,19 +449,125 @@ namespace TheLastHero.Views
 
         public void HandleButtonClicked(int x, int y)
         {
+            //if curChar is alive
+            if (curCharacter.LiveStatus)
+            {
+                //if clicked within moverange
+                // if creature within range, do nothing
+                if (_viewModel.battle.battleMapTop[x, y].Equals("") && _viewModel.battle.battleMapSelection[x, y].Equals(Battle.HIGHLIGHTGREEN))
+                {
+                    // move character
+                    _viewModel.battle.battleMapTop[curCharacter.xPosition, curCharacter.yPosition] = "";
+                    _viewModel.battle.battleMapTop[x, y] = curCharacter.ImgSource;
+                }
+            }
+
+
+            // autoattack if monster present
+            // done enqueue character
+
+            _viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
+
+
+            if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
+            {
+                bool monsterTurn = true;
+
+                // determine weather character or monster
+                if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
+                {
+                    monsterTurn = false;
+                }
+
+                if (monsterTurn)
+                {
+                    // monster turn
+                    curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+                    while (_viewModel.gameEngine.monsterQueue.Count > 0
+                           && !_viewModel.gameEngine.monsterQueue.Peek().Friendly
+                           && (_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
+                    {
+                        //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
+
+                        curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+
+                        if (curMonster.LiveStatus)
+                            _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
+                        curMonster = null;
+                    }
+                }
+                else
+                {
+                    // character turn dequeue and hold dont enqueue.
+                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+                    _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+
+
+                }
+
+
+
+                // while monster is true
+                // auto move, auto attack, no highlight
+
+                //until character
+                // highlight character, highlight move grid, highlight attack grit
+                // wait for click
+
+            }
+            else
+            {
+                //empty characters or empty monsters, error!
+            }
+
+            //_script.scriptCounter = 1;
+            //RunScript(_script, 0);
+            _viewModel.battle.RefreshAllCell();
+            BindingContext = null;
+            BindingContext = _viewModel;
+
+
+
+
+
+
+
+            //---------------------------------------------------
             // clean highlight
             _viewModel.battle.SetAllSelection("HighlightGrey.png");
 
             _viewModel.gameEngine.ConsoleDialog1 = x.ToString() + " " + y.ToString();
-            _viewModel.battle.battleMapSelection[x, y] = "HighlightGreen.png";
+            _viewModel.battle.battleMapSelection[x, y] = Battle.HIGHLIGHTGREEN;
             if (x > 0)
-                _viewModel.battle.battleMapSelection[x - 1, y] = "HighlightRed.png";
+            {
+                if (_viewModel.battle.battleMapTop[x - 1, y].Equals(""))
+                {
+                    _viewModel.battle.battleMapSelection[x - 1, y] = Battle.HIGHLIGHTGREEN;
+
+                }
+            }
             if (x < 4)
-                _viewModel.battle.battleMapSelection[x + 1, y] = "HighlightRed.png";
+            {
+                if (_viewModel.battle.battleMapTop[x + 1, y].Equals(""))
+                {
+                    _viewModel.battle.battleMapSelection[x + 1, y] = Battle.HIGHLIGHTGREEN;
+                }
+            }
             if (y > 0)
-                _viewModel.battle.battleMapSelection[x, y - 1] = "HighlightRed.png";
+            {
+                if (_viewModel.battle.battleMapTop[x, y - 1].Equals(""))
+                {
+                    _viewModel.battle.battleMapSelection[x, y - 1] = Battle.HIGHLIGHTGREEN;
+                }
+            }
             if (y < 5)
-                _viewModel.battle.battleMapSelection[x, y + 1] = "HighlightRed.png";
+            {
+                if (_viewModel.battle.battleMapTop[x, y + 1].Equals(""))
+                {
+                    _viewModel.battle.battleMapSelection[x, y + 1] = Battle.HIGHLIGHTGREEN;
+                }
+            }
 
             _viewModel.battle.RefreshAllCell();
 
