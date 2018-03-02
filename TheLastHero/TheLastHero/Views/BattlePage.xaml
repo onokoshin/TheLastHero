@@ -24,51 +24,51 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Image Source="{Binding battle.cell_00_bottom}" Grid.Row="0" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_01_bottom}" Grid.Row="1" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_02_bottom}" Grid.Row="2" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_03_bottom}" Grid.Row="3" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_04_bottom}" Grid.Row="4" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_05_bottom}" Grid.Row="5" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_10_bottom}" Grid.Row="0" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_11_bottom}" Grid.Row="1" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_12_bottom}" Grid.Row="2" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_13_bottom}" Grid.Row="3" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_14_bottom}" Grid.Row="4" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_15_bottom}" Grid.Row="5" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_20_bottom}" Grid.Row="0" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_21_bottom}" Grid.Row="1" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_22_bottom}" Grid.Row="2" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_23_bottom}" Grid.Row="3" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_24_bottom}" Grid.Row="4" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_25_bottom}" Grid.Row="5" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_30_bottom}" Grid.Row="0" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_31_bottom}" Grid.Row="1" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_32_bottom}" Grid.Row="2" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_33_bottom}" Grid.Row="3" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_34_bottom}" Grid.Row="4" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_35_bottom}" Grid.Row="5" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_40_bottom}" Grid.Row="0" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_41_bottom}" Grid.Row="1" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_42_bottom}" Grid.Row="2" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_43_bottom}" Grid.Row="3" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_44_bottom}" Grid.Row="4" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_45_bottom}" Grid.Row="5" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_00_selection}" Grid.Row="0" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_01_selection}" Grid.Row="1" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_02_selection}" Grid.Row="2" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_03_selection}" Grid.Row="3" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_04_selection}" Grid.Row="4" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_05_selection}" Grid.Row="5" Grid.Column="0" />
-                    <Image Source="{Binding battle.cell_10_selection}" Grid.Row="0" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_11_selection}" Grid.Row="1" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_12_selection}" Grid.Row="2" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_13_selection}" Grid.Row="3" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_14_selection}" Grid.Row="4" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_15_selection}" Grid.Row="5" Grid.Column="1" />
-                    <Image Source="{Binding battle.cell_20_selection}" Grid.Row="0" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_21_selection}" Grid.Row="1" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_22_selection}" Grid.Row="2" Grid.Column="2" />
+                    <Image Source="{Binding battle.cell_00_bottom}" Grid.Row="0" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_01_bottom}" Grid.Row="1" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_02_bottom}" Grid.Row="2" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_03_bottom}" Grid.Row="3" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_04_bottom}" Grid.Row="4" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_05_bottom}" Grid.Row="5" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_10_bottom}" Grid.Row="0" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_11_bottom}" Grid.Row="1" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_12_bottom}" Grid.Row="2" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_13_bottom}" Grid.Row="3" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_14_bottom}" Grid.Row="4" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_15_bottom}" Grid.Row="5" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_20_bottom}" Grid.Row="0" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_21_bottom}" Grid.Row="1" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_22_bottom}" Grid.Row="2" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_23_bottom}" Grid.Row="3" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_24_bottom}" Grid.Row="4" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_25_bottom}" Grid.Row="5" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_30_bottom}" Grid.Row="0" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_31_bottom}" Grid.Row="1" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_32_bottom}" Grid.Row="2" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_33_bottom}" Grid.Row="3" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_34_bottom}" Grid.Row="4" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_35_bottom}" Grid.Row="5" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_40_bottom}" Grid.Row="0" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_41_bottom}" Grid.Row="1" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_42_bottom}" Grid.Row="2" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_43_bottom}" Grid.Row="3" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_44_bottom}" Grid.Row="4" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_45_bottom}" Grid.Row="5" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_00_selection}" Grid.Row="0" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_01_selection}" Grid.Row="1" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_02_selection}" Grid.Row="2" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_03_selection}" Grid.Row="3" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_04_selection}" Grid.Row="4" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_05_selection}" Grid.Row="5" Grid.Column="0" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_10_selection}" Grid.Row="0" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_11_selection}" Grid.Row="1" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_12_selection}" Grid.Row="2" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_13_selection}" Grid.Row="3" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_14_selection}" Grid.Row="4" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_15_selection}" Grid.Row="5" Grid.Column="1" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_20_selection}" Grid.Row="0" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_21_selection}" Grid.Row="1" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_22_selection}" Grid.Row="2" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
                     <Image Source="{Binding battle.cell_23_selection}" Grid.Row="3" Grid.Column="2" />
                     <Image Source="{Binding battle.cell_24_selection}" Grid.Row="4" Grid.Column="2" />
                     <Image Source="{Binding battle.cell_25_selection}" Grid.Row="5" Grid.Column="2" />

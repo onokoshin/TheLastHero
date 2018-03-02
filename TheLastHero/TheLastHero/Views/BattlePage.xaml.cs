@@ -55,7 +55,8 @@ namespace TheLastHero.Views
         Character curCharacter = new Character();
         Monster curMonster = new Monster();
         Creature curCreature = new Creature();
-
+        bool atkTurn = false;
+        bool endTurn = false;
         //Constructor 
         public BattlePage()
         {
@@ -68,12 +69,9 @@ namespace TheLastHero.Views
             //create speedqueue and render map
             InitializeBattle();
 
-
             //????should we use 2 queues characterqueue and monsterqueue,
             // creature queue doesn make sense because we dont need another sets
             // of creature, we already have character and monsters
-
-
 
             if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
             {
@@ -88,26 +86,40 @@ namespace TheLastHero.Views
                 if (monsterTurn)
                 {
                     // monster turn
-                    curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+
                     while (_viewModel.gameEngine.monsterQueue.Count > 0 && !_viewModel.gameEngine.monsterQueue.Peek().Friendly)
                     {
                         //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
 
                         curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
-                        _viewModel.battle.battleMapSelection[curMonster.xPosition, curMonster.yPosition] = Battle.HIGHLIGHTGREEN;
 
-                        if (curMonster.LiveStatus)
-                            _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
+                        if (_viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition].Equals(""))
+                        {
+                            _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition] = "";
+                            _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.ImgSource;
+                        }
+                        else
+                        { //attack
+                          //_viewModel.gameEngine.characterQueue.Where(x => x.ImgSource.Equals(
+                          //    _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition]
+                          // )).First();
+                        }
+
+                        _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
                         curMonster = null;
                     }
                 }
                 else
                 {
                     // character turn dequeue and hold dont enqueue.
+                    curCharacter = null;
                     curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
 
+                    _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
                     _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
 
+
+                    RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
 
                 }
 
@@ -132,7 +144,69 @@ namespace TheLastHero.Views
             BindingContext = _viewModel;
         }
 
+        private void RenderMoveAttackRange(int x, int y, int totalR, int atkR)
+        {
+            //_viewModel.battle.battleMapSelection[x, y] = Battle.HIGHLIGHTGREEN;
+            if (x > 0)
+            {
+                if (totalR > atkR)
+                {
+                    _viewModel.battle.battleMapSelection[x - 1, y] = Battle.HIGHLIGHTGREEN;
+                    if (totalR > 1) { RenderMoveAttackRange(x - 1, y, totalR - 1, atkR); }
 
+                }
+                //else if (_viewModel.battle.battleMapSelection[x - 1, y].Equals(""))
+                else if (!_viewModel.battle.battleMapSelection[x - 1, y].Equals(Battle.HIGHLIGHTGREEN))
+                {
+                    _viewModel.battle.battleMapSelection[x - 1, y] = Battle.HIGHLIGHTRED;
+                    if (totalR > 1) { RenderMoveAttackRange(x - 1, y, totalR - 1, atkR); }
+                }
+            }
+            if (x < 4)
+            {
+                if (totalR > atkR)
+                {
+                    _viewModel.battle.battleMapSelection[x + 1, y] = Battle.HIGHLIGHTGREEN;
+                    if (totalR > 1) { RenderMoveAttackRange(x + 1, y, totalR - 1, atkR); }
+                }
+                //else if (_viewModel.battle.battleMapSelection[x + 1, y].Equals(""))
+                else if (!_viewModel.battle.battleMapSelection[x + 1, y].Equals(Battle.HIGHLIGHTGREEN))
+                {
+                    _viewModel.battle.battleMapSelection[x + 1, y] = Battle.HIGHLIGHTRED;
+                    if (totalR > 1) { RenderMoveAttackRange(x + 1, y, totalR - 1, atkR); }
+                }
+            }
+            if (y > 0)
+            {
+                if (totalR > atkR)
+                {
+                    _viewModel.battle.battleMapSelection[x, y - 1] = Battle.HIGHLIGHTGREEN;
+                    if (totalR > 1) { RenderMoveAttackRange(x, y - 1, totalR - 1, atkR); }
+                }
+                else if (!_viewModel.battle.battleMapSelection[x, y - 1].Equals(Battle.HIGHLIGHTGREEN))
+
+                {
+                    _viewModel.battle.battleMapSelection[x, y - 1] = Battle.HIGHLIGHTRED;
+                    if (totalR > 1) { RenderMoveAttackRange(x, y - 1, totalR - 1, atkR); }
+                }
+            }
+            if (y < 5)
+            {
+                if (totalR > atkR)
+                {
+                    _viewModel.battle.battleMapSelection[x, y + 1] = Battle.HIGHLIGHTGREEN;
+                    if (totalR > 1) { RenderMoveAttackRange(x, y + 1, totalR - 1, atkR); }
+                }
+                else if (!_viewModel.battle.battleMapSelection[x, y + 1].Equals(Battle.HIGHLIGHTGREEN))
+
+                {
+                    _viewModel.battle.battleMapSelection[x, y + 1] = Battle.HIGHLIGHTRED;
+                    if (totalR > 1) { RenderMoveAttackRange(x, y + 1, totalR - 1, atkR); }
+                }
+            }
+
+
+        }
 
         private void InitializeBattle()
         {
@@ -338,10 +412,14 @@ namespace TheLastHero.Views
 
         public void Next_Clicked(object sender, EventArgs e)
         {
-
+            //do character thing
+            //if clicked on green move, set move true, check surrounding if
+            // monster present render red, over
+            _viewModel.battle.SetAllTop(Battle.HIGHLIGHTGREY);
             _viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
+            curCharacter = null;
 
-
+            //do monster thing
             if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
             {
                 bool monsterTurn = true;
@@ -372,9 +450,15 @@ namespace TheLastHero.Views
                 else
                 {
                     // character turn dequeue and hold dont enqueue.
+
+                    curCharacter = null;
                     curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+
                     _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
                     _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+
+
+                    RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
 
 
                 }
@@ -449,130 +533,156 @@ namespace TheLastHero.Views
 
         public void HandleButtonClicked(int x, int y)
         {
-            //if curChar is alive
-            if (curCharacter.LiveStatus)
+            // if clicked within moverange
+            // if creature within range, do nothing
+            if (_viewModel.battle.battleMapSelection[x, y].Equals(Battle.HIGHLIGHTGREEN)
+                && _viewModel.battle.battleMapTop[x, y].Equals("") || (x == curCharacter.xPosition && y == curCharacter.yPosition))
             {
-                //if clicked within moverange
-                // if creature within range, do nothing
-                if (_viewModel.battle.battleMapTop[x, y].Equals("") && _viewModel.battle.battleMapSelection[x, y].Equals(Battle.HIGHLIGHTGREEN))
+                // move character
+                _viewModel.battle.battleMapTop[curCharacter.xPosition, curCharacter.yPosition] = "";
+                _viewModel.battle.battleMapTop[x, y] = curCharacter.ImgSource;
+                _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+                if (CheckNearbyMonster(x, y))
                 {
-                    // move character
-                    _viewModel.battle.battleMapTop[curCharacter.xPosition, curCharacter.yPosition] = "";
-                    _viewModel.battle.battleMapTop[x, y] = curCharacter.ImgSource;
+
+                    RenderAttackRange(x, y, curCharacter.AtkRange);
+                    atkTurn = true;
                 }
+
+
             }
+            else if (atkTurn && _viewModel.battle.battleMapSelection[x, y].Equals(Battle.HIGHLIGHTRED))
+            {
+                //try to attack
+                endTurn = true;
+            }
+
 
 
             // autoattack if monster present
             // done enqueue character
-
-            _viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
-
-
-            if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
+            if (endTurn)
             {
-                bool monsterTurn = true;
-
-                // determine weather character or monster
-                if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
+                _viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
+                if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
                 {
-                    monsterTurn = false;
-                }
+                    bool monsterTurn = true;
 
-                if (monsterTurn)
-                {
-                    // monster turn
-                    curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
-                    while (_viewModel.gameEngine.monsterQueue.Count > 0
-                           && !_viewModel.gameEngine.monsterQueue.Peek().Friendly
-                           && (_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
+                    // determine weather character or monster
+                    if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
                     {
-                        //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
-
-                        curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
-
-                        if (curMonster.LiveStatus)
-                            _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
-                        curMonster = null;
+                        monsterTurn = false;
                     }
+
+                    if (monsterTurn)
+                    {
+                        // monster turn
+                        curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+                        while (_viewModel.gameEngine.monsterQueue.Count > 0
+                               && !_viewModel.gameEngine.monsterQueue.Peek().Friendly
+                               && (_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
+                        {
+                            //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
+
+                            curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+
+                            if (curMonster.LiveStatus)
+                                _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
+                            curMonster = null;
+                        }
+                    }
+                    else
+                    {
+                        // character turn dequeue and hold dont enqueue.
+                        curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+                        _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+                        _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+
+
+                    }
+
+
+
+                    // while monster is true
+                    // auto move, auto attack, no highlight
+
+                    //until character
+                    // highlight character, highlight move grid, highlight attack grit
+                    // wait for click
+
                 }
                 else
                 {
-                    // character turn dequeue and hold dont enqueue.
-                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
-                    _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
-
-
+                    //empty characters or empty monsters, error!
                 }
-
-
-
-                // while monster is true
-                // auto move, auto attack, no highlight
-
-                //until character
-                // highlight character, highlight move grid, highlight attack grit
-                // wait for click
-
             }
-            else
-            {
-                //empty characters or empty monsters, error!
-            }
+
+
+
 
             //_script.scriptCounter = 1;
             //RunScript(_script, 0);
             _viewModel.battle.RefreshAllCell();
             BindingContext = null;
             BindingContext = _viewModel;
+        }
 
+        private bool CheckNearbyMonster(int x, int y)
+        {
 
+            if (x > 0 && _viewModel.gameEngine.monsterQueue.Where(m => m.ImgSource.Equals(_viewModel.battle.battleMapTop[x - 1, y])).Count() > 0)
+            {
+                return true;
 
+            }
+            if (x < 4 && _viewModel.gameEngine.monsterQueue.Where(m => m.ImgSource.Equals(_viewModel.battle.battleMapTop[x + 1, y])).Count() > 0)
+            {
+                return true;
+            }
+            if (y > 0 && _viewModel.gameEngine.monsterQueue.Where(m => m.ImgSource.Equals(_viewModel.battle.battleMapTop[x, y - 1])).Count() > 0)
+            {
+                return true;
+            }
+            if (y < 5 && _viewModel.gameEngine.monsterQueue.Where(m => m.ImgSource.Equals(_viewModel.battle.battleMapTop[x, y + 1])).Count() > 0)
+            {
+                return true;
+            }
+            return false;
+        }
 
-
-
-
-            //---------------------------------------------------
-            // clean highlight
-            _viewModel.battle.SetAllSelection("HighlightGrey.png");
-
-            _viewModel.gameEngine.ConsoleDialog1 = x.ToString() + " " + y.ToString();
-            _viewModel.battle.battleMapSelection[x, y] = Battle.HIGHLIGHTGREEN;
+        private void RenderAttackRange(int x, int y, int atkRange)
+        {
+            //_viewModel.battle.battleMapSelection[x, y] = Battle.HIGHLIGHTGREEN;
             if (x > 0)
             {
-                if (_viewModel.battle.battleMapTop[x - 1, y].Equals(""))
-                {
-                    _viewModel.battle.battleMapSelection[x - 1, y] = Battle.HIGHLIGHTGREEN;
 
-                }
+                _viewModel.battle.battleMapSelection[x - 1, y] = Battle.HIGHLIGHTRED;
+                if (atkRange > 1) { RenderAttackRange(x - 1, y, atkRange - 1); }
+
+
             }
             if (x < 4)
             {
-                if (_viewModel.battle.battleMapTop[x + 1, y].Equals(""))
-                {
-                    _viewModel.battle.battleMapSelection[x + 1, y] = Battle.HIGHLIGHTGREEN;
-                }
+
+                _viewModel.battle.battleMapSelection[x + 1, y] = Battle.HIGHLIGHTRED;
+                if (atkRange > 1) { RenderAttackRange(x + 1, y, atkRange - 1); }
+
+
             }
             if (y > 0)
             {
-                if (_viewModel.battle.battleMapTop[x, y - 1].Equals(""))
-                {
-                    _viewModel.battle.battleMapSelection[x, y - 1] = Battle.HIGHLIGHTGREEN;
-                }
+
+                _viewModel.battle.battleMapSelection[x, y - 1] = Battle.HIGHLIGHTRED;
+                if (atkRange > 1) { RenderAttackRange(x, y - 1, atkRange - 1); }
+
             }
             if (y < 5)
             {
-                if (_viewModel.battle.battleMapTop[x, y + 1].Equals(""))
-                {
-                    _viewModel.battle.battleMapSelection[x, y + 1] = Battle.HIGHLIGHTGREEN;
-                }
+
+                _viewModel.battle.battleMapSelection[x, y + 1] = Battle.HIGHLIGHTRED;
+                if (atkRange > 1) { RenderAttackRange(x, y + 1, atkRange - 1); }
+
             }
-
-            _viewModel.battle.RefreshAllCell();
-
-            BindingContext = null;
-            BindingContext = _viewModel;
         }
 
         public void Cell00Clicked(object sender, EventArgs e) { HandleButtonClicked(0, 0); }
