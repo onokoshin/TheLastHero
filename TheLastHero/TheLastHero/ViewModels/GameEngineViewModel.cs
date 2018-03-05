@@ -133,25 +133,33 @@ namespace TheLastHero.ViewModels
                 }
             }
         }*/
-        public void BuildCharacterQueue()
+        public void InitCharacterQueue()
         {
             if (CharacterDataset.Count > 0)
             {
                 gameEngine.characterQueue.Clear();
+                int y = 0;
                 foreach (Character c in CharacterDataset)
                 {
+                    c.xPosition = 0;
+                    c.yPosition = y;
                     gameEngine.characterQueue.Enqueue(c);
+                    y++;
                 }
             }
         }
-        public void BuildMonsterQueue()
+        public void InitMonsterQueue()
         {
             if (MonsterDataset.Count > 0)
             {
                 gameEngine.monsterQueue.Clear();
+                int y = 0;
                 foreach (Monster m in MonsterDataset)
                 {
+                    m.xPosition = 4;
+                    m.yPosition = y;
                     gameEngine.monsterQueue.Enqueue(m);
+                    y++;
                 }
             }
         }

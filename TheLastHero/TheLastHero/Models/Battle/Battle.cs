@@ -30,6 +30,7 @@ namespace TheLastHero.Models.Battle
         public string[,] battleMapTop = new string[5, 6];
         public string[,] battleMapBottom = new string[5, 6];
         public string[,] battleMapSelection = new string[5, 6];
+        public string[,] battleMapId = new string[5, 6];
 
         public string cell_00_top { get; set; }
         public string cell_01_top { get; set; }
@@ -151,6 +152,17 @@ namespace TheLastHero.Models.Battle
                 for (int j = 0; j < 6; j++)
                 {
                     battleMapTop[i, j] = img;
+                }
+            }
+        }
+
+        public void SetAllId(string id)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    battleMapId[i, j] = id;
                 }
             }
         }

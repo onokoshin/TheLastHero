@@ -7,8 +7,8 @@ namespace TheLastHero.Models
 {
     public class Monster : Creature
     {
-        [PrimaryKey]
-        public string Id { get; set; }
+        
+
         //monster carry up to one item (not equipped item, it's a drop item)
         public string UniqueDropID { get; set; }
 

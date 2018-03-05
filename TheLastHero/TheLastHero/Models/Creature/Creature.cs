@@ -10,8 +10,8 @@ namespace TheLastHero.Models
     {
         // unique key to differentiate creatures with exact same attributes.
         // Like 3 “Grey Wolf level 3”
-
-        public int ID { get; set; }
+        [PrimaryKey]
+        public string Id { get; set; }
         public int xPosition { get; set; }
         public int yPosition { get; set; }
         //title 

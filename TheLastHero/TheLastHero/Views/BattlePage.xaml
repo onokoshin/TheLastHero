@@ -69,21 +69,21 @@
                     <Image Source="{Binding battle.cell_20_selection}" Grid.Row="0" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
                     <Image Source="{Binding battle.cell_21_selection}" Grid.Row="1" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
                     <Image Source="{Binding battle.cell_22_selection}" Grid.Row="2" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
-                    <Image Source="{Binding battle.cell_23_selection}" Grid.Row="3" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_24_selection}" Grid.Row="4" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_25_selection}" Grid.Row="5" Grid.Column="2" />
-                    <Image Source="{Binding battle.cell_30_selection}" Grid.Row="0" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_31_selection}" Grid.Row="1" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_32_selection}" Grid.Row="2" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_33_selection}" Grid.Row="3" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_34_selection}" Grid.Row="4" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_35_selection}" Grid.Row="5" Grid.Column="3" />
-                    <Image Source="{Binding battle.cell_40_selection}" Grid.Row="0" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_41_selection}" Grid.Row="1" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_42_selection}" Grid.Row="2" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_43_selection}" Grid.Row="3" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_44_selection}" Grid.Row="4" Grid.Column="4" />
-                    <Image Source="{Binding battle.cell_45_selection}" Grid.Row="5" Grid.Column="4" />
+                    <Image Source="{Binding battle.cell_23_selection}" Grid.Row="3" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_24_selection}" Grid.Row="4" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_25_selection}" Grid.Row="5" Grid.Column="2" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_30_selection}" Grid.Row="0" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_31_selection}" Grid.Row="1" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_32_selection}" Grid.Row="2" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_33_selection}" Grid.Row="3" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_34_selection}" Grid.Row="4" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_35_selection}" Grid.Row="5" Grid.Column="3" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_40_selection}" Grid.Row="0" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_41_selection}" Grid.Row="1" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_42_selection}" Grid.Row="2" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_43_selection}" Grid.Row="3" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_44_selection}" Grid.Row="4" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
+                    <Image Source="{Binding battle.cell_45_selection}" Grid.Row="5" Grid.Column="4" HeightRequest="81" WidthRequest="81" />
                     <Image Source="{Binding battle.cell_00_top}" Grid.Row="0" Grid.Column="0" />
                     <Image Source="{Binding battle.cell_01_top}" Grid.Row="1" Grid.Column="0" />
                     <Image Source="{Binding battle.cell_02_top}" Grid.Row="2" Grid.Column="0" />
@@ -146,7 +146,7 @@
                     <Button Clicked="Cell45Clicked" BackgroundColor="Transparent" Grid.Row="5" Grid.Column="4" />
                 </Grid>
             </StackLayout>
-            <Label HeightRequest="90" Text="{Binding battle.ConsoleDialog1}" BackgroundColor="Silver" VerticalOptions="FillAndExpand" />
+            <Label HeightRequest="90" Text="{Binding gameEngine.ConsoleDialog1}" BackgroundColor="Silver" VerticalOptions="FillAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
