@@ -54,10 +54,12 @@ namespace TheLastHero.Views
         Script _script = new Script();
         Character curCharacter = new Character();
         Monster curMonster = new Monster();
-        Creature curCreature = new Creature();
         bool atkTurn = false;
         bool endTurn = false;
         Battle battle = new Battle();
+
+        Queue<Character> movedCharacters = new Queue<Character>();
+        Queue<Monster> movedMonsters = new Queue<Monster>();
 
 
         //Constructor 
@@ -77,85 +79,54 @@ namespace TheLastHero.Views
             // creature queue doesn make sense because we dont need another sets
             // of creature, we already have character and monsters
 
-            if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
+
+            // determine weather character or monster
+
+            if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
             {
-                bool monsterTurn = true;
+                // character turn dequeue and hold dont enqueue.
+                curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
 
-                // determine weather character or monster
-                if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
+                _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+                _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+                RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
+            }
+            else
+            {
+                // monster turn
+                while (_viewModel.gameEngine.monsterQueue.Count > 0 && !_viewModel.gameEngine.monsterQueue.Peek().Friendly)
                 {
-                    monsterTurn = false;
-                }
+                    //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
 
-                if (monsterTurn)
-                {
-                    // monster turn
+                    curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
 
-                    while (_viewModel.gameEngine.monsterQueue.Count > 0 && !_viewModel.gameEngine.monsterQueue.Peek().Friendly)
+                    // if there is character nearby attack!
+                    Character target = CheckNearbyCharacter(curMonster.xPosition, curMonster.yPosition);
+                    if (target != null)
                     {
-                        //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
-
-                        curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
-
-                        // if there is character nearby attack!
-                        Character target = CheckNearbyCharacter(curMonster.xPosition, curMonster.yPosition);
-                        if (target != null)
-                        {
-                            //attack
-                            applyDamageMTC(curMonster, target);
-                        }
-                        else
-                        {
-                            //move
-                            //move left and right
-                            if (curMonster.xPosition > 0 && _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition].Equals(""))
-                            {
-
-
-                                _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition] = "";
-                                _viewModel.battle.battleMapId[curMonster.xPosition, curMonster.yPosition] = "";
-                                _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.ImgSource;
-                                _viewModel.battle.battleMapId[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.Id;
-                                curMonster.xPosition = curMonster.xPosition - 1;
-                                curMonster.yPosition = curMonster.yPosition;
-
-                            }
-                        }
-
-
-
-                        _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
-                        curMonster = null;
+                        //attack
+                        applyDamageMTC(curMonster, target);
                     }
+                    else
+                    {
+                        //move
+                        //move left and right
+                        if (curMonster.xPosition > 0 && _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition].Equals(""))
+                        {
+
+
+                            _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition] = "";
+                            _viewModel.battle.battleMapId[curMonster.xPosition, curMonster.yPosition] = "";
+                            _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.ImgSource;
+                            _viewModel.battle.battleMapId[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.Id;
+                            curMonster.xPosition = curMonster.xPosition - 1;
+                            curMonster.yPosition = curMonster.yPosition;
+
+                        }
+                    }
+                    _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
+                    curMonster = null;
                 }
-                else
-                {
-                    // character turn dequeue and hold dont enqueue.
-                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
-
-                    _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
-                    RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
-
-                }
-
-
-
-                // while monster is true
-                // auto move, auto attack, no highlight
-
-                //until character
-                // highlight character, highlight move grid, highlight attack grit
-                // wait for click
-
-            }
-            else if (_viewModel.gameEngine.characterQueue.Count == 0)
-            {
-                //game over
-            }
-            else if (_viewModel.gameEngine.monsterQueue.Count == 0)
-            {
-                // new round
             }
 
             //_script.scriptCounter = 1;
@@ -436,7 +407,7 @@ namespace TheLastHero.Views
 
         }*/
 
-        public void printDialog(string str)
+        public void PrintDialog(string str)
         {
             for (int i = 4; i > 0; i--)
             {
@@ -452,77 +423,6 @@ namespace TheLastHero.Views
 
         public void Next_Clicked(object sender, EventArgs e)
         {
-            //do character thing
-            //if clicked on green move, set move true, check surrounding if
-            // monster present render red, over
-            _viewModel.battle.SetAllTop(Battle.HIGHLIGHTGREY);
-            _viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
-            curCharacter = null;
-
-            //do monster thing
-            if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
-            {
-                bool monsterTurn = true;
-
-                // determine weather character or monster
-                if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
-                {
-                    monsterTurn = false;
-                }
-
-                if (monsterTurn)
-                {
-                    // monster turn
-                    curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
-                    while (_viewModel.gameEngine.monsterQueue.Count > 0
-                           && !_viewModel.gameEngine.monsterQueue.Peek().Friendly
-                           && (_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
-                    {
-                        //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
-
-                        curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
-
-                        if (curMonster.LiveStatus)
-                            _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
-                        curMonster = null;
-                    }
-                }
-                else
-                {
-                    // character turn dequeue and hold dont enqueue.
-
-                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
-
-                    _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
-
-
-                    RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
-
-
-                }
-
-
-
-                // while monster is true
-                // auto move, auto attack, no highlight
-
-                //until character
-                // highlight character, highlight move grid, highlight attack grit
-                // wait for click
-
-            }
-            else
-            {
-                //empty characters or empty monsters, error!
-            }
-
-            //_script.scriptCounter = 1;
-            //RunScript(_script, 0);
-            _viewModel.battle.RefreshAllCell();
-            BindingContext = null;
-            BindingContext = _viewModel;
-
             /* _viewModel.battle.cell_00_bottom = "Sand.png";
              if (_script.scriptCounter > 49)
              {
@@ -566,7 +466,7 @@ namespace TheLastHero.Views
             }
 
             _viewModel.battle.RefreshAllCell();
-            printDialog("Reset Clicked");
+            PrintDialog("Reset Clicked");
 
             BindingContext = null;
             BindingContext = _viewModel;
@@ -576,6 +476,11 @@ namespace TheLastHero.Views
         {
             // if clicked within moverange
             // if creature within range, do nothing
+
+            // start of new code
+
+
+            //end of new code
 
             if (_viewModel.battle.battleMapSelection[x, y].Equals(Battle.HIGHLIGHTGREEN)
                 && _viewModel.battle.battleMapTop[x, y].Equals("") || (x == curCharacter.xPosition && y == curCharacter.yPosition))
@@ -610,33 +515,16 @@ namespace TheLastHero.Views
 
                     // grab target from monsterqueue, calculate dmg, decresase target.HP, 
                     Monster m = _viewModel.gameEngine.monsterQueue.Where(z => z.Id.Equals(_viewModel.battle.battleMapId[x, y])).First();
-                    printDialog(curCharacter + " is attacking " + m.Name);
+                    PrintDialog(curCharacter + " is attacking " + m.Name);
                     // decrease target HP by = level attack + weapon attack  MIKE PLESASE READ HERE
                     applyDamageCTM(curCharacter, m);
 
+
+
                     //_viewModel.gameEngine.ConsoleDialog1 = m.CurrentHP.ToString();
                     if (m.CurrentHP <= 0)
-                    {//remove dead monster DEATH MIKE PLESASE READ HERE
-                        Queue<Monster> tmp = new Queue<Monster>();
-                        while (_viewModel.gameEngine.monsterQueue.Count() > 0)
-                        {
-                            Monster tmpM = _viewModel.gameEngine.monsterQueue.Dequeue();
-                            if (_viewModel.gameEngine.monsterQueue.Peek().Id.Equals(m.Id))
-                            {
-
-                            }
-                            else
-                            {
-                                tmp.Enqueue(tmpM);
-                            }
-                        }
-                        while (tmp.Count() > 0)
-                        {
-                            Monster tmpM = tmp.Dequeue();
-
-                            _viewModel.gameEngine.monsterQueue.Enqueue(tmpM);
-
-                        }
+                    {
+                        RemoveTargetFromQueues(m);
                     }
                     endTurn = true;
                 }
@@ -655,16 +543,23 @@ namespace TheLastHero.Views
             if (endTurn)
             {
                 _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-                _viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
-                curCharacter = null;
+
+
+
+
+
+                //_viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
+                //curCharacter = null;
                 if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
                 {
+                    movedCharacters.Enqueue(curCharacter);
                     // monster turn
                     while ((_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
                     {
                         //curMonster = _viewModel.MonsterDataset.Where(x => x.ID == _viewModel.gameEngine.monsterQueue.Peek().ID).First();
                         //all monster activies
                         curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
+                        PrintDialog(curMonster.Name + " Turn");
 
                         if (curMonster.xPosition > 0 && _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition].Equals(""))
                         {
@@ -684,7 +579,7 @@ namespace TheLastHero.Views
                             // update target to queue
                             if (target.CurrentHP <= 0)
                             {//remove dead monster 
-                                RemoveTargetInCharacterQueue(target);
+                                RemoveTargetFromQueues(target);
                             }
                             else
                             {
@@ -692,58 +587,58 @@ namespace TheLastHero.Views
                                 UpdateTargetInCharacterQueue(target);
                             }
                         }
-                        _viewModel.gameEngine.monsterQueue.Enqueue(curMonster);
+                        movedMonsters.Enqueue(curMonster);
                         curMonster = null;
                     }
 
+                    // check empty if character 
+                    // character turn dequeue and hold dont enqueue.
+                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+                    endTurn = false;
+                    _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+                    _viewModel.battle.battleMapId[curCharacter.xPosition, curCharacter.yPosition] = curCharacter.Id;
+
+
+                    RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
+
+
+                    // "itempool" is gloabl var
+                    // drop item => put in the pool
+                    // 
+
+                    // while monster is true
+                    // auto move, auto attack, no highlight
+
+                    //until character
+                    // highlight character, highlight move grid, highlight attack grit
+                    // wait for click
+
+                    PrintDialog(curCharacter.Name + "'s turn");
+
+                }
+                else if (_viewModel.gameEngine.characterQueue.Count() == 0)
+                {
+                    if (_viewModel.gameEngine.monsterQueue.Count() > 0)
+                    {
+                        // the rest of the monsters...
+
+                    }
 
 
                 }
-                else if (_viewModel.gameEngine.characterQueue.Count == 0)
+                else if (_viewModel.gameEngine.monsterQueue.Count() == 0)
                 {
-                    //game over
-                }
-                else if (_viewModel.gameEngine.monsterQueue.Count == 0)
-                {
-                    //round over
+                    if (_viewModel.gameEngine.characterQueue.Count() > 0)
+                    {
+                        // character only
+
+                    }
+
+
                 }
             }
 
-            // check empty if character 
-            // character turn dequeue and hold dont enqueue.
-            curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
-
-            _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-            _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
-            _viewModel.battle.battleMapId[curCharacter.xPosition, curCharacter.yPosition] = curCharacter.Id;
-
-
-            RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
-
-
-            // "itempool" is gloabl var
-            // drop item => put in the pool
-            // 
-
-
-
-            // while monster is true
-            // auto move, auto attack, no highlight
-
-            //until character
-            // highlight character, highlight move grid, highlight attack grit
-            // wait for click
-
-
-
-
-
-
-
-
-
-
-            printDialog(curCharacter.Name + "'s turn");
             //_script.scriptCounter = 1;
             //RunScript(_script, 0);
             _viewModel.battle.RefreshAllCell();
@@ -751,7 +646,49 @@ namespace TheLastHero.Views
             BindingContext = _viewModel;
         }
 
-        private void RemoveTargetInCharacterQueue(Character target)
+        private void RemoveTargetFromQueues(Monster target)
+        {
+            Queue<Monster> tmp1 = new Queue<Monster>();
+            Queue<Monster> tmp2 = new Queue<Monster>();
+            Monster tmpM = new Monster();
+            while (_viewModel.gameEngine.monsterQueue.Count() > 0)
+            {
+                tmpM = _viewModel.gameEngine.monsterQueue.Dequeue();
+                if (tmpM.Id.Equals(target.Id))
+                {
+                    tmpM = null;
+                }
+                else
+                {
+                    tmp1.Enqueue(tmpM);
+                }
+            }
+            while (movedMonsters.Count() > 0)
+            {
+                tmpM = movedMonsters.Dequeue();
+                if (tmpM.Id.Equals(target.Id))
+                {
+                    tmpM = null;
+                }
+                else
+                {
+                    tmp2.Enqueue(tmpM);
+                }
+            }
+            while (tmp1.Count() > 0)
+            {
+                tmpM = tmp1.Dequeue();
+                _viewModel.gameEngine.monsterQueue.Enqueue(tmpM);
+
+            }
+            while (tmp2.Count() > 0)
+            {
+                tmpM = tmp2.Dequeue();
+                movedMonsters.Enqueue(tmpM);
+            }
+        }
+
+        private void RemoveTargetFromQueues(Character target)
         {
             Queue<Character> tmp = new Queue<Character>();
             while (_viewModel.gameEngine.characterQueue.Count() > 0)
@@ -803,7 +740,7 @@ namespace TheLastHero.Views
         {
             int dmg = (int)Math.Ceiling(m.Atk / 4.0);
             c.CurrentHP -= dmg;
-            printDialog(m.Name + " took " + dmg + " damage!");
+            PrintDialog(m.Name + " took " + dmg + " damage!");
         }
 
         private void applyDamageCTM(Character c, Monster m)
@@ -818,7 +755,7 @@ namespace TheLastHero.Views
                 dmg = (int)Math.Ceiling(c.Atk / 4.0);
             }
             m.CurrentHP -= dmg;
-            printDialog(m.Name + " took " + dmg + " damage!");
+            PrintDialog(m.Name + " took " + dmg + " damage!");
         }
 
         public Item dropItem(int monsterID)
