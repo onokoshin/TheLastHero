@@ -114,6 +114,36 @@
                     <Image Source="{Binding battle.cell_43_top}" Grid.Row="3" Grid.Column="4" />
                     <Image Source="{Binding battle.cell_44_top}" Grid.Row="4" Grid.Column="4" />
                     <Image Source="{Binding battle.cell_45_top}" Grid.Row="5" Grid.Column="4" />
+                    <Label Text="{Binding battle.cell_00_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_01_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_02_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_03_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_04_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_05_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="5" Grid.Column="0" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_10_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_11_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_12_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_13_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_14_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_15_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="5" Grid.Column="1" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_20_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="0" Grid.Column="2" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_21_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="1" Grid.Column="2" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_22_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="2" Grid.Column="2" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_23_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="3" Grid.Column="2" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_24_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="4" Grid.Column="2" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_25_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="5" Grid.Column="2" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_30_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="0" Grid.Column="3" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_31_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="1" Grid.Column="3" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_32_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="2" Grid.Column="3" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_33_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="3" Grid.Column="3" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_34_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="4" Grid.Column="3" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_35_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="5" Grid.Column="3" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_40_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="0" Grid.Column="4" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_41_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="1" Grid.Column="4" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_42_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="2" Grid.Column="4" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_43_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="3" Grid.Column="4" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_44_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="4" Grid.Column="4" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
+                    <Label Text="{Binding battle.cell_45_hp}" TextColor="#ff0000" FontAttributes="Bold" Grid.Row="5" Grid.Column="4" VerticalTextAlignment="Start" HorizontalTextAlignment="End" />
                     <Button Clicked="Cell00Clicked" BackgroundColor="Transparent" Grid.Row="0" Grid.Column="0" />
                     <Button Clicked="Cell01Clicked" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="0" />
                     <Button Clicked="Cell02Clicked" BackgroundColor="Transparent" Grid.Row="2" Grid.Column="0" />

@@ -106,7 +106,20 @@ namespace TheLastHero.Views
                     if (target != null)
                     {
                         //attack
-                        applyDamageMTC(curMonster, target);
+                        ApplyDamageMTC(curMonster, target);
+                        if (target.CurrentHP <= 0)
+                        {
+
+                            RemoveTargetFromQueues(target);
+                            _viewModel.battle.battleMapId[target.xPosition, target.yPosition] = "";
+                            _viewModel.battle.battleMapTop[target.xPosition, target.yPosition] = "";
+                            _viewModel.battle.battleMapHP[target.xPosition, target.yPosition] = "";
+                        }
+                        else
+                        {
+                            UpdateTargetInQueues(target);
+                        }
+
                     }
                     else
                     {
@@ -118,8 +131,12 @@ namespace TheLastHero.Views
 
                             _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition] = "";
                             _viewModel.battle.battleMapId[curMonster.xPosition, curMonster.yPosition] = "";
+                            _viewModel.battle.battleMapHP[curMonster.xPosition, curMonster.yPosition] = "";
+
                             _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.ImgSource;
                             _viewModel.battle.battleMapId[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.Id;
+                            _viewModel.battle.battleMapHP[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.CurrentHP.ToString();
+
                             curMonster.xPosition = curMonster.xPosition - 1;
                             curMonster.yPosition = curMonster.yPosition;
 
@@ -177,11 +194,13 @@ namespace TheLastHero.Views
             {
                 _viewModel.battle.battleMapTop[c.xPosition, c.yPosition] = c.ImgSource;
                 _viewModel.battle.battleMapId[c.xPosition, c.yPosition] = c.Id;
+                _viewModel.battle.battleMapHP[c.xPosition, c.yPosition] = c.CurrentHP.ToString();
             }
             foreach (Monster m in _viewModel.MonsterDataset)
             {
                 _viewModel.battle.battleMapTop[m.xPosition, m.yPosition] = m.ImgSource;
                 _viewModel.battle.battleMapId[m.xPosition, m.yPosition] = m.Id;
+                _viewModel.battle.battleMapHP[m.xPosition, m.yPosition] = m.CurrentHP.ToString();
             }
         }
 
@@ -245,6 +264,7 @@ namespace TheLastHero.Views
                     if (totalR > 1) { RenderMoveAttackRange(x, y + 1, totalR - 1, atkR); }
                 }
             }
+
 
 
         }
@@ -455,15 +475,21 @@ namespace TheLastHero.Views
             _viewModel.battle.SetAllSelection("HighlightGrey.png");
             _viewModel.battle.SetAllBackground("Grass.png");
             _viewModel.battle.SetAllTop("");
+            _viewModel.battle.SetAllHP("");
 
             foreach (var c in _viewModel.CharacterDataset)
             {
                 _viewModel.battle.battleMapTop[c.xPosition, c.yPosition] = c.ImgSource;
+                _viewModel.battle.battleMapId[c.xPosition, c.yPosition] = c.Id;
+                _viewModel.battle.battleMapHP[c.xPosition, c.yPosition] = c.CurrentHP.ToString();
+                //_viewModel.battle.b
             }
 
             foreach (var m in _viewModel.MonsterDataset)
             {
                 _viewModel.battle.battleMapTop[m.xPosition, m.yPosition] = m.ImgSource;
+                _viewModel.battle.battleMapId[m.xPosition, m.yPosition] = m.Id;
+                _viewModel.battle.battleMapHP[m.xPosition, m.yPosition] = m.CurrentHP.ToString();
             }
 
             _viewModel.battle.RefreshAllCell();
@@ -489,8 +515,10 @@ namespace TheLastHero.Views
                 // move character
                 _viewModel.battle.battleMapTop[curCharacter.xPosition, curCharacter.yPosition] = "";
                 _viewModel.battle.battleMapId[curCharacter.xPosition, curCharacter.yPosition] = "";
+                _viewModel.battle.battleMapHP[curCharacter.xPosition, curCharacter.yPosition] = curCharacter.CurrentHP.ToString();
                 _viewModel.battle.battleMapTop[x, y] = curCharacter.ImgSource;
                 _viewModel.battle.battleMapId[x, y] = curCharacter.Id;
+                _viewModel.battle.battleMapHP[x, y] = curCharacter.CurrentHP.ToString();
                 curCharacter.xPosition = x;
                 curCharacter.yPosition = y;
                 _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
@@ -524,8 +552,7 @@ namespace TheLastHero.Views
 
                     PrintDialog(curCharacter + " is attacking " + m.Name);
                     // decrease target HP by = level attack + weapon attack  MIKE PLESASE READ HERE
-                    applyDamageCTM(curCharacter, m);
-
+                    ApplyDamageCTM(curCharacter, m);
 
 
                     //_viewModel.gameEngine.ConsoleDialog1 = m.CurrentHP.ToString();
@@ -534,6 +561,12 @@ namespace TheLastHero.Views
                         RemoveTargetFromQueues(m);
                         _viewModel.battle.battleMapId[m.xPosition, m.yPosition] = "";
                         _viewModel.battle.battleMapTop[m.xPosition, m.yPosition] = "";
+                        _viewModel.battle.battleMapHP[m.xPosition, m.yPosition] = "";
+                    }
+                    else
+                    {
+                        UpdateTargetInQueues(m);
+
                     }
 
 
@@ -562,7 +595,8 @@ namespace TheLastHero.Views
                 if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
                 {
                     // monster turn
-                    while ((_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
+                    while ((_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0) &&
+                           (_viewModel.gameEngine.characterQueue.Peek().Spd < _viewModel.gameEngine.monsterQueue.Peek().Spd))
                     {
                         curMonster = _viewModel.gameEngine.monsterQueue.Dequeue();
                         //_viewModel.gameEngine.MoveMonster(_viewModel.battle, curMonster.xPosition, curMonster.yPosition);
@@ -570,8 +604,10 @@ namespace TheLastHero.Views
                         {
                             _viewModel.battle.battleMapId[curMonster.xPosition - 1, curMonster.yPosition] = _viewModel.battle.battleMapId[curMonster.xPosition, curMonster.yPosition];
                             _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition] = _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition];
+                            _viewModel.battle.battleMapHP[curMonster.xPosition - 1, curMonster.yPosition] = _viewModel.battle.battleMapHP[curMonster.xPosition, curMonster.yPosition];
                             _viewModel.battle.battleMapId[curMonster.xPosition, curMonster.yPosition] = "";
                             _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition] = "";
+                            _viewModel.battle.battleMapHP[curMonster.xPosition, curMonster.yPosition] = "";
                             curMonster.xPosition -= 1;
                         }
                         PrintDialog(curMonster.Name + " moved");
@@ -580,13 +616,14 @@ namespace TheLastHero.Views
                         if (target != null)
                         {
                             //attack
-                            applyDamageMTC(curMonster, target);
+                            ApplyDamageMTC(curMonster, target);
                             // update target to queue
                             if (target.CurrentHP <= 0)
                             {//remove dead monster 
                                 RemoveTargetFromQueues(target);
                                 _viewModel.battle.battleMapId[target.xPosition, target.yPosition] = "";
                                 _viewModel.battle.battleMapTop[target.xPosition, target.yPosition] = "";
+                                _viewModel.battle.battleMapHP[target.xPosition, target.yPosition] = "";
                             }
                             else
                             {
@@ -612,8 +649,10 @@ namespace TheLastHero.Views
                             {
                                 _viewModel.battle.battleMapId[curMonster.xPosition - 1, curMonster.yPosition] = _viewModel.battle.battleMapId[curMonster.xPosition, curMonster.yPosition];
                                 _viewModel.battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition] = _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition];
+                                _viewModel.battle.battleMapHP[curMonster.xPosition - 1, curMonster.yPosition] = _viewModel.battle.battleMapHP[curMonster.xPosition, curMonster.yPosition];
                                 _viewModel.battle.battleMapId[curMonster.xPosition, curMonster.yPosition] = "";
                                 _viewModel.battle.battleMapTop[curMonster.xPosition, curMonster.yPosition] = "";
+                                _viewModel.battle.battleMapHP[curMonster.xPosition, curMonster.yPosition] = "";
                                 curMonster.xPosition -= 1;
                             }
                             PrintDialog(curMonster.Name + " moved");
@@ -622,13 +661,14 @@ namespace TheLastHero.Views
                             if (target != null)
                             {
                                 //attack
-                                applyDamageMTC(curMonster, target);
+                                ApplyDamageMTC(curMonster, target);
                                 // update target to queue
                                 if (target.CurrentHP <= 0)
                                 {//remove dead monster 
                                     RemoveTargetFromQueues(target);
                                     _viewModel.battle.battleMapId[target.xPosition, target.yPosition] = "";
                                     _viewModel.battle.battleMapTop[target.xPosition, target.yPosition] = "";
+                                    _viewModel.battle.battleMapHP[target.xPosition, target.yPosition] = "";
                                 }
                                 else
                                 {
@@ -930,14 +970,14 @@ namespace TheLastHero.Views
             }
         }
 
-        private void applyDamageMTC(Monster m, Character c)
+        private void ApplyDamageMTC(Monster m, Character c)
         {
             int dmg = (int)Math.Ceiling(m.Atk / 4.0);
             c.CurrentHP -= dmg;
             PrintDialog(m.Name + " took " + dmg + " damage!");
         }
 
-        private void applyDamageCTM(Character c, Monster m)
+        private void ApplyDamageCTM(Character c, Monster m)
         {
             int dmg = 0;
             if (c.EquippedItem.ContainsKey(Character.Locations.RightHand) && c.EquippedItem[Character.Locations.RightHand] != null)
@@ -954,7 +994,7 @@ namespace TheLastHero.Views
 
         public Item dropItem(int monsterID)
         {
-            // read monster from Dataset, 
+            // read monster from Dataset,
             var result = _viewModel.MonsterDataset.Where(x => x.Id == _viewModel.gameEngine.monsterQueue.Peek().Id).First();
             return _viewModel.ItemDataset.Where(i => i.Id.Equals(result.UniqueDropID)).First();
         }
@@ -965,7 +1005,6 @@ namespace TheLastHero.Views
             if (x > 0 && _viewModel.gameEngine.characterQueue.Where(c => c.Id.Equals(_viewModel.battle.battleMapId[x - 1, y])).Count() > 0)
             {
                 return _viewModel.gameEngine.characterQueue.Where(c => c.Id.Equals(_viewModel.battle.battleMapId[x - 1, y])).First();
-
             }
             if (x < 4 && _viewModel.gameEngine.characterQueue.Where(c => c.Id.Equals(_viewModel.battle.battleMapId[x + 1, y])).Count() > 0)
             {

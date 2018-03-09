@@ -31,6 +31,7 @@ namespace TheLastHero.Models.Battle
         public string[,] battleMapBottom = new string[5, 6];
         public string[,] battleMapSelection = new string[5, 6];
         public string[,] battleMapId = new string[5, 6];
+        public string[,] battleMapHP = new string[5, 6];
 
         public string cell_00_top { get; set; }
         public string cell_01_top { get; set; }
@@ -122,6 +123,36 @@ namespace TheLastHero.Models.Battle
         public string cell_43_selection { get; set; }
         public string cell_44_selection { get; set; }
         public string cell_45_selection { get; set; }
+        public string cell_00_hp { get; set; }
+        public string cell_01_hp { get; set; }
+        public string cell_02_hp { get; set; }
+        public string cell_03_hp { get; set; }
+        public string cell_04_hp { get; set; }
+        public string cell_05_hp { get; set; }
+        public string cell_10_hp { get; set; }
+        public string cell_11_hp { get; set; }
+        public string cell_12_hp { get; set; }
+        public string cell_13_hp { get; set; }
+        public string cell_14_hp { get; set; }
+        public string cell_15_hp { get; set; }
+        public string cell_20_hp { get; set; }
+        public string cell_21_hp { get; set; }
+        public string cell_22_hp { get; set; }
+        public string cell_23_hp { get; set; }
+        public string cell_24_hp { get; set; }
+        public string cell_25_hp { get; set; }
+        public string cell_30_hp { get; set; }
+        public string cell_31_hp { get; set; }
+        public string cell_32_hp { get; set; }
+        public string cell_33_hp { get; set; }
+        public string cell_34_hp { get; set; }
+        public string cell_35_hp { get; set; }
+        public string cell_40_hp { get; set; }
+        public string cell_41_hp { get; set; }
+        public string cell_42_hp { get; set; }
+        public string cell_43_hp { get; set; }
+        public string cell_44_hp { get; set; }
+        public string cell_45_hp { get; set; }
 
         public void SetAllSelection(string img)
         {
@@ -152,6 +183,17 @@ namespace TheLastHero.Models.Battle
                 for (int j = 0; j < 6; j++)
                 {
                     battleMapTop[i, j] = img;
+                }
+            }
+        }
+
+        public void SetAllHP(string str)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 6; j++)
+                {
+                    battleMapHP[i, j] = str;
                 }
             }
         }
@@ -259,6 +301,36 @@ namespace TheLastHero.Models.Battle
             cell_43_bottom = battleMapBottom[4, 3];
             cell_44_bottom = battleMapBottom[4, 4];
             cell_45_bottom = battleMapBottom[4, 5];
+            cell_00_hp = battleMapHP[0, 0];
+            cell_01_hp = battleMapHP[0, 1];
+            cell_02_hp = battleMapHP[0, 2];
+            cell_03_hp = battleMapHP[0, 3];
+            cell_04_hp = battleMapHP[0, 4];
+            cell_05_hp = battleMapHP[0, 5];
+            cell_10_hp = battleMapHP[1, 0];
+            cell_11_hp = battleMapHP[1, 1];
+            cell_12_hp = battleMapHP[1, 2];
+            cell_13_hp = battleMapHP[1, 3];
+            cell_14_hp = battleMapHP[1, 4];
+            cell_15_hp = battleMapHP[1, 5];
+            cell_20_hp = battleMapHP[2, 0];
+            cell_21_hp = battleMapHP[2, 1];
+            cell_22_hp = battleMapHP[2, 2];
+            cell_23_hp = battleMapHP[2, 3];
+            cell_24_hp = battleMapHP[2, 4];
+            cell_25_hp = battleMapHP[2, 5];
+            cell_30_hp = battleMapHP[3, 0];
+            cell_31_hp = battleMapHP[3, 1];
+            cell_32_hp = battleMapHP[3, 2];
+            cell_33_hp = battleMapHP[3, 3];
+            cell_34_hp = battleMapHP[3, 4];
+            cell_35_hp = battleMapHP[3, 5];
+            cell_40_hp = battleMapHP[4, 0];
+            cell_41_hp = battleMapHP[4, 1];
+            cell_42_hp = battleMapHP[4, 2];
+            cell_43_hp = battleMapHP[4, 3];
+            cell_44_hp = battleMapHP[4, 4];
+            cell_45_hp = battleMapHP[4, 5];
         }
     }
 }
