@@ -75,6 +75,10 @@ namespace TheLastHero.Models
         public bool LiveStatus { get; set; }
 
 
+        // The AttributeString will be unpacked and stored in the top level of Character as actual attributes, 
+        // but it needs to go here as a string so it can be saved to the database.
+        public string AttributeString { get; set; }
+
         // creature constructor
         public Creature()
         {
@@ -85,11 +89,23 @@ namespace TheLastHero.Models
         // receive. The formula include its own level, defense and item  defence
         // bonus, and if damage is more than current health, the liveStatus
         // will set to false which is DEAD.
+        // Take Damage
+        // If the damage recived, is > health, then death occurs
+        // Return the number of experience received for this attack 
+        // monsters give experience to characters.  Characters don't accept expereince from monsters
         public void TakeDamage(int damage)
         {
-            if (damage < 0)
+            if (damage <= 0)
             {
+                return;
+            }
 
+            CurrentHP = CurrentHP - damage;
+            if (CurrentHP <= 0)
+            {
+                CurrentHP = 0;
+                // Death...
+                CauseDeath();
             }
         }
 
@@ -99,6 +115,13 @@ namespace TheLastHero.Models
         public int DealDamage()
         {
             return -1;
+        }
+
+        // Death
+        // Alive turns to False
+        public void CauseDeath()
+        {
+            LiveStatus = false;
         }
 
     }

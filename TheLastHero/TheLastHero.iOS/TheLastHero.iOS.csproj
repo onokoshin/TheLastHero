@@ -184,6 +184,8 @@
     <BundleResource Include="Resources\HighlightGrey.png" />
     <BundleResource Include="Resources\StartPage.png" />
     <BundleResource Include="Resources\GameOver.png" />
+    <BundleResource Include="Resources\EmptySlot.png" />
+    <BundleResource Include="Resources\EmptySlot2.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -195,6 +197,9 @@
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
     <PackageReference Include="sqlite-net-pcl">
       <Version>1.4.118</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>11.0.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

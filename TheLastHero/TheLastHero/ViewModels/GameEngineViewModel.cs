@@ -17,6 +17,7 @@ namespace TheLastHero.ViewModels
 
         public GameEngine gameEngine { get; set; }
         public Battle battle { get; set; }
+        public Character curCharacter { get; set; }
 
         public ObservableCollection<Character> CharacterDataset { get; set; }
         public ObservableCollection<Monster> MonsterDataset { get; set; }
@@ -53,6 +54,7 @@ namespace TheLastHero.ViewModels
 
             gameEngine = GameEngine.Instance;
             battle = new Battle();
+            curCharacter = new Character();
 
         }
 

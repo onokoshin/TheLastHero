@@ -95,6 +95,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\CharacterSelectionPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
@@ -202,6 +206,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Script.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\GameOver.xaml.cs">
       <DependentUpon>GameOver.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)GameEngines\HelperEngine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\AttributeBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GameGlobal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\LevelTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterSelectionPage.xaml.cs">
+      <DependentUpon>CharacterSelectionPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

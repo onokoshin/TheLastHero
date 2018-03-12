@@ -24,7 +24,7 @@ namespace TheLastHero.Views
 
         async void BattlePageButton_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new BattlePage());
+            await Navigation.PushAsync(new CharacterSelectionPage());
         }
 
         async void CharactersPageButton_OnClicked(object sender, EventArgs e)

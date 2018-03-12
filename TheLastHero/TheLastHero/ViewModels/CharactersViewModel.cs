@@ -8,7 +8,8 @@ using Xamarin.Forms;
 using TheLastHero.Models;
 using TheLastHero.Views;
 using System.Linq;
- 
+using System.Collections.Generic;
+
 namespace TheLastHero.ViewModels
 {
     public class CharactersViewModel : BaseViewModel
@@ -29,7 +30,23 @@ namespace TheLastHero.ViewModels
         }
 
         public ObservableCollection<Character> Dataset { get; set; }
+
+        public List<Character> Party { get; set; }
         public Command LoadDataCommand { get; set; }
+
+        public String Slot1;
+        public String Slot2;
+        public String Slot3 = "EmptySlot.png";
+        public String Slot4 = "EmptySlot.png";
+        public String Slot5 = "EmptySlot.png";
+        public String Slot6 = "EmptySlot.png";
+
+        Character c1 = new Character();
+        Character c2 = new Character();
+        Character c3 = new Character();
+        Character c4 = new Character();
+        Character c5 = new Character();
+        Character c6 = new Character();
 
         private bool _needsRefresh;
 
@@ -39,6 +56,13 @@ namespace TheLastHero.ViewModels
             Title = "Character List";
             Dataset = new ObservableCollection<Character>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+
+            //Testing Partlist 
+            Party = new List<Character>();
+            for(int i=1; i<7; i++)
+            {
+                Party.Add(c1); 
+            }
 
             MessagingCenter.Subscribe<DeleteCharacterPage, Character>(this, "DeleteData", async (obj, data) =>
             {
@@ -68,6 +92,17 @@ namespace TheLastHero.ViewModels
                 _needsRefresh = true;
 
             });
+
+        }
+
+        public void RefreshParty()
+        {
+            Party = new List<Character>();
+            for (int i = 1; i < 7; i++)
+            {
+                Party.Add(c1);
+            }
+
         }
 
         // Return True if a refresh is needed

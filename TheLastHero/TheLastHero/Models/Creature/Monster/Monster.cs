@@ -7,7 +7,11 @@ namespace TheLastHero.Models
 {
     public class Monster : Creature
     {
-        
+        // Remaining Experience Points to give
+        public int ExperienceRemaining { get; set; }
+
+        // Current experience gained, or to give
+        public int ExperienceTotal { get; set; }
 
         //monster carry up to one item (not equipped item, it's a drop item)
         public string UniqueDropID { get; set; }
@@ -18,6 +22,12 @@ namespace TheLastHero.Models
         public Monster()
         {
             //UniqueDrop = new Item();
+            // Get the number of points at the next level, and set it for Experience Total...
+
+            //for testing purposes, every monster is set to level 3 exp = 900
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[2 + 1].Experience;
+            ExperienceRemaining = ExperienceTotal;
+
         }
 
         //overloaded constructor 
@@ -115,6 +125,81 @@ namespace TheLastHero.Models
 
 
 
+        }
+
+        // Upgrades a monster to a set level
+        //public void ScaleLevel(int level)
+        //{
+        //    // Calculate Experience Remaining based on Lookup...
+        //    Level = level;
+
+        //    // Get the number of points at the next level, and set it for Experience Total...
+        //    ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
+        //    ExperienceRemaining = ExperienceTotal;
+
+        //    Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[Level].Attack;
+        //    Attribute.Attack = LevelTable.Instance.LevelDetailsList[Level].Attack;
+        //    Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
+        //    Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
+        //    Attribute.MaxHealth = 5 * Level;    // 1/2 of what Characters can get per level.. 
+        //    Attribute.CurrentHealth = Attribute.MaxHealth;
+
+        //    AttributeString = AttributeBase.GetAttributeString(Attribute);
+        //}
+
+        // Calculate How much experience to return
+        // Formula is the % of Damage done up to 100%  times the current experience
+        // Needs to be called before applying damage
+        public int CalculateExperienceEarned(int damage)
+        {
+            if (damage < 1)
+            {
+                return 0;
+            }
+
+            int remainingHealth = Math.Max(CurrentHP - damage, 0); // Go to 0 is OK...
+            double rawPercent = (double)remainingHealth / (double)CurrentHP;
+            double deltaPercent = 1 - rawPercent;
+            var pointsAllocate = (int)Math.Floor(ExperienceRemaining * deltaPercent);
+
+            // Catch rounding of low values, and force to 1.
+            if (pointsAllocate < 1)
+            {
+                pointsAllocate = 1;
+            }
+
+            // Take away the points from remaining experience
+            ExperienceRemaining -= pointsAllocate;
+            if (ExperienceRemaining < 0)
+            {
+                pointsAllocate = 0;
+            }
+
+            return pointsAllocate;
+        }
+
+       
+
+      
+
+        // Take Damage
+        // If the damage recived, is > health, then death occurs
+        // Return the number of experience received for this attack 
+        // monsters give experience to characters.  Characters don't accept expereince from monsters
+        public void TakeDamage(int damage)
+        {
+            if (damage <= 0)
+            {
+                return;
+            }
+
+            CurrentHP = CurrentHP - damage;
+            if (CurrentHP <= 0)
+            {
+                CurrentHP = 0;
+                // Death...
+                CauseDeath();
+            }
         }
 
 

@@ -52,7 +52,7 @@ namespace TheLastHero.Views
         //Grid battleGrid = new Grid();
         private GameEngineViewModel _viewModel;
         Script _script = new Script();
-        Character curCharacter = new Character();
+
         Monster curMonster = new Monster();
         bool atkTurn = false;
         bool endTurn = false;
@@ -86,13 +86,13 @@ namespace TheLastHero.Views
             if (_viewModel.gameEngine.characterQueue.Peek().Spd >= _viewModel.gameEngine.monsterQueue.Peek().Spd)
             {
                 // character turn dequeue and hold dont enqueue.
-                curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+                _viewModel.curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
 
                 _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
                 //highlight current character
-                _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+                _viewModel.battle.battleMapSelection[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
                 // function that takes characters move range and attack range and update to screen.
-                RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
+                RenderMoveAttackRange(_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition, _viewModel.curCharacter.MoveRange + _viewModel.curCharacter.AtkRange, _viewModel.curCharacter.AtkRange);
             }
             else
             {
@@ -120,6 +120,7 @@ namespace TheLastHero.Views
                         }
                         else
                         {
+                            _viewModel.battle.battleMapHP[target.xPosition, target.yPosition] = target.CurrentHP.ToString();
                             UpdateTargetInQueues(target);
                         }
 
@@ -159,6 +160,7 @@ namespace TheLastHero.Views
                                 }
                                 else
                                 {
+                                    _viewModel.battle.battleMapHP[target.xPosition, target.yPosition] = target.CurrentHP.ToString();
                                     UpdateTargetInQueues(target);
                                 }
 
@@ -535,22 +537,22 @@ namespace TheLastHero.Views
             //end of new code
 
             if (_viewModel.battle.battleMapSelection[x, y].Equals(Battle.HIGHLIGHTGREEN)
-                && _viewModel.battle.battleMapTop[x, y].Equals("") || (x == curCharacter.xPosition && y == curCharacter.yPosition))
+                && _viewModel.battle.battleMapTop[x, y].Equals("") || (x == _viewModel.curCharacter.xPosition && y == _viewModel.curCharacter.yPosition))
             {
                 // move character
-                _viewModel.battle.battleMapTop[curCharacter.xPosition, curCharacter.yPosition] = "";
-                _viewModel.battle.battleMapId[curCharacter.xPosition, curCharacter.yPosition] = "";
-                _viewModel.battle.battleMapHP[curCharacter.xPosition, curCharacter.yPosition] = "";
-                _viewModel.battle.battleMapTop[x, y] = curCharacter.ImgSource;
-                _viewModel.battle.battleMapId[x, y] = curCharacter.Id;
-                _viewModel.battle.battleMapHP[x, y] = curCharacter.CurrentHP.ToString();
-                curCharacter.xPosition = x;
-                curCharacter.yPosition = y;
+                _viewModel.battle.battleMapTop[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = "";
+                _viewModel.battle.battleMapId[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = "";
+                _viewModel.battle.battleMapHP[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = "";
+                _viewModel.battle.battleMapTop[x, y] = _viewModel.curCharacter.ImgSource;
+                _viewModel.battle.battleMapId[x, y] = _viewModel.curCharacter.Id;
+                _viewModel.battle.battleMapHP[x, y] = _viewModel.curCharacter.CurrentHP.ToString();
+                _viewModel.curCharacter.xPosition = x;
+                _viewModel.curCharacter.yPosition = y;
                 _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
                 if (CheckNearbyMonster(x, y))
                 {
 
-                    RenderAttackRange(x, y, curCharacter.AtkRange);
+                    RenderAttackRange(x, y, _viewModel.curCharacter.AtkRange);
                     atkTurn = true;
                     endTurn = false;
                 }
@@ -575,9 +577,9 @@ namespace TheLastHero.Views
                     else if (movedMonsters.Where(z => z.Id.Equals(_viewModel.battle.battleMapId[x, y])).Count() > 0)
                         m = movedMonsters.Where(z => z.Id.Equals(_viewModel.battle.battleMapId[x, y])).First();
 
-                    PrintDialog(curCharacter + " is attacking " + m.Name);
+                    PrintDialog(_viewModel.curCharacter + " is attacking " + m.Name);
                     // decrease target HP by = level attack + weapon attack  MIKE PLESASE READ HERE
-                    ApplyDamageCTM(curCharacter, m);
+                    ApplyDamageCTM(_viewModel.curCharacter, m);
 
 
                     //_viewModel.gameEngine.ConsoleDialog1 = m.CurrentHP.ToString();
@@ -590,6 +592,7 @@ namespace TheLastHero.Views
                     }
                     else
                     {
+                        _viewModel.battle.battleMapHP[m.xPosition, m.yPosition] = m.CurrentHP.ToString();
                         UpdateTargetInQueues(m);
 
                     }
@@ -613,11 +616,11 @@ namespace TheLastHero.Views
             if (endTurn)
             {
                 _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-                movedCharacters.Enqueue(curCharacter);
-                curCharacter = null;
+                movedCharacters.Enqueue(_viewModel.curCharacter);
+                _viewModel.curCharacter = null;
 
-                //_viewModel.gameEngine.characterQueue.Enqueue(curCharacter);
-                //curCharacter = null;
+                //_viewModel.gameEngine.characterQueue.Enqueue(_viewModel.curCharacter);
+                //_viewModel.curCharacter = null;
                 if (_viewModel.gameEngine.characterQueue.Count > 0 && _viewModel.gameEngine.monsterQueue.Count > 0)
                 {
                     // monster turn
@@ -654,6 +657,7 @@ namespace TheLastHero.Views
                             else
                             {
                                 //update character queue with target
+                                _viewModel.battle.battleMapHP[target.xPosition, target.yPosition] = target.CurrentHP.ToString();
                                 UpdateTargetInQueues(target);
                             }
                         }
@@ -699,6 +703,7 @@ namespace TheLastHero.Views
                                 else
                                 {
                                     //update character queue with target
+                                    _viewModel.battle.battleMapHP[target.xPosition, target.yPosition] = target.CurrentHP.ToString();
                                     UpdateTargetInQueues(target);
                                 }
                             }
@@ -731,14 +736,14 @@ namespace TheLastHero.Views
                 {
                     if (_viewModel.gameEngine.characterQueue.Count() > 0)
                     {
-                        curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+                        _viewModel.curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
                         endTurn = false;
                         _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-                        _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
-                        _viewModel.battle.battleMapId[curCharacter.xPosition, curCharacter.yPosition] = curCharacter.Id;
-                        _viewModel.battle.battleMapHP[curCharacter.xPosition, curCharacter.yPosition] = curCharacter.CurrentHP.ToString();
-                        RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
-                        PrintDialog(curCharacter.Name + "'s turn");
+                        _viewModel.battle.battleMapSelection[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+                        _viewModel.battle.battleMapId[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = _viewModel.curCharacter.Id;
+                        _viewModel.battle.battleMapHP[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = _viewModel.curCharacter.CurrentHP.ToString();
+                        RenderMoveAttackRange(_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition, _viewModel.curCharacter.MoveRange + _viewModel.curCharacter.AtkRange, _viewModel.curCharacter.AtkRange);
+                        PrintDialog(_viewModel.curCharacter.Name + "'s turn");
 
                     }
 
@@ -790,15 +795,17 @@ namespace TheLastHero.Views
                 }
                 else
                 {
-                    curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
+
+                    // bug queue is empty
+                    _viewModel.curCharacter = _viewModel.gameEngine.characterQueue.Dequeue();
                     endTurn = false;
                     _viewModel.battle.SetAllSelection(Battle.HIGHLIGHTGREY);
-                    _viewModel.battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
-                    _viewModel.battle.battleMapId[curCharacter.xPosition, curCharacter.yPosition] = curCharacter.Id;
-                    _viewModel.battle.battleMapHP[curCharacter.xPosition, curCharacter.yPosition] = curCharacter.CurrentHP.ToString();
+                    _viewModel.battle.battleMapSelection[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+                    _viewModel.battle.battleMapId[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = _viewModel.curCharacter.Id;
+                    _viewModel.battle.battleMapHP[_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition] = _viewModel.curCharacter.CurrentHP.ToString();
 
-                    RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
-                    PrintDialog(curCharacter.Name + "'s turn");
+                    RenderMoveAttackRange(_viewModel.curCharacter.xPosition, _viewModel.curCharacter.yPosition, _viewModel.curCharacter.MoveRange + _viewModel.curCharacter.AtkRange, _viewModel.curCharacter.AtkRange);
+                    PrintDialog(_viewModel.curCharacter.Name + "'s turn");
 
                 }
 
@@ -1008,17 +1015,35 @@ namespace TheLastHero.Views
 
         private void ApplyDamageCTM(Character c, Monster m)
         {
+            int exp = 0; 
             int dmg = 0;
+            
+            //if character equips weapon, the damage needs to be added. Else (no weapon), just use atk attribute 
             if (c.EquippedItem.ContainsKey(Character.Locations.RightHand) && c.EquippedItem[Character.Locations.RightHand] != null)
             {
                 dmg = (int)Math.Ceiling(c.Atk / 4.0) + c.EquippedItem[Character.Locations.RightHand].Atk;
+                //using monster calculateExperienceEarned function to calculate appropriate amount of experience based on damage 
+                exp = m.CalculateExperienceEarned(dmg);
             }
             else
             {
                 dmg = (int)Math.Ceiling(c.Atk / 4.0);
+                exp = m.CalculateExperienceEarned(dmg);
             }
-            m.CurrentHP -= dmg;
-            PrintDialog(m.Name + " took " + dmg + " damage!");
+
+            //Instead of calculating damage here directly, i am using m.TakeDamage function. It also changes LiveStatus from true to false if CurrentHP < 0 
+            //m.CurrentHP -= dmg;
+            m.TakeDamage(dmg); 
+            PrintDialog(m.Name + " took " + dmg + " damage!" + "\n" 
+                        + "Monster LiveStatus: " + m.LiveStatus);
+
+            //Testing level up and experience earning functionalities
+            int curLevel = c.Lvl; 
+            c.AddExperience(exp);
+            PrintDialog(c.Name + " Earned " + exp + " experience!");
+            int updatedLevel = c.Lvl;
+            if (updatedLevel > curLevel)
+                PrintDialog(c.Name + " has leveled up! " + c.Name + " is now Lvl:" + c.Lvl); 
         }
 
         public Item dropItem(int monsterID)
