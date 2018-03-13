@@ -118,6 +118,34 @@ namespace TheLastHero.Services
         }
 
         // Item
+
+        public async Task<bool> InsertUpdateAsync_Item(Item data)
+        {
+
+            // Check to see if the item exist
+            var oldData = await GetAsync_Item(data.Id);
+            if (oldData == null)
+            {
+                // If it does not exist, add it to the DB
+                var InsertResult = await AddAsync_Item(data);
+                if (InsertResult)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+
+            // Compare it, if different update in the DB
+            var UpdateResult = await UpdateAsync_Item(data);
+            if (UpdateResult)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> AddAsync_Item(Item data)
         {
             var result = await App.Database.InsertAsync(data);

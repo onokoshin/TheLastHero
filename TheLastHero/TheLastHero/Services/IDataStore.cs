@@ -14,6 +14,7 @@ namespace TheLastHero.Services
         // Task<IEnumerable<T>> GetItemsAsync(bool forceRefresh = false);
 
 
+        Task<bool> InsertUpdateAsync_Item(Item data);
         Task<bool> AddAsync_Item(Item data);
         Task<bool> UpdateAsync_Item(Item data);
         Task<bool> DeleteAsync_Item(Item data);

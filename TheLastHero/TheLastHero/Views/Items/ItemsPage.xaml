@@ -23,30 +23,30 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding ImgSource}" />
+                                <Image Source="{Binding ImgSource}" WidthRequest="81" HeightRequest="81"/>
                                 <StackLayout VerticalOptions="Center">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" TextColor="Purple" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="18" />
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="Type:" FontSize="12" />
-                                        <Label Text="{Binding Type}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
-                                        <Label Text="HP:" FontSize="12" />
-                                        <Label Text="{Binding HP}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
-                                        <Label Text="MP:" FontSize="12" />
-                                        <Label Text="{Binding MP}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
-                                        <Label Text="Atk:" FontSize="12" />
-                                        <Label Text="{Binding Atk}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="Description:" FontSize="12" />
+                                        <Label Text="{Binding Description}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
+                                        <Label Text="Range:" FontSize="12" />
+                                        <Label Text="{Binding Range}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="Damage:" FontSize="12" />
+                                        <Label Text="{Binding Damage}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="Value:" FontSize="12" />
+                                        <Label Text="{Binding Value}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="Lvl:" FontSize="12" />
-                                        <Label Text="{Binding Lvl}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
-                                        <Label Text="Def:" FontSize="12" />
-                                        <Label Text="{Binding Def}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
-                                        <Label Text="Spd:" FontSize="12" />
-                                        <Label Text="{Binding Spd}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
-                                        <Label Text="Luk:" FontSize="12" />
-                                        <Label Text="{Binding Luk}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <Label Text="Location:" FontSize="12" />
+                                        <Label Text="{Binding Location}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
+                                        <Label Text="Attribute:" FontSize="12" />
+                                        <Label Text="{Binding Attribute}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Guid:" FontSize="12" />
+                                        <Label Text="{Binding Guid}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
                                     </StackLayout>
                                 </StackLayout>
                             </StackLayout>

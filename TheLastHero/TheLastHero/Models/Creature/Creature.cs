@@ -105,24 +105,8 @@ namespace TheLastHero.Models
             {
                 CurrentHP = 0;
                 // Death...
-                CauseDeath();
+                LiveStatus = false;
             }
         }
-
-        // This method calculates the actual damage this creature can deal to
-        // the opponent. The formula include the character's level, skill,
-        // attack power and weapon bonus. This method returns integer.
-        public int DealDamage()
-        {
-            return -1;
-        }
-
-        // Death
-        // Alive turns to False
-        public void CauseDeath()
-        {
-            LiveStatus = false;
-        }
-
     }
 }

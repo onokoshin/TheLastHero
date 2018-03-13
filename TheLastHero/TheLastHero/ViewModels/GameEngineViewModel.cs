@@ -25,6 +25,13 @@ namespace TheLastHero.ViewModels
         public ObservableCollection<Item> ItemDataset { get; set; }
         public Command LoadDataCommand { get; set; }
 
+        // for hackathon
+        public int potionNum { get; set; }
+        public bool allowRoundHealing { get; set; }
+        public bool availablePotion { get; set; }
+        public bool availableFocusAtk { get; set; }
+        public bool magicRevive { get; set; }
+
         private bool _needsRefresh;
 
         public bool autoPlay = false;
@@ -51,6 +58,49 @@ namespace TheLastHero.ViewModels
             //CreatureDataset = new ObservableCollection<Creature>();
             ItemDataset = new ObservableCollection<Item>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+
+            // assign items
+            foreach (Character c in CharacterDataset)
+            {
+                foreach (Item i in ItemDataset)
+                {
+                    if (i.EquippableLocation.Equals("Head"))
+                    {
+                        i.EquippedBy = c.Id;
+                        c.EquipItem(i, Character.Locations.Head);
+                    }
+                    else if (i.EquippableLocation.Equals("Body"))
+                    {
+                        i.EquippedBy = c.Id;
+                        c.EquipItem(i, Character.Locations.Body);
+                    }
+                    else if (i.EquippableLocation.Equals("Feet"))
+                    {
+                        i.EquippedBy = c.Id;
+                        c.EquipItem(i, Character.Locations.Feet);
+                    }
+                    else if (i.EquippableLocation.Equals("Primary"))
+                    {
+                        i.EquippedBy = c.Id;
+                        c.EquipItem(i, Character.Locations.Primary);
+                    }
+                    else if (i.EquippableLocation.Equals("Offhand"))
+                    {
+                        i.EquippedBy = c.Id;
+                        c.EquipItem(i, Character.Locations.Offhand);
+                    }
+                    else if (i.EquippableLocation.Equals("LeftFinger"))
+                    {
+                        i.EquippedBy = c.Id;
+                        c.EquipItem(i, Character.Locations.LeftFinger);
+                    }
+                    else if (i.EquippableLocation.Equals("RightFinger"))
+                    {
+                        i.EquippedBy = c.Id;
+                        c.EquipItem(i, Character.Locations.RightFinger);
+                    }
+                }
+            }
 
             gameEngine = GameEngine.Instance;
             battle = new Battle();
@@ -79,7 +129,8 @@ namespace TheLastHero.ViewModels
                 //CreatureDataset.Clear();
                 foreach (var data in cdataset)
                 {
-                    CharacterDataset.Add(data);
+                    if (data.LiveStatus)
+                        CharacterDataset.Add(data);
                     //CreatureDataset.Add(data);
                 }
                 foreach (var data in mdataset)
@@ -155,6 +206,7 @@ namespace TheLastHero.ViewModels
             if (MonsterDataset.Count > 0)
             {
                 gameEngine.monsterQueue.Clear();
+
                 int y = 0;
                 foreach (Monster m in MonsterDataset)
                 {

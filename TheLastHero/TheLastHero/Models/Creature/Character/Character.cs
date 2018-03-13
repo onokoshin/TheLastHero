@@ -30,7 +30,7 @@ namespace TheLastHero.Models
         public bool IsCapLevel { get; set; }
 
         // using enum for location of body parts where character can equip item
-        public enum Locations { Head, Body, Feet, LeftHand, RightHand, LeftFinger, RightFinger }
+        public enum Locations { Head, Body, Feet, Primary, Offhand, LeftFinger, RightFinger }
 
         //Key - location is from enum, Value - Item 
         // the reason we use dictionary is because, Dictionary structure provide a key and value pair, Dict is perfect for location and item relationship.
@@ -80,7 +80,12 @@ namespace TheLastHero.Models
         //This is a reusable block of code and we could use it in different classes.
         public void EquipItem(Item item, Locations location)
         {
-            //equippedItem[location] = item; 
+            EquippedItem.Add(location, item);
+        }
+
+        public void RemoveItem(Item item, Locations location)
+        {
+            EquippedItem.Remove(location);
         }
 
         public void Update(Character newData)
@@ -225,6 +230,8 @@ namespace TheLastHero.Models
             }
         }
 
+       
+
         #endregion Basics
 
         #region GetAttributes
@@ -319,19 +326,27 @@ namespace TheLastHero.Models
 
         // Get the Level based damage
         // Then add the damage for the primary hand item as a Dice Roll
-        //public int GetDamageRollValue()
-        //{
-        //    var myReturn = GetLevelBasedDamage();
+        public int GetDamageRollValue()
+        {
+            var myReturn = GetLevelBasedDamage();
 
-        //    var myItem = ItemsViewModel.Instance.GetItem(PrimaryHand);
-        //    if (myItem != null)
-        //    {
-        //        // Damage is base damage plus dice of the weapon.  So sword of Damage 10 is d10
-        //        myReturn += HelperEngine.RollDice(1, myItem.Damage);
-        //    }
+            //ITEM STUFF!!!!!!!!!!!!
+            //var myItem = ItemsViewModel.Instance.GetItem(PrimaryHand);
+            //if (myItem != null)
+            //{
+            //    // Damage is base damage plus dice of the weapon.  So sword of Damage 10 is d10
+            //    myReturn += HelperEngine.RollDice(1, myItem.Damage);
+            //}
 
-        //    return myReturn;
-        //}
+            return myReturn;
+        }
+
+        // Get Level based Damage
+        // 1/4 of the Level of the Player is the base damage they do.
+        public int GetLevelBasedDamage()
+        {
+            return (int)Math.Ceiling(Lvl * .25);
+        }
 
         #endregion GetAttributes
     }

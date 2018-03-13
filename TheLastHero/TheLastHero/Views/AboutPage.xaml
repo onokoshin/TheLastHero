@@ -98,6 +98,27 @@
                     HorizontalOptions="Center"
                     TextColor="Black" />
         </StackLayout>
+        <StackLayout
+                HorizontalOptions="FillAndExpand"
+                Orientation="Horizontal">
 
+            <Label 
+                    FontSize="Small"
+                    Text="Server Items"
+                    HorizontalTextAlignment="Start"
+                    HorizontalOptions="Start"/>
+
+            <Button  
+                    Text="Get" 
+                    Clicked="GetItems_Command" 
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="Black" />
+
+            <Button  
+                    Text="Post" 
+                    Clicked="GetItemsPost_Command" 
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="Black" />
+        </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -21,7 +21,7 @@ namespace TheLastHero.Models
         // The number of turns the battle took to finish
 
         // Missign property, to add as part of the SQL lecture...
-        //public int TurnNumber { get; set; }
+        public int TurnCount { get; set; }
 
         // The count of monsters slain during battle
         public int MonsterSlainNumber { get; set; }

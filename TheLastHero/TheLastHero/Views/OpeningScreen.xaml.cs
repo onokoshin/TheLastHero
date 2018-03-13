@@ -47,5 +47,10 @@ namespace TheLastHero.Views
             await Navigation.PushAsync(new ScoresPage());
         }
 
+        async void AboutPageButton_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AboutPage());
+        }
+
     }
 }

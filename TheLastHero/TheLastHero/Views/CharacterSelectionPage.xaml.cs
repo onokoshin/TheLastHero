@@ -120,6 +120,8 @@ namespace TheLastHero.Views
 
         private async void Next_Clicked(object sender, EventArgs e)
         {
+            //Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
+            //Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
             await Navigation.PushAsync(new BattlePage());
         }
 

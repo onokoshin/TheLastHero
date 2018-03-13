@@ -214,6 +214,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Views\CharacterSelectionPage.xaml.cs">
       <DependentUpon>CharacterSelectionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Controller\ItemsController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Item\ItemLocations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Attribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\VersionGlobals.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\WebGlobal.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\HttpClientService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\JsonHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">
@@ -235,6 +242,7 @@
     <Folder Include="$(MSBuildThisFileDirectory)Views\Monsters\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Characters\" />
     <Folder Include="$(MSBuildThisFileDirectory)Views\Scores\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Controller\" />
   </ItemGroup>
   <!--#if (CreateBackendProject)
     <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataStore.cs" />

@@ -7,6 +7,10 @@ namespace TheLastHero.Models
 {
     public class Monster : Creature
     {
+
+        // Damage the Monster can do.
+        public int Damage { get; set; }
+
         // Remaining Experience Points to give
         public int ExperienceRemaining { get; set; }
 
@@ -178,9 +182,9 @@ namespace TheLastHero.Models
             return pointsAllocate;
         }
 
-       
 
-      
+
+
 
         // Take Damage
         // If the damage recived, is > health, then death occurs
@@ -198,9 +202,120 @@ namespace TheLastHero.Models
             {
                 CurrentHP = 0;
                 // Death...
-                CauseDeath();
+                LiveStatus = false;
             }
         }
+
+        #region GetAttributes
+        // Get Attributes
+
+        // Get Attack
+        public int GetAttack()
+        {
+            // Base Attack
+            var myReturn = Atk;
+
+            return myReturn;
+        }
+
+        // Get Speed
+        public int GetSpeed()
+        {
+            // Base value
+            var myReturn = Spd;
+
+            return myReturn;
+        }
+
+        // Get Defense
+        public int GetDefense()
+        {
+            // Base value
+            var myReturn = Def;
+
+            return myReturn;
+        }
+
+        // Get Max Health
+        public int GetHealthMax()
+        {
+            // Base value
+            var myReturn = MaxHP;
+
+            //I can change the code here to test the result
+            // Name: test driven development (TDD) 
+            // What code do I need to write to pass this case? 
+
+
+            //condition coverage is a bitch
+
+            if (myReturn < 0)
+            {
+                return 0;
+            }
+
+            if (myReturn > 20 * 10)
+            {
+                return 200;
+            }
+
+            return myReturn;
+        }
+
+        // Get Current Health
+        public int GetHealthCurrent()
+        {
+            // Base value
+            var myReturn = CurrentHP;
+
+            return myReturn;
+        }
+
+        // Get the Level based damage
+        // Then add in the monster damage
+        public int GetDamage()
+        {
+            var myReturn = 0; // = GetLevelBasedDamage();  BaseDamage Already calculated in
+            myReturn += Damage;
+
+            return myReturn;
+        }
+
+        // Get the Level based damage
+        // Then add the damage for the primary hand item as a Dice Roll
+        public int GetDamageRollValue()
+        {
+            return GetDamage();
+        }
+
+        #endregion GetAttributes
+
+        #region Items
+        // Gets the unique item (if any) from this monster when it dies...
+        //public Item GetUniqueItem()
+        //{
+        //    var myReturn = ItemsViewModel.Instance.GetItem(UniqueItem);
+
+        //    return myReturn;
+        //}
+
+        //// Drop all the items the monster has
+        //public List<Item> DropAllItems()
+        //{
+        //    var myReturn = new List<Item>();
+
+        //    // Drop all Items
+        //    Item myItem;
+
+        //    myItem = ItemsViewModel.Instance.GetItem(UniqueItem);
+        //    if (myItem != null)
+        //    {
+        //        myReturn.Add(myItem);
+        //    }
+        //    return myReturn;
+        //}
+
+        #endregion Items
 
 
     }

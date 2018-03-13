@@ -10,6 +10,7 @@
             <Button Clicked="MonstersPageButton_OnClicked" Text="MONSTERS" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             <Button Clicked="ItemPageButton_OnClicked" Text="ITEMS" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             <Button Clicked="ScorePageButton_OnClicked" Text="HIGH SCORE" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+            <Button Clicked="AboutPageButton_OnClicked" Text="ABOUT PAGE" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
