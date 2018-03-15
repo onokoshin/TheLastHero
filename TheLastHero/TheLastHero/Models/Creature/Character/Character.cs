@@ -30,12 +30,14 @@ namespace TheLastHero.Models
         public bool IsCapLevel { get; set; }
 
         // using enum for location of body parts where character can equip item
-        public enum Locations { Head, Body, Feet, Primary, Offhand, LeftFinger, RightFinger }
+        public ItemLocationEnum Locations { get; set; }
 
         //Key - location is from enum, Value - Item 
         // the reason we use dictionary is because, Dictionary structure provide a key and value pair, Dict is perfect for location and item relationship.
-        public Dictionary<Locations, Item> EquippedItem;
+        public Dictionary<ItemLocationEnum, Item> EquippedItem;
 
+        public string EquippedItemListString { get; set; }
+        public List<string> EquippedItemList { get; set; }
 
         public int PartySlotNum { get; set; }
 
@@ -45,7 +47,7 @@ namespace TheLastHero.Models
         {
             //instantiate equippedItem so that characters can have weapons
             //equippedItem = new Dictionary<>(); 
-
+            EquippedItemList = new List<string>();
             SetDefaultValues();
             LiveStatus = true;
 
@@ -78,14 +80,30 @@ namespace TheLastHero.Models
         }
         //This void type method will help character to resign items. If characters get new items and this method will replace the new item for character.
         //This is a reusable block of code and we could use it in different classes.
-        public void EquipItem(Item item, Locations location)
+        public void EquipItem(Item item, ItemLocationEnum location)
         {
+            if (EquippedItem.ContainsKey(location))
+                EquippedItem.Remove(location);
             EquippedItem.Add(location, item);
+            EquippedItemList.Add(item.Name);
+            UpdateEquippedItemListString();
+
         }
 
-        public void RemoveItem(Item item, Locations location)
+        private void UpdateEquippedItemListString()
+        {
+            EquippedItemListString = "";
+            foreach (string s in EquippedItemList)
+            {
+                EquippedItemListString += s;
+            }
+        }
+
+        public void RemoveItem(Item item, ItemLocationEnum location)
         {
             EquippedItem.Remove(location);
+            EquippedItemList.Remove(item.Name);
+            UpdateEquippedItemListString();
         }
 
         public void Update(Character newData)
@@ -230,7 +248,7 @@ namespace TheLastHero.Models
             }
         }
 
-       
+
 
         #endregion Basics
 

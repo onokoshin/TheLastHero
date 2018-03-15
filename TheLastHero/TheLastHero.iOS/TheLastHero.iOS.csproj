@@ -186,6 +186,7 @@
     <BundleResource Include="Resources\GameOver.png" />
     <BundleResource Include="Resources\EmptySlot.png" />
     <BundleResource Include="Resources\EmptySlot2.png" />
+    <BundleResource Include="Resources\HighlightYellow.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

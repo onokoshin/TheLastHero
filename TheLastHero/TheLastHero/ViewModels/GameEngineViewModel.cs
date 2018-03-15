@@ -24,6 +24,7 @@ namespace TheLastHero.ViewModels
         //public ObservableCollection<Creature> CreatureDataset { get; set; }
         public ObservableCollection<Item> ItemDataset { get; set; }
         public Command LoadDataCommand { get; set; }
+        public Command LoadDataCommandCharacterOnly { get; set; }
 
         // for hackathon
         public int potionNum { get; set; }
@@ -58,6 +59,7 @@ namespace TheLastHero.ViewModels
             //CreatureDataset = new ObservableCollection<Creature>();
             ItemDataset = new ObservableCollection<Item>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+            LoadDataCommandCharacterOnly = new Command(async () => await ExecuteLoadDataCommandCharacterOnly());
 
             // assign items
             foreach (Character c in CharacterDataset)
@@ -67,37 +69,37 @@ namespace TheLastHero.ViewModels
                     if (i.EquippableLocation.Equals("Head"))
                     {
                         i.EquippedBy = c.Id;
-                        c.EquipItem(i, Character.Locations.Head);
+                        c.EquipItem(i, ItemLocationEnum.Head);
                     }
-                    else if (i.EquippableLocation.Equals("Body"))
+                    else if (i.EquippableLocation.Equals("Necklass"))
                     {
                         i.EquippedBy = c.Id;
-                        c.EquipItem(i, Character.Locations.Body);
+                        c.EquipItem(i, ItemLocationEnum.Necklass);
                     }
                     else if (i.EquippableLocation.Equals("Feet"))
                     {
                         i.EquippedBy = c.Id;
-                        c.EquipItem(i, Character.Locations.Feet);
+                        c.EquipItem(i, ItemLocationEnum.Feet);
                     }
-                    else if (i.EquippableLocation.Equals("Primary"))
+                    else if (i.EquippableLocation.Equals("PrimaryHand"))
                     {
                         i.EquippedBy = c.Id;
-                        c.EquipItem(i, Character.Locations.Primary);
+                        c.EquipItem(i, ItemLocationEnum.PrimaryHand);
                     }
-                    else if (i.EquippableLocation.Equals("Offhand"))
+                    else if (i.EquippableLocation.Equals("OffHand"))
                     {
                         i.EquippedBy = c.Id;
-                        c.EquipItem(i, Character.Locations.Offhand);
+                        c.EquipItem(i, ItemLocationEnum.OffHand);
                     }
                     else if (i.EquippableLocation.Equals("LeftFinger"))
                     {
                         i.EquippedBy = c.Id;
-                        c.EquipItem(i, Character.Locations.LeftFinger);
+                        c.EquipItem(i, ItemLocationEnum.LeftFinger);
                     }
                     else if (i.EquippableLocation.Equals("RightFinger"))
                     {
                         i.EquippedBy = c.Id;
-                        c.EquipItem(i, Character.Locations.RightFinger);
+                        c.EquipItem(i, ItemLocationEnum.RightFinger);
                     }
                 }
             }
@@ -108,7 +110,43 @@ namespace TheLastHero.ViewModels
 
         }
 
+        private async Task ExecuteLoadDataCommandCharacterOnly()
+        {
+            if (IsBusy)
+                return;
 
+            IsBusy = true;
+
+            try
+            {
+                CharacterDataset.Clear();
+                ItemDataset.Clear();
+                var cdataset = await DataStore.GetAllAsync_Character(true);
+                var idataset = await DataStore.GetAllAsync_Item(true);
+
+                //CreatureDataset.Clear();
+                foreach (var data in cdataset)
+                {
+                    if (data.LiveStatus)
+                        CharacterDataset.Add(data);
+                }
+
+                foreach (var data in idataset)
+                {
+                    ItemDataset.Add(data);
+                }
+                //CreatureDataset = new ObservableCollection<Creature>(CreatureDataset.OrderByDescending(i => i.Spd));
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
 
         private async Task ExecuteLoadDataCommand()
         {
@@ -218,7 +256,120 @@ namespace TheLastHero.ViewModels
             }
         }
 
+        public Item GenerateNewItem()
+        {
+            //return guid of the item
+            Random r = new Random();
+            int index = r.Next(1, ItemDataset.Count());
+            Item i = new Item();
+            CopyItem(i, ItemDataset[index]);
+            return i;
+        }
 
+        private void CopyItem(Item i, Item item)
+        {
+            i.Atk = item.Atk;
+            i.Damage = item.Damage;
+            i.Def = item.Def;
+            i.Description = item.Description;
+            i.EquippableLocation = item.EquippableLocation;
+            i.EquippedBy = item.EquippedBy;
+            i.HP = item.HP;
+            i.Guid = item.Guid;
+            i.ImgSource = item.ImgSource;
+            i.Location = item.Location;
+            i.Luk = item.Luk;
+            i.Lvl = item.Lvl;
+            i.MP = item.MP;
+            i.Range = item.Range;
+            i.Spd = item.Spd;
+            i.SpecialAbility = item.SpecialAbility;
+            i.Type = item.Type;
+            i.Value = item.Value;
+        }
+
+        public void GenerateNewMonsters()
+        {
+            MonsterDataset.Clear();
+            LevelTable levelTable = LevelTable.Instance;
+            LevelDetails levelDetails = levelTable.LevelDetailsList[gameEngine.currentRound];
+
+            for (int i = 0; i < 6; i++)
+            {
+                Monster m = new Monster();
+                m.Id = Guid.NewGuid().ToString();
+                m.Friendly = false;
+                m.AtkRange = 1;
+                m.LiveStatus = true;
+                m.CurrentMP = 100;
+                m.MaxMP = 100;
+                m.MoveRange = 1;
+                m.Drop = false;
+                m.Luk = 10;
+                m.xPosition = 4;
+                m.yPosition = i;
+                Random r = new Random();
+
+
+                m.UniqueDropID = GenerateNewItem().Guid;
+
+                int rnum = r.Next(1, 9);
+                switch (rnum)
+                {
+                    case 1:
+                        m.Name = "Wolf";
+                        m.Type = "Beast";
+                        m.ImgSource = "WolfLeft.png";
+                        break;
+                    case 2:
+                        m.Name = "Skeleton";
+                        m.Type = "Beast";
+                        m.ImgSource = "SkeletonLeft.png";
+                        break;
+                    case 3:
+                        m.Name = "Skeleton";
+                        m.Type = "Ghost";
+                        m.ImgSource = "SkeletonLeft2.png";
+                        break;
+                    case 4:
+                        m.Name = "Skeleton";
+                        m.Type = "Ghost";
+                        m.ImgSource = "SkeletonLeft3.png";
+                        break;
+                    case 5:
+                        m.Name = "Tiger";
+                        m.Type = "Beast";
+                        m.ImgSource = "TigerLeft.png";
+                        break;
+                    case 6:
+                        m.Name = "Raven";
+                        m.Type = "Beast";
+                        m.ImgSource = "RavenLeft.png";
+                        break;
+                    case 7:
+                        m.Name = "Heron";
+                        m.Type = "Beast";
+                        m.ImgSource = "HeronLeft.png";
+                        break;
+                    case 8:
+                        m.Name = "Hawk";
+                        m.Type = "Beast";
+                        m.ImgSource = "HawkLeft.png";
+                        break;
+                    case 9:
+                        m.Name = "Cat";
+                        m.Type = "Beast";
+                        m.ImgSource = "CatLeft.png";
+                        break;
+                    default:
+                        break;
+                }
+                m.ScaleLevel(gameEngine.currentRound);
+
+                MonsterDataset.Add(m);
+            }
+
+        }
     }
 }
 

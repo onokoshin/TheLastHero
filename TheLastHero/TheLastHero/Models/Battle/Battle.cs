@@ -10,6 +10,7 @@ namespace TheLastHero.Models.Battle
         public const string HIGHLIGHTGREEN = "HighlightGreen.png";
         public const string HIGHLIGHTRED = "HighlightRed.png";
         public const string HIGHLIGHTGREY = "HighlightGrey.png";
+        public const string HIGHLIGHTYELLOW = "HighlightYellow.png";
         public const string GRASS = "Grass.png";
         public const string LAVA = "Lava.png";
         public const string SAND = "Sand.png";

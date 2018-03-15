@@ -86,12 +86,12 @@ namespace TheLastHero.Services
         private async void InitilizeSeedData()
         {
 
-            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "First item", Lvl = 3 });
-            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "Second item", Lvl = 3 });
-            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "Third item", Lvl = 3 });
-            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "Fourth item", Lvl = 3 });
-            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "Fifth item", Lvl = 3 });
-            await AddAsync_Item(new Item { Id = Guid.NewGuid().ToString(), Name = "Sixth item", Lvl = 3 });
+            await AddAsync_Item(new Item { Guid = Guid.NewGuid().ToString(), Name = "First item", Lvl = 3 });
+            await AddAsync_Item(new Item { Guid = Guid.NewGuid().ToString(), Name = "Second item", Lvl = 3 });
+            await AddAsync_Item(new Item { Guid = Guid.NewGuid().ToString(), Name = "Third item", Lvl = 3 });
+            await AddAsync_Item(new Item { Guid = Guid.NewGuid().ToString(), Name = "Fourth item", Lvl = 3 });
+            await AddAsync_Item(new Item { Guid = Guid.NewGuid().ToString(), Name = "Fifth item", Lvl = 3 });
+            await AddAsync_Item(new Item { Guid = Guid.NewGuid().ToString(), Name = "Sixth item", Lvl = 3 });
 
 
             await AddAsync_Character(new Character { Id = Guid.NewGuid().ToString(), Name = "First Character", Lvl = 1 });
@@ -123,7 +123,7 @@ namespace TheLastHero.Services
         {
 
             // Check to see if the item exist
-            var oldData = await GetAsync_Item(data.Id);
+            var oldData = await GetAsync_Item(data.Guid);
             if (oldData == null)
             {
                 // If it does not exist, add it to the DB

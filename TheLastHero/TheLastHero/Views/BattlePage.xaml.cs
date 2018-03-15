@@ -469,13 +469,21 @@ namespace TheLastHero.Views
                     ApplyDamageCTM(_viewModel.curCharacter, m);
 
 
+
                     //_viewModel.gameEngine.ConsoleDialog1 = m.CurrentHP.ToString();
                     if (m.CurrentHP <= 0)
                     {
+                        if (m.UniqueDropID != null)
+                        {
+                            Item drop = _viewModel.ItemDataset.Where(item => item.Guid.Equals(m.UniqueDropID)).First();
+                            _viewModel.curCharacter.EquipItem(drop, drop.Location);
+                        }
+
                         RemoveTargetFromQueues(m);
                         _viewModel.battle.battleMapId[m.xPosition, m.yPosition] = "";
                         _viewModel.battle.battleMapTop[m.xPosition, m.yPosition] = "";
                         _viewModel.battle.battleMapHP[m.xPosition, m.yPosition] = "";
+
                         if (movedMonsters.Count() == 0 && _viewModel.gameEngine.monsterQueue.Count() == 0)
                         {
                             endRound = true;
@@ -689,8 +697,8 @@ namespace TheLastHero.Views
                     //take care of MonsterDataset
                     //load data
 
-                    //_viewModel.GenerateNewMonsters(curRound);
-                    _viewModel.LoadDataCommand.Execute(null);
+                    _viewModel.GenerateNewMonsters();
+                    _viewModel.LoadDataCommandCharacterOnly.Execute(null);
                     // start with level 1 by default
                     _viewModel.gameEngine.currentRound += 1;
 
@@ -1080,9 +1088,9 @@ namespace TheLastHero.Views
             int dmg = 0;
 
             //if character equips weapon, the damage needs to be added. Else (no weapon), just use atk attribute 
-            if (c.EquippedItem.ContainsKey(Character.Locations.Primary))
+            if (c.EquippedItem.ContainsKey(ItemLocationEnum.PrimaryHand))
             {
-                dmg = (int)Math.Ceiling(c.Atk / 4.0) + c.EquippedItem[Character.Locations.Primary].Atk;
+                dmg = (int)Math.Ceiling(c.Atk / 4.0) + c.EquippedItem[ItemLocationEnum.PrimaryHand].Atk;
                 //using monster calculateExperienceEarned function to calculate appropriate amount of experience based on damage 
                 exp = m.CalculateExperienceEarned(dmg);
             }
@@ -1093,21 +1101,25 @@ namespace TheLastHero.Views
             }
 
             //Calculate miss/dodge based on calculation 
-            TakeTurn(c, m); 
+            TakeTurn(c, m);
 
             //Instead of calculating damage here directly, i am using m.TakeDamage function. It also changes LiveStatus from true to false if CurrentHP < 0 
             //m.CurrentHP -= dmg;
-            m.TakeDamage(dmg); 
-            PrintDialog(m.Name + " took " + dmg + " damage!" + "\n" 
+            m.TakeDamage(dmg);
+            PrintDialog(m.Name + " took " + dmg + " damage!" + "\n"
                         + "Monster LiveStatus: " + m.LiveStatus);
 
             //Testing level up and experience earning functionalities
-            int curLevel = c.Lvl; 
+            int curLevel = c.Lvl;
             c.AddExperience(exp);
+
+
+
+
             PrintDialog(c.Name + " Earned " + exp + " experience!");
             int updatedLevel = c.Lvl;
             if (updatedLevel > curLevel)
-                PrintDialog(c.Name + " has leveled up! " + c.Name + " is now Lvl:" + c.Lvl); 
+                PrintDialog(c.Name + " has leveled up! " + c.Name + " is now Lvl:" + c.Lvl);
         }
 
         public bool TakeTurn(Character Attacker, Monster Defender)
@@ -1210,7 +1222,7 @@ namespace TheLastHero.Views
                 //var myItemList = Target.DropAllItems();
 
                 // If Random drops are enabled, then add some....
-               // myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
+                // myItemList.AddRange(GetRandomMonsterItemDrops(BattleScore.RoundCount));
 
                 // Add to Score
                 //foreach (var item in myItemList)
@@ -1280,7 +1292,7 @@ namespace TheLastHero.Views
         {
             // read monster from Dataset,
             var result = _viewModel.MonsterDataset.Where(x => x.Id == _viewModel.gameEngine.monsterQueue.Peek().Id).First();
-            return _viewModel.ItemDataset.Where(i => i.Id.Equals(result.UniqueDropID)).First();
+            return _viewModel.ItemDataset.Where(i => i.Guid.Equals(result.UniqueDropID)).First();
         }
 
         private Character CheckNearbyCharacter(int x, int y)

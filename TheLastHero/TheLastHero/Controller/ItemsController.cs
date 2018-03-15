@@ -174,8 +174,6 @@ namespace TheLastHero.Controller
             {
                 myData.Name = JsonHelper.GetJsonString(json, "Name");
                 myData.Guid = JsonHelper.GetJsonString(json, "Guid");
-                myData.Id = myData.Guid;    // Set to be the same as Guid, does not come down from server, but needed for DB
-
                 myData.Description = JsonHelper.GetJsonString(json, "Description");
                 myData.ImgSource = JsonHelper.GetJsonString(json, "ImageURI");
 

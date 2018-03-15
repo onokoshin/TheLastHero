@@ -10,7 +10,6 @@ namespace TheLastHero.Models
     {
         // unique id
         [PrimaryKey]
-        public string Id { get; set; }
 
         // Used for List Identification, not used for game interaction or exposed to users
         public string Guid { get; set; }
@@ -52,7 +51,7 @@ namespace TheLastHero.Models
         // Foot, Left Finger, Right Finger
         // This limits where the items can and cannot be equipped.
         public string EquippableLocation { get; set; }
-	public ItemLocationEnum Location { get; set; }
+        public ItemLocationEnum Location { get; set; }
 
         // This parameter indicates which character is using this item.
         public string EquippedBy { get; set; }
@@ -88,18 +87,19 @@ namespace TheLastHero.Models
         // Create a default item for the instantiation
         private void CreateDefaultItem()
         {
+            Guid = "";
             Name = "Unknown";
             Description = "Unknown";
             ImgSource = ItemsController.DefaultImageURI;
 
             Range = 0;
             Value = 0;
-            
+
 
             Location = ItemLocationEnum.Unknown;
             HP = 0;
             MP = 0;
-            Lvl = 0; 
+            Lvl = 0;
             Atk = 0;
             Def = 0;
             Spd = 0;
@@ -142,7 +142,7 @@ namespace TheLastHero.Models
             Luk = newData.Luk;
             SpecialAbility = newData.SpecialAbility;
             EquippableLocation = newData.EquippableLocation;
-		Location = newData.Location;
+            Location = newData.Location;
             EquippedBy = newData.EquippedBy;
             ImgSource = newData.ImgSource;
 

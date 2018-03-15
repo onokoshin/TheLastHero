@@ -86,7 +86,7 @@
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="EquippedItem:" FontSize="12" />
-                <Label Text="{Binding Data.EquippedItem}" FontSize="12" TextColor="Blue" />
+                <Label Text="{Binding Data.EquippedItemListString}" FontSize="12" TextColor="Blue" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

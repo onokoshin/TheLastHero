@@ -20,7 +20,7 @@ namespace TheLastHero.Views
             {
                 Name = "Item name",
                 //Description = "This is an item description.",
-                Id = Guid.NewGuid().ToString()
+                Guid = Guid.NewGuid().ToString()
             };
 
             BindingContext = this;

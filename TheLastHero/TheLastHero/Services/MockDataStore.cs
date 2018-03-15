@@ -42,13 +42,13 @@ namespace TheLastHero.Services
         {
             var mockItems = new List<Item>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Hat", HP=8, MP=5, Type = "Armor", Lvl=3, Atk=10,Def=10, Spd=12, Luk=1,SpecialAbility="null", EquippableLocation="Head", EquippedBy="Empty", ImgSource="ClothHead.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Rope", HP=2, MP=20, Type = "Armor", Lvl=1, Atk=12,Def=5, Spd=6, Luk=2,SpecialAbility="null", EquippableLocation="Body", EquippedBy="Empty", ImgSource="ClothBody.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Shoes", HP=10, MP=5, Type = "Armor", Lvl=2, Atk=9,Def=2, Spd=10, Luk=5,SpecialAbility="null", EquippableLocation="Feet", EquippedBy="Empty", ImgSource="ClothFeet.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Staff", HP=0, MP=0, Type = "Weapon", Lvl=4, Atk=100,Def=2, Spd=4, Luk=7,SpecialAbility="null", EquippableLocation="Primary", EquippedBy="Empty", ImgSource="Staff3.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Staff", HP=0, MP=0, Type = "Weapon", Lvl=3, Atk=100,Def=2, Spd=4, Luk=7,SpecialAbility="null", EquippableLocation="Offhand", EquippedBy="Empty", ImgSource="Staff2.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Ring", HP=5, MP=15, Type = "Ring", Lvl=4, Atk=98,Def=5, Spd=2, Luk=9,SpecialAbility="null", EquippableLocation="LeftFinger", EquippedBy="Empty", ImgSource="Ring.png"},
-                new Item { Id = Guid.NewGuid().ToString(), Name = "Mage Ring", HP=5, MP=15, Type = "Ring", Lvl=5, Atk=98,Def=5, Spd=2, Luk=9,SpecialAbility="null", EquippableLocation="RightFinger", EquippedBy="Empty", ImgSource="Ring.png"}
+                new Item { Guid = Guid.NewGuid().ToString(), Name = "Mage Hat", HP=8, MP=5, Type = "Armor", Lvl=3, Atk=10,Def=10, Spd=12, Luk=1,SpecialAbility="null", EquippableLocation="Head", Location=ItemLocationEnum.Head, EquippedBy="Empty", ImgSource="ClothHead.png"},
+                new Item { Guid = Guid.NewGuid().ToString(), Name = "Mage Rope", HP=2, MP=20, Type = "Armor", Lvl=1, Atk=12,Def=5, Spd=6, Luk=2,SpecialAbility="null", EquippableLocation="Body", Location=ItemLocationEnum.Necklass,EquippedBy="Empty", ImgSource="ClothBody.png"},
+                new Item { Guid = Guid.NewGuid().ToString(), Name = "Mage Shoes", HP=10, MP=5, Type = "Armor", Lvl=2, Atk=9,Def=2, Spd=10, Luk=5,SpecialAbility="null", EquippableLocation="Feet", Location=ItemLocationEnum.Feet,EquippedBy="Empty", ImgSource="ClothFeet.png"},
+                new Item { Guid = Guid.NewGuid().ToString(), Name = "Mage Staff", HP=0, MP=0, Type = "Weapon", Lvl=4, Atk=100,Def=2, Spd=4, Luk=7,SpecialAbility="null", EquippableLocation="PrimaryHand",Location=ItemLocationEnum.PrimaryHand, EquippedBy="Empty", ImgSource="Staff3.png"},
+                new Item { Guid = Guid.NewGuid().ToString(), Name = "Mage Staff", HP=0, MP=0, Type = "Weapon", Lvl=3, Atk=100,Def=2, Spd=4, Luk=7,SpecialAbility="null", EquippableLocation="OffHand",Location=ItemLocationEnum.OffHand, EquippedBy="Empty", ImgSource="Staff2.png"},
+                new Item { Guid = Guid.NewGuid().ToString(), Name = "Mage Ring", HP=5, MP=15, Type = "Ring", Lvl=4, Atk=98,Def=5, Spd=2, Luk=9,SpecialAbility="null", EquippableLocation="LeftFinger",Location=ItemLocationEnum.LeftFinger, EquippedBy="Empty", ImgSource="Ring.png"},
+                new Item { Guid = Guid.NewGuid().ToString(), Name = "Mage Ring", HP=5, MP=15, Type = "Ring", Lvl=5, Atk=98,Def=5, Spd=2, Luk=9,SpecialAbility="null", EquippableLocation="RightFinger",Location=ItemLocationEnum.RightFinger, EquippedBy="Empty", ImgSource="Ring.png"}
             };
 
             foreach (var data in mockItems)
@@ -88,12 +88,12 @@ namespace TheLastHero.Services
             }
             var mockCharacters = new List<Character>
             {
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=99,Def=0, Spd=12, Luk=1, Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=100, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="KnightRight.png",xPosition=0,yPosition=0},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=99,Def=0, Spd=6, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=100, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="MageRight.png",xPosition=0,yPosition=1},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=99,Def=0, Spd=10, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=100, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="WarriorRight.png",xPosition=0,yPosition=2},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Fourth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=99,Def=0, Spd=4, Luk=1,Type="Human", AtkRange=2, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=100, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="ArcherRight.png",xPosition=0,yPosition=3},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Fifth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=99,Def=0, Spd=8, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=100, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="FighterRight.png",xPosition=0,yPosition=4},
-                new Character{ Id = Guid.NewGuid().ToString(), Name = "Sixth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=99,Def=0, Spd=2, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=2 , NextLevelExp=100, EquippedItem=new Dictionary<Character.Locations, Item>(),ImgSource="ThiefRight.png",xPosition=0,yPosition=5},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "First Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=999,Def=0, Spd=12, Luk=1, Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=3 , NextLevelExp=100, EquippedItem=new Dictionary<ItemLocationEnum, Item>(),ImgSource="KnightRight.png",xPosition=0,yPosition=0},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Second Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=999,Def=0, Spd=6, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=3 , NextLevelExp=100, EquippedItem=new Dictionary<ItemLocationEnum, Item>(),ImgSource="MageRight.png",xPosition=0,yPosition=1},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Third Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=999,Def=0, Spd=10, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=3 , NextLevelExp=100, EquippedItem=new Dictionary<ItemLocationEnum, Item>(),ImgSource="WarriorRight.png",xPosition=0,yPosition=2},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Fourth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=999,Def=0, Spd=4, Luk=1,Type="Human", AtkRange=2, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=3 , NextLevelExp=100, EquippedItem=new Dictionary<ItemLocationEnum, Item>(),ImgSource="ArcherRight.png",xPosition=0,yPosition=3},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Fifth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=999,Def=0, Spd=8, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=3 , NextLevelExp=100, EquippedItem=new Dictionary<ItemLocationEnum, Item>(),ImgSource="FighterRight.png",xPosition=0,yPosition=4},
+                new Character{ Id = Guid.NewGuid().ToString(), Name = "Sixth Character", MaxHP = 100, CurrentHP = 100, Friendly = true, Lvl = 1, Atk=999,Def=0, Spd=2, Luk=1,Type="Human", AtkRange=1, CurrentExp=0, CurrentMP=100, IsCapLevel=false, LiveStatus= true, MaxMP=100, MoveRange=3 , NextLevelExp=100, EquippedItem=new Dictionary<ItemLocationEnum, Item>(),ImgSource="ThiefRight.png",xPosition=0,yPosition=5},
             };
 
             foreach (var data in mockCharacters)
@@ -109,7 +109,7 @@ namespace TheLastHero.Services
         {
 
             // Check to see if the item exist
-            var oldData = await GetAsync_Item(data.Id);
+            var oldData = await GetAsync_Item(data.Guid);
             if (oldData == null)
             {
                 _itemDataset.Add(data);
@@ -135,7 +135,7 @@ namespace TheLastHero.Services
 
         public async Task<bool> UpdateAsync_Item(Item data)
         {
-            var myData = _itemDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            var myData = _itemDataset.FirstOrDefault(arg => arg.Guid == data.Guid);
             if (myData == null)
             {
                 return false;
@@ -148,7 +148,7 @@ namespace TheLastHero.Services
 
         public async Task<bool> DeleteAsync_Item(Item data)
         {
-            var myData = _itemDataset.FirstOrDefault(arg => arg.Id == data.Id);
+            var myData = _itemDataset.FirstOrDefault(arg => arg.Guid == data.Guid);
             _itemDataset.Remove(myData);
 
             return await Task.FromResult(true);
@@ -156,7 +156,7 @@ namespace TheLastHero.Services
 
         public async Task<Item> GetAsync_Item(string id)
         {
-            return await Task.FromResult(_itemDataset.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(_itemDataset.FirstOrDefault(s => s.Guid == id));
         }
 
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)

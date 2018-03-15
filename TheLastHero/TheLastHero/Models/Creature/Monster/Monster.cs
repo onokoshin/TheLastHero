@@ -52,7 +52,7 @@ namespace TheLastHero.Models
             if (Drop)
             {
                 Item item = new Item(Round);
-                UniqueDropID = item.Id;
+                UniqueDropID = item.Guid;
             }
             else
             {
@@ -104,8 +104,6 @@ namespace TheLastHero.Models
             {
                 return;
             }
-
-
             //update all the fields in creature except for Id
             Name = newData.Name;
             Friendly = newData.Friendly;
@@ -126,30 +124,34 @@ namespace TheLastHero.Models
             // Update all the fields in the Monster
             UniqueDropID = newData.UniqueDropID;
             Drop = newData.Drop;
-
-
-
         }
 
         // Upgrades a monster to a set level
-        //public void ScaleLevel(int level)
-        //{
-        //    // Calculate Experience Remaining based on Lookup...
-        //    Level = level;
+        public void ScaleLevel(int level)
+        {
+            // Calculate Experience Remaining based on Lookup...
+            Lvl = level;
 
-        //    // Get the number of points at the next level, and set it for Experience Total...
-        //    ExperienceTotal = LevelTable.Instance.LevelDetailsList[Level + 1].Experience;
-        //    ExperienceRemaining = ExperienceTotal;
+            // Get the number of points at the next level, and set it for Experience Total...
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[level + 1].Experience;
+            ExperienceRemaining = ExperienceTotal;
 
-        //    Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[Level].Attack;
-        //    Attribute.Attack = LevelTable.Instance.LevelDetailsList[Level].Attack;
-        //    Attribute.Defense = LevelTable.Instance.LevelDetailsList[Level].Defense;
-        //    Attribute.Speed = LevelTable.Instance.LevelDetailsList[Level].Speed;
-        //    Attribute.MaxHealth = 5 * Level;    // 1/2 of what Characters can get per level.. 
-        //    Attribute.CurrentHealth = Attribute.MaxHealth;
+            Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[level].Attack;
+            Atk = LevelTable.Instance.LevelDetailsList[level].Attack;
+            Def = LevelTable.Instance.LevelDetailsList[level].Defense;
+            Spd = LevelTable.Instance.LevelDetailsList[level].Speed;
+            MaxHP = 100 + 10 * Lvl;    // 1/2 of what Characters can get per level.. 
+            CurrentHP = MaxHP;
 
-        //    AttributeString = AttributeBase.GetAttributeString(Attribute);
-        //}
+
+
+            //AttributeString = AttributeBase.GetAttributeString(Attribute);
+        }
+
+        public int GetLevelBasedDamage()
+        {
+            return (int)Math.Ceiling(Lvl * 0.25);
+        }
 
         // Calculate How much experience to return
         // Formula is the % of Damage done up to 100%  times the current experience

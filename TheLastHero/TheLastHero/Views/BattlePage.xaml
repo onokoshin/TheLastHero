@@ -4,7 +4,7 @@
         <StackLayout Orientation="Vertical" Padding="0" Margin="0">
             <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
                 <Image Source="{Binding curCharacter.ImgSource}" HeightRequest="60" WidthRequest="60" />
-                <!--<StackLayout VerticalOptions="Center" Padding="0" Margin="0" Orientation="Vertical">
+                <StackLayout VerticalOptions="Center" Padding="0" Margin="0" Orientation="Vertical">
                     <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
                         <Label Text="{Binding curCharacter.Name}" TextColor="Purple" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="18" />
                         <Label Text="Lvl" FontSize="18" TextColor="#FFD700" />
@@ -26,10 +26,10 @@
                         <Label Text="Luk:" FontSize="12" />
                         <Label Text="{Binding curCharacter.Luk}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
                     </StackLayout>
-                </StackLayout>-->
-                <Button Clicked="Reset_Clicked" Text="Reset" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+                </StackLayout>
+                <!--<Button Clicked="Reset_Clicked" Text="Reset" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
                 <Button Clicked="Potion_Clicked" IsEnabled="{Binding availablePotion}" Text="Potion" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
-                <Button Clicked="FocusAtk_Clicked" IsEnabled="{Binding availableFocusAtk}" Text="Focus" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+                <Button Clicked="FocusAtk_Clicked" IsEnabled="{Binding availableFocusAtk}" Text="Focus" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />-->
             </StackLayout>
             <StackLayout VerticalOptions="Start" Padding="0" Margin="0">
                 <Grid x:Name="BattleGrid" RowSpacing="0" ColumnSpacing="-32" Padding="0" Margin="0" VerticalOptions="Start" HorizontalOptions="Center" HeightRequest="486" WidthRequest="405">

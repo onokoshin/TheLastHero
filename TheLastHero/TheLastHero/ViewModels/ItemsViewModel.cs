@@ -56,7 +56,7 @@ namespace TheLastHero.ViewModels
             MessagingCenter.Subscribe<EditItemPage, Item>(this, "EditData", async (obj, data) =>
             {
                 // Find the Item, then update it
-                var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
+                var myData = Dataset.FirstOrDefault(arg => arg.Guid == data.Guid);
                 if (myData == null)
                 {
                     return;
@@ -137,7 +137,7 @@ namespace TheLastHero.ViewModels
         public async Task<bool> UpdateAsync(Item data)
         {
             // Find the Item, then update it
-            var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
+            var myData = Dataset.FirstOrDefault(arg => arg.Guid == data.Guid);
             if (myData == null)
             {
                 return false;
