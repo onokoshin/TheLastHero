@@ -10,6 +10,7 @@ namespace TheLastHero.Models
 
         public string Name { get; set; }
 
+        //score total is going to be based on experiences 
         public int ScoreTotal { get; set; }
 
         // The Date the game played, and when the score was saved
@@ -66,5 +67,44 @@ namespace TheLastHero.Models
             ItemsDroppedList = newData.ItemsDroppedList;
 
         }
+
+        #region ScoreItems
+
+        // Adding a character to the score output as a text string
+        public bool AddCharacterToList(Character data)
+        {
+            if (data == null)
+            {
+                return false;
+            }
+
+            CharacterAtDeathList += data.FormatOutput() + "\n";
+            return true;
+        }
+
+        // All a monster to the list of monsters and their stats
+        public bool AddMonsterToList(Monster data)
+        {
+            if (data == null)
+            {
+                return false;
+            }
+
+            MonstersKilledList += data.FormatOutput() + "\n";
+            return true;
+        }
+
+        // All an item to the list of items for score and their stats
+        public bool AddItemToList(Item data)
+        {
+            if (data == null)
+            {
+                return false;
+            }
+
+            ItemsDroppedList += data.FormatOutput() + "\n";
+            return true;
+        }
+        #endregion ScoreItems
     }
 }

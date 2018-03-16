@@ -52,12 +52,16 @@ namespace TheLastHero.Views
 
         private GameEngineViewModel _viewModel;
 
+        private CharactersViewModel charactersViewModel;
+
         //Constructor 
-        public BattlePage()
+        public BattlePage(CharactersViewModel Data)
         {
+            charactersViewModel = Data;
             InitializeComponent();
+
             _viewModel = GameEngineViewModel.Instance;
-            _viewModel.MoveFirstCreature();
+            _viewModel.MoveFirstCreature(charactersViewModel);
             BindingContext = _viewModel;
         }
 
@@ -116,6 +120,21 @@ namespace TheLastHero.Views
         public void Cell43Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 3); }
         public void Cell44Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 4); }
         public void Cell45Clicked(object sender, EventArgs e) { HandleButtonClicked(4, 5); }
+
+        private void Potion_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.UsePotion();
+            BindingContext = null;
+            BindingContext = _viewModel;
+        }
+
+        private void FocusAtk_Clicked(object sender, EventArgs e)
+        {
+            _viewModel.UseFocusAtk();
+            BindingContext = null;
+            BindingContext = _viewModel;
+        }
+
         private void HandleButtonClicked(int x, int y)
         {
             _viewModel.HandleButtonClicked(x, y);

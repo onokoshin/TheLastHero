@@ -8,7 +8,7 @@
         <StackLayout>
             <Label Text="Character Slection">
             </Label>
-            <ListView x:Name="ItemsListView" ItemsSource="{Binding Dataset}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="true" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnCharacterSelected">
+            <ListView x:Name="ItemsListView" ItemsSource="{Binding Dataset}" VerticalOptions="FillAndExpand" HasUnevenRows="true" RefreshCommand="{Binding LoadItemsCommand}" IsPullToRefreshEnabled="False" IsRefreshing="{Binding IsBusy, Mode=OneWay}" CachingStrategy="RecycleElement" ItemSelected="OnCharacterSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

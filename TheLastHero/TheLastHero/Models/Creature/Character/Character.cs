@@ -38,8 +38,10 @@ namespace TheLastHero.Models
 
         public string EquippedItemListString { get; set; }
         public List<string> EquippedItemList { get; set; }
-
+        //partySlotNum is used in character selection
         public int PartySlotNum { get; set; }
+
+        public int totalDamage { get; set; }
 
         //constructor for character
         //When default character is created, everything will be set to 1
@@ -146,6 +148,7 @@ namespace TheLastHero.Models
 
         private void SetDefaultValues()
         {
+            Id = Guid.NewGuid().ToString();
             Spd = 0;
             Def = 0;
             Atk = 0;
@@ -154,9 +157,17 @@ namespace TheLastHero.Models
             MaxMP = 0;
             Lvl = 0;
             Luk = 0;
+            MoveRange = 1;
+            AtkRange = 1;
             ImgSource = "EmptySlot2.png";
             Name = "Empty Slot";
             Type = "";
+            Friendly = true;
+            CurrentExp = 0;
+            IsCapLevel = false;
+            LiveStatus = true;
+            NextLevelExp = 100;
+            EquippedItem = new Dictionary<ItemLocationEnum, Item>();
 
         }
 
@@ -367,5 +378,25 @@ namespace TheLastHero.Models
         }
 
         #endregion GetAttributes
+
+        // Helper to combine the attributes into a single line, to make it easier to display the item as a string
+        public string FormatOutput()
+        {
+            var myReturn = string.Empty;
+            myReturn += Name;
+            myReturn += " , Level : " + Lvl.ToString();
+            myReturn += " , Total Experience : " + CurrentExp;
+            myReturn += " , Attack :  " + Atk;
+            myReturn += " , Defense :  " + Def;
+            myReturn += " , Speed :  " + Spd;
+            myReturn += " , Type: " + Type;
+            myReturn += " , MoveingRange: " + MoveRange;
+            myReturn += " , AttackRange: " + AtkRange;
+            //Item section comes here 
+            //myReturn += " , Items : " + ItemSlotsFormatOutput();
+            myReturn += " Damage : " + totalDamage;
+
+            return myReturn;
+        }
     }
 }

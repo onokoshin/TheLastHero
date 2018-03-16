@@ -13,7 +13,6 @@ namespace TheLastHero.Views
     {
         // ReSharper disable once NotAccessedField.Local
         private CharactersViewModel _viewModel;
-        public String Slot1 = "Bow.png";
         public int locationPtr = 0;
 
         public CharacterSelectionPage()
@@ -24,18 +23,22 @@ namespace TheLastHero.Views
 
         private void OnCharacterSelected(object sender, SelectedItemChangedEventArgs args)
         {
+                      
             var data = args.SelectedItem as Character;
             if (data == null)
             {
                 return;
             }
 
+            //create a character based on the selection
+            var c = CharacterCreation(data); 
+                
+            //if selected characters are less than 6, it will display alert message. 
             if (locationPtr < 6)
             {
-                data.PartySlotNum = locationPtr;
-                _viewModel.Party[locationPtr] = data;
+                c.PartySlotNum = locationPtr;
+                _viewModel.Party[locationPtr] = c;
                 locationPtr++;
-                //InitializeComponent();
                 BindingContext = null;
                 BindingContext = _viewModel;
             }
@@ -50,6 +53,38 @@ namespace TheLastHero.Views
             ItemsListView.SelectedItem = null;
         }
 
+        private Character CharacterCreation(Character data)
+        {
+            Character c = new Character();
+            if (data.ImgSource.Equals("") || data.ImgSource.Equals(null))
+            {
+                c.Spd = data.Spd;
+                c.Def = data.Def;
+                c.Atk = data.Atk;
+                c.CurrentHP = data.CurrentHP;
+                c.MaxHP = data.MaxHP;
+                c.MaxMP = data.MaxMP;
+                c.Lvl = data.Lvl;
+                c.Luk = data.Luk;
+                c.Name = data.Name;
+                c.ImgSource = "EmptySlot2.png";
+            }
+            else
+            {
+                c.Spd = data.Spd;
+                c.Def = data.Def;
+                c.Atk = data.Atk;
+                c.CurrentHP = data.CurrentHP;
+                c.MaxHP = data.MaxHP;
+                c.MaxMP = data.MaxMP;
+                c.Lvl = data.Lvl;
+                c.Luk = data.Luk;
+                c.Name = data.Name;
+                c.ImgSource = data.ImgSource;
+            }
+
+            return c;
+        }
 
         private void OnCharacterDeselected(object sender, SelectedItemChangedEventArgs args)
         {
@@ -59,10 +94,10 @@ namespace TheLastHero.Views
                 return;
             }
 
-            if (locationPtr != 0)
+            if (locationPtr != 0 && !data.ImgSource.Equals("EmptySlot2.png"))
             {
 
-                if (data.PartySlotNum != 5)
+                if (data.PartySlotNum != 5 )
                 {
                     int tempNum = data.PartySlotNum;
                     while (tempNum != 5)
@@ -122,7 +157,17 @@ namespace TheLastHero.Views
         {
             //Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
             //Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
-            await Navigation.PushAsync(new BattlePage());
+            if(locationPtr < 6)
+            {
+                await DisplayAlert("Alert", "Please select 6 characters to start the battle.", "OK");
+            }
+            else
+            {
+                 
+                await Navigation.PushAsync(new BattlePage(_viewModel));
+            }
+
+            
         }
 
         protected override void OnAppearing()
@@ -133,6 +178,7 @@ namespace TheLastHero.Views
 
             if (ToolbarItems.Count > 0)
             {
+                ToolbarItems.RemoveAt(1);
                 ToolbarItems.RemoveAt(0);
             }
 
@@ -147,6 +193,7 @@ namespace TheLastHero.Views
                 _viewModel.LoadDataCommand.Execute(null);
             }
             _viewModel.RefreshParty();
+            locationPtr = 0; 
             BindingContext = _viewModel;
         }
     }

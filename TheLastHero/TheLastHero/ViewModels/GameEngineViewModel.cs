@@ -16,6 +16,7 @@ namespace TheLastHero.ViewModels
 
 
         public GameEngine gameEngine { get; set; }
+        public CharactersViewModel characterViewModel { get; set; }
         public Battle battle { get; set; }
         public Character curCharacter { get; set; }
 
@@ -64,6 +65,7 @@ namespace TheLastHero.ViewModels
         public int DamageAmount = 0;
         public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
 
+        private CharactersViewModel charViewModel;
 
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
@@ -139,8 +141,9 @@ namespace TheLastHero.ViewModels
 
         }
 
-        public void MoveFirstCreature()
+        public void MoveFirstCreature(CharactersViewModel dataFromBattlePage)
         {
+            charViewModel = dataFromBattlePage;
             // read sqldatabase or mockdatabase
             LoadDataCommand.Execute(null);
             // start with level 1 by default
@@ -245,6 +248,14 @@ namespace TheLastHero.ViewModels
                     movedMonsters.Enqueue(curMonster);
                     curMonster = null;
                 }
+                // character turn dequeue and hold dont enqueue.
+                curCharacter = gameEngine.characterQueue.Dequeue();
+
+                battle.SetAllSelection(Battle.HIGHLIGHTGREY);
+                //highlight current character
+                battle.battleMapSelection[curCharacter.xPosition, curCharacter.yPosition] = Battle.HIGHLIGHTGREEN;
+                // function that takes characters move range and attack range and update to screen.
+                RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
             }
 
             //_script.scriptCounter = 1;
@@ -366,6 +377,27 @@ namespace TheLastHero.ViewModels
                 }
             }
         }*/
+
+        public void InitCharacterQueueTest(CharactersViewModel viewModel)
+        {
+            characterViewModel = viewModel;
+
+            if (characterViewModel.Party.Count > 0)
+            {
+                gameEngine.characterQueue.Clear();
+                int y = 0;
+
+                foreach (Character c in characterViewModel.Party)
+                {
+                    c.xPosition = 0;
+                    c.yPosition = y;
+                    gameEngine.characterQueue.Enqueue(c);
+                    y++;
+                }
+
+            }
+        }
+
         public void InitCharacterQueue()
         {
             if (CharacterDataset.Count > 0)
@@ -792,7 +824,7 @@ namespace TheLastHero.ViewModels
                     //load data
 
                     GenerateNewMonsters();
-                    LoadDataCommandCharacterOnly.Execute(null);
+                    //LoadDataCommandCharacterOnly.Execute(null);
                     // start with level 1 by default
                     gameEngine.currentRound += 1;
 
@@ -977,15 +1009,15 @@ namespace TheLastHero.ViewModels
                 gameEngine.DialogCache[i] = gameEngine.DialogCache[i - 1];
             }
             gameEngine.DialogCache[0] = str;
-            gameEngine.ConsoleDialog1 = gameEngine.DialogCache[0];
-            /*+ "\n"
-            +  gameEngine.DialogCache[1] + "\n"
-            +  gameEngine.DialogCache[2] + "\n"
-            +  gameEngine.DialogCache[3] + "\n"
-            +  gameEngine.DialogCache[4];*/
+            gameEngine.ConsoleDialog1 = gameEngine.DialogCache[0]
+            + "\n"
+            + gameEngine.DialogCache[1] + "\n"
+            + gameEngine.DialogCache[2] + "\n"
+            + gameEngine.DialogCache[3] + "\n"
+            + gameEngine.DialogCache[4];
         }
 
-        public void Potion_Clicked(object sender, EventArgs e)
+        public void UsePotion()
         {
             if (curCharacter != null && potionNum > 0 && curCharacter.CurrentHP < curCharacter.MaxHP)
             {
@@ -1004,7 +1036,7 @@ namespace TheLastHero.ViewModels
 
         }
 
-        public void FocusAtk_Clicked(object sender, EventArgs e)
+        public void UseFocusAtk()
         {
 
         }
@@ -1219,6 +1251,7 @@ namespace TheLastHero.ViewModels
                 tmpC = gameEngine.characterQueue.Dequeue();
                 if (tmpC.Id.Equals(target.Id))
                 {
+                    charViewModel.Party.Remove(tmpC);
                     tmpC = null;
                 }
                 else
@@ -1231,6 +1264,7 @@ namespace TheLastHero.ViewModels
                 tmpC = movedCharacters.Dequeue();
                 if (tmpC.Id.Equals(target.Id))
                 {
+                    charViewModel.Party.Remove(tmpC);
                     tmpC = null;
                 }
                 else
@@ -1249,6 +1283,9 @@ namespace TheLastHero.ViewModels
                 tmpC = tmp2.Dequeue();
                 movedCharacters.Enqueue(tmpC);
             }
+
+
+
         }
 
         private void UpdateTargetInQueues(Character target)
@@ -1361,7 +1398,7 @@ namespace TheLastHero.ViewModels
             }
 
             //Calculate miss/dodge based on calculation 
-            TakeTurn(c, m);
+            dmg = CriticalOrMissCTM(c, m, dmg);
 
             //Instead of calculating damage here directly, i am using m.TakeDamage function. It also changes LiveStatus from true to false if CurrentHP < 0 
             //m.CurrentHP -= dmg;
@@ -1382,7 +1419,34 @@ namespace TheLastHero.ViewModels
                 PrintDialog(c.Name + " has leveled up! " + c.Name + " is now Lvl:" + c.Lvl);
         }
 
-        public bool TakeTurn(Character Attacker, Monster Defender)
+        public int CriticalOrMissCTM(Character Attacker, Monster Defender, int damage)
+        {
+            //attackscore = level + base attack + level attack bonus + level item attack modifier
+            var AttackScore = Attacker.Lvl + Attacker.GetAttack();
+
+            //DefenseScore =  
+            var DefenseScore = Defender.Def + Defender.Lvl;
+
+            //returns whether it was critical hit or miss
+            var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
+
+            //if it was critical hit, the damage will be doubled 
+            if (HitSuccess == HitStatusEnum.CriticalHit)
+            {
+                damage = damage * 2;
+                PrintDialog("The attack is a critical hit (2x damage)!");
+            }
+            //if it was miss, damage will be decreased to 0
+            else if (HitSuccess == HitStatusEnum.CriticalMiss || HitSuccess == HitStatusEnum.Miss)
+            {
+                damage = 0;
+                PrintDialog("The attack is a miss!");
+            }
+
+            return damage;
+        }
+
+        /* public bool TakeTurn(Character Attacker, Monster Defender)
         {
             // Choose Move or Attack
 
@@ -1395,7 +1459,7 @@ namespace TheLastHero.ViewModels
             TurnAsAttack(Attacker, AttackScore, Defender, DefenseScore);
 
             return true;
-        }
+        }*/
 
         // Character attacks Monster
         public bool TurnAsAttack(Character Attacker, int AttackScore, Monster Target, int DefenseScore)
@@ -1504,24 +1568,29 @@ namespace TheLastHero.ViewModels
         {
 
             var d20 = HelperEngine.RollDice(1, 20);
+            var tempDefenseScore = 0;
 
             // Turn On UnitTestingSetRoll
-            if (GameGlobals.ForceRollsToNotRandom)
+            if (GameGlobals.EnableCriticalHitDamage)
             {
-                // Don't let it be 0, if it was not initialized...
-                if (GameGlobals.ForceToHitValue < 1)
-                {
-                    GameGlobals.ForceToHitValue = 1;
-                }
-
-                d20 = GameGlobals.ForceToHitValue;
+                //set the die to 20 to force critical hit
+                d20 = 20;
+                GameGlobals.EnableMiss = false;
             }
-
-            if (d20 == 1)
+            else if (GameGlobals.EnableMiss)
             {
-                // Force Miss
-                HitStatus = HitStatusEnum.CriticalMiss;
-                return HitStatus;
+                d20 = 1;
+
+                //force the defense score to be high so that defense > offense happens 
+                tempDefenseScore = int.MaxValue;
+                var temp = 0;
+                temp = DefenseScore;
+                DefenseScore = tempDefenseScore;
+                tempDefenseScore = temp;
+
+                //making sure that critical boolean is false since miss is on 
+                //Only one situation can happen, not both at the same time 
+                GameGlobals.EnableCriticalHitDamage = false;
             }
 
             if (d20 == 20)
@@ -1538,6 +1607,12 @@ namespace TheLastHero.ViewModels
                 // Miss
                 HitStatus = HitStatusEnum.Miss;
                 DamageAmount = 0;
+                //swap back the defensescore 
+                var temp = 0;
+                temp = DefenseScore;
+                DefenseScore = tempDefenseScore;
+                tempDefenseScore = temp;
+                Console.WriteLine(tempDefenseScore + " " + DefenseScore);
             }
             else
             {
@@ -1685,7 +1760,7 @@ namespace TheLastHero.ViewModels
             }
             //take care of dataset
             InitMonsterQueue();
-            InitCharacterQueue();
+            InitCharacterQueueTest(charViewModel);
             RenderCharactersMonsters();
         }
     }

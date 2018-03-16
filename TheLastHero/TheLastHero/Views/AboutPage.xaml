@@ -120,5 +120,39 @@
                     HorizontalOptions="CenterAndExpand"
                     TextColor="Black" />
         </StackLayout>
+        <StackLayout
+                HorizontalOptions="Start"
+                Orientation="Horizontal">
+
+            <Label 
+                FontSize="Small"
+                Text="Critical Hit Every Time!"
+                HorizontalTextAlignment="Start"
+                HorizontalOptions="Start"
+                />
+
+            <Switch 
+                x:Name="EnableCriticalHitDamage"
+                HorizontalOptions="EndAndExpand"
+                Toggled="EnableCriticalHitDamage_OnToggled"
+                IsToggled="False"/>
+        </StackLayout>
+        <StackLayout
+                HorizontalOptions="Start"
+                Orientation="Horizontal">
+
+            <Label 
+                FontSize="Small"
+                Text="Miss Every Time!"
+                HorizontalTextAlignment="Start"
+                HorizontalOptions="Start"
+                />
+
+            <Switch 
+                x:Name="EnableMiss"
+                HorizontalOptions="EndAndExpand"
+                Toggled="EnableMissProblems_OnToggled"
+                IsToggled="False"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

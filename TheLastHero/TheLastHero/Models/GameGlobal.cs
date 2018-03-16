@@ -34,5 +34,8 @@ namespace TheLastHero.Models
         {
             ForceRollsToNotRandom = !ForceRollsToNotRandom;
         }
+
+        public static bool EnableCriticalHitDamage = false;
+        public static bool EnableMiss = false;
     }
 }

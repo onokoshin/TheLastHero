@@ -208,6 +208,33 @@ namespace TheLastHero.Models
             }
         }
 
+        public string FormatOutput()
+        {
+            //code below is for item 
+
+            //var UniqueOutput = "None";
+            //var myUnique = ItemsViewModel.Instance.GetItem(UniqueItem);
+            //if (myUnique != null)
+            //{
+            //    UniqueOutput = myUnique.FormatOutput();
+            //}
+
+
+            var myReturn = Name;
+            myReturn += " , Level : " + Lvl.ToString();
+            myReturn += " , Total Experience : " + ExperienceTotal;
+            myReturn += " , Attack :  " + Atk;
+            myReturn += " , Defense :  " + Def;
+            myReturn += " , Speed :  " + Spd;
+            myReturn += " , Type: " + Type;
+            myReturn += " , MoveingRange: " + MoveRange;
+            myReturn += " , AttackRange: " + AtkRange;
+            //once the item is done, uncomment the line below 
+            //myReturn += " , Unique Item : " + UniqueOutput;
+
+            return myReturn;
+        }
+
         #region GetAttributes
         // Get Attributes
 

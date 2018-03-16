@@ -31,22 +31,13 @@ namespace TheLastHero.ViewModels
 
         public ObservableCollection<Character> Dataset { get; set; }
 
-        public List<Character> Party { get; set; }
+        public List<Character> Party { get; set; } = new List<Character>();
         public Command LoadDataCommand { get; set; }
 
-        public String Slot1;
-        public String Slot2;
-        public String Slot3 = "EmptySlot.png";
-        public String Slot4 = "EmptySlot.png";
-        public String Slot5 = "EmptySlot.png";
-        public String Slot6 = "EmptySlot.png";
+
 
         Character c1 = new Character();
-        Character c2 = new Character();
-        Character c3 = new Character();
-        Character c4 = new Character();
-        Character c5 = new Character();
-        Character c6 = new Character();
+
 
         private bool _needsRefresh;
 
@@ -57,11 +48,11 @@ namespace TheLastHero.ViewModels
             Dataset = new ObservableCollection<Character>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
+            Party.Clear();
             //Testing Partlist 
-            Party = new List<Character>();
-            for(int i=1; i<7; i++)
+            for (int i = 1; i < 7; i++)
             {
-                Party.Add(c1); 
+                Party.Add(c1);
             }
 
             MessagingCenter.Subscribe<DeleteCharacterPage, Character>(this, "DeleteData", async (obj, data) =>
@@ -97,7 +88,7 @@ namespace TheLastHero.ViewModels
 
         public void RefreshParty()
         {
-            Party = new List<Character>();
+            Party.Clear();
             for (int i = 1; i < 7; i++)
             {
                 Party.Add(c1);

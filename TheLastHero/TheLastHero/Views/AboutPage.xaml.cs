@@ -16,6 +16,9 @@ namespace TheLastHero.Views
             InitializeComponent();
 
             SettingDataSource.IsToggled = true;
+            // Set debug settings
+            EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage;
+            EnableMiss.IsToggled = GameGlobals.EnableMiss; 
         }
 
         private void Switch_OnToggled(object sender, ToggledEventArgs e)
@@ -105,6 +108,30 @@ namespace TheLastHero.Views
             }
 
             var answer = await DisplayAlert("Returned List", myOutput, "Yes", "No");
+        }
+
+        // Turn on Critical Misses
+        private void EnableMissProblems_OnToggled(object sender, ToggledEventArgs e)
+        {
+            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
+            GameGlobals.EnableMiss = e.Value;
+            if (GameGlobals.EnableMiss)
+            {
+                GameGlobals.EnableCriticalHitDamage = false;
+                EnableCriticalHitDamage.IsToggled = GameGlobals.EnableCriticalHitDamage; 
+            }
+        }
+
+        // Turn on Critical Hit Damage
+        private void EnableCriticalHitDamage_OnToggled(object sender, ToggledEventArgs e)
+        {
+            // This will change out the DataStore to be the Mock Store if toggled on, or the SQL if off.
+            GameGlobals.EnableCriticalHitDamage = e.Value;
+            if (GameGlobals.EnableCriticalHitDamage)
+            {
+                GameGlobals.EnableMiss = false;
+                EnableMiss.IsToggled = GameGlobals.EnableMiss;
+            }
         }
     }
 }
