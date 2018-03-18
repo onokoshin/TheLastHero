@@ -14,6 +14,7 @@ namespace TheLastHero.Models.Battle
         public const string GRASS = "Grass.png";
         public const string LAVA = "Lava.png";
         public const string SAND = "Sand.png";
+        public const string SNOW = "Snow.png";
 
         public string title { get; set; }
 

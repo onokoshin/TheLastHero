@@ -37,7 +37,7 @@ namespace TheLastHero.Models
         public Dictionary<ItemLocationEnum, Item> EquippedItem;
 
         public string EquippedItemListString { get; set; }
-        public List<string> EquippedItemList { get; set; }
+        //public List<string> EquippedItemList { get; set; }
         //partySlotNum is used in character selection
         public int PartySlotNum { get; set; }
 
@@ -49,7 +49,7 @@ namespace TheLastHero.Models
         {
             //instantiate equippedItem so that characters can have weapons
             //equippedItem = new Dictionary<>(); 
-            EquippedItemList = new List<string>();
+            //EquippedItemList = new List<string>();
             SetDefaultValues();
             LiveStatus = true;
 
@@ -88,7 +88,7 @@ namespace TheLastHero.Models
             if (EquippedItem.ContainsKey(location))
                 EquippedItem.Remove(location);
             EquippedItem.Add(location, item);
-            EquippedItemList.Add(item.Name);
+            //EquippedItemList.Add(item.Name);
             UpdateEquippedItemListString();
 
         }
@@ -96,10 +96,10 @@ namespace TheLastHero.Models
 
         private void UpdateEquippedItemListString()
         {
-            EquippedItemListString = "";
+           /* EquippedItemListString = "";
             foreach (string s in EquippedItemList)
                 EquippedItemListString += s;
-
+            */
         }
 
         public void RemoveItem(Item item, ItemLocationEnum location)

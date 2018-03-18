@@ -18,6 +18,7 @@ namespace TheLastHero.Views
 
             Data = new Monster
             {
+                Id = Guid.NewGuid().ToString(),
                 Name = "Monster name",
                 ImgSource = "SkeletonLeft.png",
                 Type = "Ghost",
@@ -25,9 +26,11 @@ namespace TheLastHero.Views
 
             var level = 0;
             Data.ScaleLevel(level);
-            Data.Lvl = 1; 
+            Data.Lvl = 1;
             BindingContext = this;
         }
+
+
 
         private async void Save_Clicked(object sender, EventArgs e)
         {

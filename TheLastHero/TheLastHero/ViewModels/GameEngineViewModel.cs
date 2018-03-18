@@ -13,11 +13,10 @@ namespace TheLastHero.ViewModels
 {
     public class GameEngineViewModel : BaseViewModel
     {
+        // declare varaibles
         public GameEngine gameEngine { get; set; }
         public CharactersViewModel characterViewModel { get; set; }
         public Battle battle { get; set; }
-        public Character curCharacter { get; set; }
-
         public ObservableCollection<Character> CharacterDataset { get; set; }
         public ObservableCollection<Monster> MonsterDataset { get; set; }
         //public ObservableCollection<Creature> CreatureDataset { get; set; }
@@ -25,7 +24,7 @@ namespace TheLastHero.ViewModels
         public Command LoadDataCommand { get; set; }
         public Command LoadDataCommandCharacterOnly { get; set; }
 
-        // for hackathon
+        // for hackathon changes
         public int potionNum { get; set; }
         public bool allowRoundHealing { get; set; }
         public bool availablePotion { get; set; }
@@ -35,18 +34,14 @@ namespace TheLastHero.ViewModels
         public Random magicReviveRandom = new Random();
         public int magicReviveTarget = 6;
 
-        private bool _needsRefresh;
-
-
-
-        // Batstle map is a grid layout  
-        //Grid battleGrid = new Grid();
-
+        //turn management variables
+        public Character curCharacter { get; set; }
         Monster curMonster = new Monster();
         bool atkTurn = false;
         bool endTurn = false;
         bool endRound = false;
         public bool gameOver = false;
+        private bool _needsRefresh;
 
         //Koshin's Addition
         //Holds the official score
@@ -62,25 +57,12 @@ namespace TheLastHero.ViewModels
         public int DamageAmount = 0;
         public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
 
+        // CharacterViewModel is used to pass selection of characters
         private CharactersViewModel charViewModel;
 
-
-
-        // Make this a singleton so it only exist one time because holds all the data records in memory
-        //private static GameEngineViewModel _instance;
-
-        /*public static GameEngineViewModel Instance
-        {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new GameEngineViewModel();
-                }
-                return _instance;
-            }
-        }*/
-
+        // constructer of GameEngineViewModel
+        // It will loads data from Datastore
+        // also creates instances of gameEngine and battle class
         public GameEngineViewModel()
         {
             CharacterDataset = new ObservableCollection<Character>();
@@ -98,6 +80,9 @@ namespace TheLastHero.ViewModels
             curCharacter = new Character();
         }
 
+        // this method automaticall move monsters if monster's speed id higher than characters
+        // if character is fastest, it will select that character and render move range
+        // and attack range, and wait for player to click to send command
         public void MoveFirstCreature(CharactersViewModel dataFromBattlePage)
         {
             charViewModel = dataFromBattlePage;
@@ -111,12 +96,8 @@ namespace TheLastHero.ViewModels
             allowRoundHealing = true;
             availablePotion = true;
             availableFocusAtk = true;
-            //????should we use 2 queues characterqueue and monsterqueue,
-            // creature queue doesn make sense because we dont need another sets
-            // of creature, we already have character and monsters
 
             // determine weather character or monster
-
             if (gameEngine.characterQueue.Peek().Spd >= gameEngine.monsterQueue.Peek().Spd)
             {
                 // character turn dequeue and hold dont enqueue.
@@ -134,9 +115,7 @@ namespace TheLastHero.ViewModels
                 while (gameEngine.monsterQueue.Count > 0 && (gameEngine.characterQueue.Peek().Spd < gameEngine.monsterQueue.Peek().Spd))
                 {
                     //curMonster =  MonsterDataset.Where(x => x.ID ==  gameEngine.monsterQueue.Peek().ID).First();
-
                     curMonster = gameEngine.monsterQueue.Dequeue();
-
                     // if there is character nearby attack!
                     Character target = CheckNearbyCharacter(curMonster.xPosition, curMonster.yPosition);
                     if (target != null)
@@ -145,7 +124,6 @@ namespace TheLastHero.ViewModels
                         ApplyDamageMTC(curMonster, target);
                         if (target.CurrentHP <= 0)
                         {
-
                             RemoveTargetFromQueues(target);
                             //also need to set livestatus to dead in dataset
                             battle.battleMapId[target.xPosition, target.yPosition] = "";
@@ -157,19 +135,15 @@ namespace TheLastHero.ViewModels
                             battle.battleMapHP[target.xPosition, target.yPosition] = target.CurrentHP.ToString();
                             UpdateTargetInQueues(target);
                         }
-
                     }
                     else
                     {
-                        //move
+                        //move monster
                         if (curMonster.xPosition > 0 && battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition].Equals(""))
                         {
-
-
                             battle.battleMapTop[curMonster.xPosition, curMonster.yPosition] = "";
                             battle.battleMapId[curMonster.xPosition, curMonster.yPosition] = "";
                             battle.battleMapHP[curMonster.xPosition, curMonster.yPosition] = "";
-
                             battle.battleMapTop[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.ImgSource;
                             battle.battleMapId[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.Id;
                             battle.battleMapHP[curMonster.xPosition - 1, curMonster.yPosition] = curMonster.CurrentHP.ToString();
@@ -214,8 +188,6 @@ namespace TheLastHero.ViewModels
                 RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
             }
 
-            //_script.scriptCounter = 1;
-            //RunScript(_script, 0);
             battle.RefreshAllCell();
         }
 
@@ -334,7 +306,9 @@ namespace TheLastHero.ViewModels
             }
         }*/
 
-        public void InitCharacterQueueTest(CharactersViewModel viewModel)
+        // This method grab all characters from characterViewModel and 
+        // register them to gameEngine's characterQueue
+        public void InitCharacterQueue(CharactersViewModel viewModel)
         {
             characterViewModel = viewModel;
 
@@ -354,21 +328,8 @@ namespace TheLastHero.ViewModels
             }
         }
 
-        public void InitCharacterQueue()
-        {
-            if (CharacterDataset.Count > 0)
-            {
-                gameEngine.characterQueue.Clear();
-                int y = 0;
-                foreach (Character c in CharacterDataset)
-                {
-                    c.xPosition = 0;
-                    c.yPosition = y;
-                    gameEngine.characterQueue.Enqueue(c);
-                    y++;
-                }
-            }
-        }
+        // This method grab all monsters from MonsterDataset and 
+        // register them to gameEngine's MonsterQueue
         public void InitMonsterQueue()
         {
             if (MonsterDataset.Count > 0)
@@ -376,16 +337,45 @@ namespace TheLastHero.ViewModels
                 gameEngine.monsterQueue.Clear();
 
                 int y = 0;
-                foreach (Monster m in MonsterDataset)
+                for (int i = 0; i < 6; i++)
                 {
+
+                    var randIndex = HelperEngine.RollDice(1, MonsterDataset.Count() - 1);
+                    Monster m = new Monster();
+                    Monster dataMonster = MonsterDataset[randIndex];
+
+                    //generate new guid and assign all the attributes 
+                    m.Id = Guid.NewGuid().ToString();
                     m.xPosition = 4;
                     m.yPosition = y;
+                    m.Friendly = dataMonster.Friendly;
+                    m.AtkRange = dataMonster.AtkRange;
+                    m.LiveStatus = dataMonster.LiveStatus;
+                    m.CurrentHP = dataMonster.CurrentHP;
+                    m.MaxHP = dataMonster.MaxHP;
+                    m.CurrentMP = dataMonster.CurrentMP;
+                    m.MaxMP = dataMonster.MaxMP;
+                    m.MoveRange = dataMonster.MoveRange;
+                    m.Drop = dataMonster.Drop;
+                    m.Luk = dataMonster.Luk;
+                    m.UniqueDropID = GenerateNewItem().Guid;
+                    m.Type = dataMonster.Type;
+                    m.ImgSource = dataMonster.ImgSource;
+
+                    //Basic Attribute updated 
+                    m.Lvl = dataMonster.Lvl;
+                    m.Atk = dataMonster.Atk;
+                    m.Def = dataMonster.Def;
+                    m.Spd = dataMonster.Spd;
+                    m.Name = dataMonster.Name;
                     gameEngine.monsterQueue.Enqueue(m);
                     y++;
                 }
             }
         }
 
+        // Read item template from ItemDataset and create new item and register
+        // them to gameEngine
         public Item GenerateNewItem()
         {
             //return guid of the item
@@ -396,6 +386,7 @@ namespace TheLastHero.ViewModels
             return i;
         }
 
+        // Copy item helper function
         private void CopyItem(Item i, Item item)
         {
             i.Atk = item.Atk;
@@ -455,6 +446,8 @@ namespace TheLastHero.ViewModels
 
         }
 
+        // When a new round starts, this method will be called, and it creates
+        // new monsters based on current round level and scale that monster to level.
         public void GenerateNewMonsters()
         {
             MonsterDataset.Clear();
@@ -476,8 +469,6 @@ namespace TheLastHero.ViewModels
                 m.xPosition = 4;
                 m.yPosition = i;
                 Random r = new Random();
-
-
                 m.UniqueDropID = GenerateNewItem().Guid;
 
                 int rnum = r.Next(1, 9);
@@ -538,6 +529,8 @@ namespace TheLastHero.ViewModels
 
         }
 
+        // Helper function for AUTO BATTLE
+        // Auto create characters for player
         public void GenerateNewCharacters()
         {
             CharacterDataset.Clear();
@@ -604,9 +597,12 @@ namespace TheLastHero.ViewModels
 
         }
 
+
+        // This is the main functionality of the game, this method waits for player click
+        // based on the clicked cell's coordinate cell 
         public void HandleButtonClicked(int x, int y)
         {
-
+            // check if user wants to move the character
             if (battle.battleMapSelection[x, y].Equals(Battle.HIGHLIGHTGREEN)
                 && battle.battleMapTop[x, y].Equals("") || (x == curCharacter.xPosition && y == curCharacter.yPosition))
             {
@@ -697,11 +693,11 @@ namespace TheLastHero.ViewModels
                 }
 
 
-            }
+            }// end of attack turn
 
 
 
-            // autoattack if monster present
+            // Autoattack if monster present
             // done enqueue character
             if (endTurn)
             {
@@ -956,29 +952,9 @@ namespace TheLastHero.ViewModels
                     RenderMoveAttackRange(curCharacter.xPosition, curCharacter.yPosition, curCharacter.MoveRange + curCharacter.AtkRange, curCharacter.AtkRange);
                     PrintDialog(curCharacter.Name + "'s turn");
 
-                }
+                }// end of end round
 
-                // new turn! or game over! or new round
-                // check empty if character 
-                // character turn dequeue and hold dont enqueue.
-
-
-
-                // "itempool" is gloabl var
-                // drop item => put in the pool
-                // 
-
-                // while monster is true
-                // auto move, auto attack, no highlight
-
-                //until character
-                // highlight character, highlight move grid, highlight attack grit
-                // wait for click
-
-
-            }
-
-
+            }// end of end turn
 
             //_script.scriptCounter = 1;
             //RunScript(_script, 0);
@@ -1314,6 +1290,7 @@ namespace TheLastHero.ViewModels
             }
         }
 
+        // Remove target from both speed queue and moved queue
         private void RemoveTargetFromQueues(Monster target)
         {
             Queue<Monster> tmp1 = new Queue<Monster>();
@@ -1356,6 +1333,7 @@ namespace TheLastHero.ViewModels
             }
         }
 
+        // Remove target from both speed queue and moved queue
         private void RemoveTargetFromQueues(Character target)
         {
             Queue<Character> tmp1 = new Queue<Character>();
@@ -1403,6 +1381,7 @@ namespace TheLastHero.ViewModels
 
         }
 
+        // Update target from both speed queue and moved queue
         private void UpdateTargetInQueues(Character target)
         {
             Queue<Character> tmp1 = new Queue<Character>();
@@ -1445,6 +1424,7 @@ namespace TheLastHero.ViewModels
             }
         }
 
+        // Update target from both speed queue and moved queue
         private void UpdateTargetInQueues(Monster target)
         {
             Queue<Monster> tmp1 = new Queue<Monster>();
@@ -1487,6 +1467,9 @@ namespace TheLastHero.ViewModels
             }
         }
 
+        // Apply damage -> Assign Item if dropped
+        // If creature dies, remove it
+        // Update creature and print dialog
         private void ApplyDamageMTC(Monster m, Character c)
         {//def need to be in calculation
             int dmg = (int)Math.Ceiling(m.Atk / 4.0);
@@ -1511,6 +1494,9 @@ namespace TheLastHero.ViewModels
             }
         }
 
+        // Apply damage -> Assign Item if dropped
+        // If creature dies, remove it
+        // Update creature and print dialog
         private void ApplyDamageCTM(Character c, Monster m)
         {
             int exp = 0;
@@ -1603,16 +1589,18 @@ namespace TheLastHero.ViewModels
 
         }
 
+        // Calculate attack and defense and compare them, beased on result
+        // execute critical or miss attak
         public int CriticalOrMissCTM(Character Attacker, Monster Defender, int damage)
         {
             //attackscore = level + base attack + level attack bonus + level item attack modifier
-            var AttackScore = Attacker.Lvl + Attacker.GetAttack();
+            var AttackFinal = Attacker.Lvl + Attacker.GetAttack();
 
             //DefenseScore =  
-            var DefenseScore = Defender.Def + Defender.Lvl;
+            var DefenseFinal = Defender.Def + Defender.Lvl;
 
             //returns whether it was critical hit or miss
-            var HitSuccess = RollToHitTarget(AttackScore, DefenseScore);
+            var HitSuccess = RollToHitTarget(AttackFinal, DefenseFinal);
 
             //if it was critical hit, the damage will be doubled 
             if (HitSuccess == HitStatusEnum.CriticalHit)
@@ -1637,6 +1625,8 @@ namespace TheLastHero.ViewModels
             return damage;
         }
 
+        // Calculate attack and defense and compare them, beased on result
+        // execute critical or miss attak
         public int CriticalOrMissMTC(Monster Attacker, Character Defender, int damage)
         {
             //attackscore = level + base attack + level attack bonus + level item attack modifier
@@ -1671,6 +1661,7 @@ namespace TheLastHero.ViewModels
             return damage;
         }
 
+        // This method roll dice and determine hit or not
         public HitStatusEnum RollToHitTarget(int AttackScore, int DefenseScore)
         {
 
@@ -1741,6 +1732,7 @@ namespace TheLastHero.ViewModels
             return HitStatus;
         }
 
+        // Retirns the dropped Item from monster by checking monsterID
         public Item dropItem(int monsterID)
         {
             // read monster from Dataset,
@@ -1748,6 +1740,7 @@ namespace TheLastHero.ViewModels
             return ItemDataset.Where(i => i.Guid.Equals(result.UniqueDropID)).First();
         }
 
+        // Read the map and try to find nearby character 
         private Character CheckNearbyCharacter(int x, int y)
         {
             if (x > 0 && gameEngine.characterQueue.Where(c => c.Id.Equals(battle.battleMapId[x - 1, y])).Count() > 0)
@@ -1785,6 +1778,7 @@ namespace TheLastHero.ViewModels
             return null;
         }
 
+        // Get any alive monster, this method is for AUTO BATTLE
         private Monster GetMonster()
         {
             if (gameEngine.monsterQueue.Count() > 0)
@@ -1799,6 +1793,7 @@ namespace TheLastHero.ViewModels
             return null;
         }
 
+        // Get any alive character, this method is for AUTO BATTLE
         private Character GetCharacter()
         {
             if (gameEngine.characterQueue.Count() > 0)
@@ -1813,6 +1808,7 @@ namespace TheLastHero.ViewModels
             return null;
         }
 
+        // Read the map and try to find nearby monster 
         private bool CheckNearbyMonster(int x, int y)
         {
 
@@ -1840,6 +1836,7 @@ namespace TheLastHero.ViewModels
             return false;
         }
 
+        // Simply render attack range
         private void RenderAttackRange(int x, int y, int atkRange)
         {
             // battle.battleMapSelection[x, y] = Battle.HIGHLIGHTGREEN;
@@ -1875,6 +1872,7 @@ namespace TheLastHero.ViewModels
             }
         }
 
+        // when a new round begins, reset battle map
         public void InitializeBattle()
         {
 
@@ -1891,12 +1889,12 @@ namespace TheLastHero.ViewModels
             else if (round > 3 && round <= 6)
             {
                 battle.title = "Mountain Lvl " + round.ToString();
-                battle.SetAllBackground(Battle.SAND);
+                battle.SetAllBackground(Battle.SNOW);
             }
             else if (round > 6 && round <= 9)
             {
                 battle.title = "Desert Lvl " + round.ToString();
-                battle.SetAllBackground(Battle.GRASS);
+                battle.SetAllBackground(Battle.SAND);
             }
             else
             {
@@ -1905,15 +1903,14 @@ namespace TheLastHero.ViewModels
             }
             //take care of dataset
             InitMonsterQueue();
-            InitCharacterQueueTest(charViewModel);
+            InitCharacterQueue(charViewModel);
             RenderCharactersMonsters();
         }
 
+        // AUTO BATTLE!!!
         public void AutoBattle()
         {
             InitAutoBattle();
-
-
 
             CharacterDataset = new ObservableCollection<Character>();
             MonsterDataset = new ObservableCollection<Monster>();
@@ -1947,11 +1944,6 @@ namespace TheLastHero.ViewModels
             allowRoundHealing = true;
             availablePotion = true;
             availableFocusAtk = true;
-            //????should we use 2 queues characterqueue and monsterqueue,
-            // creature queue doesn make sense because we dont need another sets
-            // of creature, we already have character and monsters
-
-            // determine weather character or monster
 
             if (gameEngine.characterQueue.Peek().Spd >= gameEngine.monsterQueue.Peek().Spd)
             {
@@ -1977,7 +1969,6 @@ namespace TheLastHero.ViewModels
                         {
                             UpdateTargetInQueues(target);
                         }
-
                     }
                     else
                     {
@@ -2308,6 +2299,7 @@ namespace TheLastHero.ViewModels
             charViewModel = CharactersViewModel.Instance;
         }
 
+        // Apply default item for new characters
         private void AssignItems()
         {
             foreach (Character c in CharacterDataset)

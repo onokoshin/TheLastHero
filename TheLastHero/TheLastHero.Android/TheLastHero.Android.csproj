@@ -155,6 +155,7 @@
     <AndroidResource Include="Resources\drawable\EmptySlot.png" />
     <AndroidResource Include="Resources\drawable\EmptySlot2.png" />
     <AndroidResource Include="Resources\drawable\HighlightYellow.png" />
+    <AndroidResource Include="Resources\drawable\Snow.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
