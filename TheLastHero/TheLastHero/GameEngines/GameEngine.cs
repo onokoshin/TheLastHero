@@ -6,9 +6,10 @@ using TheLastHero.Models.Battle;
 
 namespace TheLastHero.GameEngines
 {
+    //the GameEngine class contains data structures that are heavily used in our game 
+    //This also contains dialog 
     public class GameEngine
     {
-
 
         public string[] DialogCache { get; set; } = new string[5];
         public string ConsoleDialog1 { get; set; }
@@ -48,38 +49,12 @@ namespace TheLastHero.GameEngines
             }
         }
 
+        //empty constructor
         private GameEngine()
         {
         }
 
-
-
-        // This method will be called upon beginning of the game, character movement,         
-        //   monster movement, character die, monster die events. 
-        /*public void startGame()
-        {
-            speedQueue = new Queue<Creature>();
-
-            //TurnManager turnManager = new TurnManager();
-
-            // game starts
-            //  speedQueue = InitializeQueue(monsters, characters);
-            while (true)
-            {
-                // If either number of characters or number of monster equals zero, the battle is over.
-                if (battle.characters.Count == 0)
-                {
-
-                }
-                else if (battle.monsters.Count == 0)
-                {
-                    // we will generate a new set of monsters for a new round 
-                }
-                speedQueue.Dequeue();
-
-            }
-        }*/
-
+        //updates game dialog 
         public void ClearDialogCache()
         {
             for (int i = 0; i < 5; i++)
@@ -88,15 +63,6 @@ namespace TheLastHero.GameEngines
             }
         }
 
-        // Using queue data structure to store characters and monster in an order of which creature moves next based on a creature’s speed 
-        public Queue InitializeQueue(List<Character> characters, List<Monster> monsters)
-        {
-            //check every character and monster to determine which creature gets enqueued first
-            //sort character list and monster list based on their speed 
-            //then we will compare head of each list to determine whether the character or monster is
-            // faster. Then we will enqueue the creature with higher speed 
-            return null;
-        }
 
     }
 }

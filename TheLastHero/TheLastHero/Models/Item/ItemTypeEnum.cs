@@ -9,7 +9,7 @@ namespace TheLastHero.Models
         // Not specified
         Unknown = 0,
 
-        // The head includes, Hats, Helms, Caps, Crowns, Hair Ribbons, Bunny Ears, and anything else that sits on the head
+        // Weapon Type
         weapon = 10,
 
         // Armor type

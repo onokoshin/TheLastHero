@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace TheLastHero.Controller
 {
-
+    
+    //This class is a singleton item contoller class that help the game engine to controll items   
     public class ItemsController
     {
         // Make this a singleton so it only exist one time because holds all the data records in memory
@@ -165,7 +166,7 @@ namespace TheLastHero.Controller
 
         }
 
-
+        //private function that converts from Json 
         private Item ConvertFromJson(JObject json)
         {
             var myData = new Item();

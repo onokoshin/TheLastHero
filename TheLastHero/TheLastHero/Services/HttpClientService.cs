@@ -10,6 +10,7 @@ using TheLastHero.Models;
 
 namespace TheLastHero.Services
 {
+    //client service class to make 
     public class HttpClientService
     {
 
@@ -46,11 +47,13 @@ namespace TheLastHero.Services
             }
         }
 
+        //setter function
         public HttpClient SetHttpClient(HttpClient httpClient)
         {
             _httpClient = httpClient;
             return _httpClient;
         }
+
 
         public async Task<string> JsonParseResult(HttpResponseMessage response)
         {

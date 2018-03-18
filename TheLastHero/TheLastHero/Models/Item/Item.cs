@@ -109,6 +109,7 @@ namespace TheLastHero.Models
             ImgSource = null;
         }
 
+        //output string format data for scoring
         public string FormatOutput()
         {
             var myReturn = Name + " , " +
@@ -122,7 +123,7 @@ namespace TheLastHero.Models
             return myReturn.Trim();
         }
 
-
+        //simple function to update local properties
         public void Update(Item newData)
         {
             if (newData == null)

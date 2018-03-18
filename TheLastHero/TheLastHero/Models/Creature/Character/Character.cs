@@ -36,11 +36,13 @@ namespace TheLastHero.Models
         // the reason we use dictionary is because, Dictionary structure provide a key and value pair, Dict is perfect for location and item relationship.
         public Dictionary<ItemLocationEnum, Item> EquippedItem;
 
+        //This is going to be used for scoring purposes 
         public string EquippedItemListString { get; set; }
         //public List<string> EquippedItemList { get; set; }
         //partySlotNum is used in character selection
         public int PartySlotNum { get; set; }
 
+        //total damage is for scoring purpose 
         public int totalDamage { get; set; }
 
         //constructor for character
@@ -55,17 +57,8 @@ namespace TheLastHero.Models
 
         }
 
-        //We override this function from Creature in Character is because Character has weapon which Monster does not have.
-        //Check How much damage a character has taken from a monster’s attack.
-        //This is a reusable block of code and we could use it in different classes.
-        public int DealDamage(int d)
-        {
-            // if (lefthand != null)
-            // int finalDmg = level + equipedItem.get(lefthand).getAtk() + atk
-            // return finalDmg;
-            return 0;
-        }
-
+        //this function calculate damage for critical miss
+        //the worst case -- character's hp goes down to 1
         public void TakeDamageCriticalMiss(int damage)
         {
             if (damage <= 0)
@@ -93,7 +86,7 @@ namespace TheLastHero.Models
 
         }
 
-
+        //updates EquippedItemList using this function
         private void UpdateEquippedItemListString()
         {
            /* EquippedItemListString = "";
@@ -102,6 +95,7 @@ namespace TheLastHero.Models
             */
         }
 
+        //removes item from a character
         public void RemoveItem(Item item, ItemLocationEnum location)
         {
             EquippedItem.Remove(location);
@@ -109,6 +103,7 @@ namespace TheLastHero.Models
             UpdateEquippedItemListString();
         }
 
+        //simple update function to makesure character is updated
         public void Update(Character newData)
         {
             if (newData == null)
@@ -134,19 +129,15 @@ namespace TheLastHero.Models
             AtkRange = newData.AtkRange;
             LiveStatus = newData.LiveStatus;
             Type = newData.Type;
-            // Update all the fields in the Character except for location <- method? 
             NextLevelExp = newData.NextLevelExp;
             CurrentExp = newData.CurrentExp;
             IsCapLevel = newData.IsCapLevel;
-            //Locations = newData <-----------------------check later!!!!!!!!
             EquippedItem = newData.EquippedItem;
-
-            // Populate the Attributes
-            //Attribute = newData.Attribute;
 
 
         }
 
+        //set default values for character
         private void SetDefaultValues()
         {
             Id = Guid.NewGuid().ToString();
@@ -173,6 +164,7 @@ namespace TheLastHero.Models
         }
 
         #region Basics
+        //Levels up chracter based on level table 
         private void LevelUp()
         {
             // Walk the Level Table descending order

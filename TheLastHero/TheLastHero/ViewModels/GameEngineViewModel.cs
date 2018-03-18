@@ -76,6 +76,7 @@ namespace TheLastHero.ViewModels
             //AssignItems();
 
             gameEngine = GameEngine.Instance;
+            gameEngine.ClearDialogCache();
             battle = new Battle();
             curCharacter = new Character();
         }
@@ -2225,7 +2226,7 @@ namespace TheLastHero.ViewModels
                 }
                 else if (gameOver)
                 {
-                    PrintDialog("Game Over!");
+                    //PrintDialog("Game Over!");
                     BattleScore.ScoreTotal = BattleScore.ExperienceGainedTotal;
 
                     // Save the Score to the DataStore

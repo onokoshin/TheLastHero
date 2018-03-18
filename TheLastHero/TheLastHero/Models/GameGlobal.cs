@@ -35,6 +35,7 @@ namespace TheLastHero.Models
             ForceRollsToNotRandom = !ForceRollsToNotRandom;
         }
 
+        //these static bools control debug settings 
         public static bool EnableCriticalHitDamage = false;
         public static bool EnableMiss = false;
         public static bool EnableCriticalMissProblems = false; 

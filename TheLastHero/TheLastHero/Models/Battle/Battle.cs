@@ -4,9 +4,11 @@ namespace TheLastHero.Models.Battle
 {
     public class Battle
     {
-        // Every four rounds, game engine will generate a new boss monster
+        //The Boss feature will be the next thing we will implement, we did not have time to get to it
+        //Every four rounds, game engine will generate a new boss monster
         //const int BOSSROUND = 4;
 
+        //contants for battle grid tile and map images 
         public const string HIGHLIGHTGREEN = "HighlightGreen.png";
         public const string HIGHLIGHTRED = "HighlightRed.png";
         public const string HIGHLIGHTGREY = "HighlightGrey.png";
@@ -35,6 +37,7 @@ namespace TheLastHero.Models.Battle
         public string[,] battleMapId = new string[5, 6];
         public string[,] battleMapHP = new string[5, 6];
 
+        //each cell is stored as string and get updated
         public string cell_00_top { get; set; }
         public string cell_01_top { get; set; }
         public string cell_02_top { get; set; }
@@ -156,6 +159,7 @@ namespace TheLastHero.Models.Battle
         public string cell_44_hp { get; set; }
         public string cell_45_hp { get; set; }
 
+        //set all battle map to a certain image 
         public void SetAllSelection(string img)
         {
             for (int i = 0; i < 5; i++)
@@ -167,6 +171,7 @@ namespace TheLastHero.Models.Battle
             }
         }
 
+        //set all background image to a certain image 
         public void SetAllBackground(string img)
         {
             for (int i = 0; i < 5; i++)
@@ -178,6 +183,7 @@ namespace TheLastHero.Models.Battle
             }
         }
 
+        //set all top layer to a certain image 
         public void SetAllTop(string img)
         {
             for (int i = 0; i < 5; i++)
@@ -189,6 +195,7 @@ namespace TheLastHero.Models.Battle
             }
         }
 
+        //set hp display to a certain HP 
         public void SetAllHP(string str)
         {
             for (int i = 0; i < 5; i++)
@@ -200,6 +207,7 @@ namespace TheLastHero.Models.Battle
             }
         }
 
+        //set all id to a certain id 
         public void SetAllId(string id)
         {
             for (int i = 0; i < 5; i++)
@@ -211,6 +219,7 @@ namespace TheLastHero.Models.Battle
             }
         }
 
+        //clear every button 
         public void RefreshAllCell()
         {
             cell_00_selection = battleMapSelection[0, 0];

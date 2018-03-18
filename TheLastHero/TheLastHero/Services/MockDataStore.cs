@@ -6,15 +6,16 @@ using TheLastHero.Models;
 
 namespace TheLastHero.Services
 {
-
+    //The mockdatastore stores mock data so that we can test and play the game 
     public class MockDataStore : IDataStore
     {
-
+        //each east is to store different data, item, monster, chracter, and score objects 
         private List<Item> _itemDataset = new List<Item>();
         private List<Monster> _monsterDataset = new List<Monster>();
         private List<Score> _scoreDataset = new List<Score>();
         private List<Character> _characterDataset = new List<Character>();
 
+        //const string to locate items 
         const string HEAD = "HEAD";
         const string BODY = "BODY";
         const string FEET = "FEET";
@@ -38,6 +39,7 @@ namespace TheLastHero.Services
             }
         }
 
+        //the constructor instantiate basic datas 
         private MockDataStore()
         {
             var mockItems = new List<Item>
@@ -103,8 +105,8 @@ namespace TheLastHero.Services
 
         }
 
+        #region Item
         // Item
-
         public async Task<bool> InsertUpdateAsync_Item(Item data)
         {
 
@@ -126,13 +128,16 @@ namespace TheLastHero.Services
 
             return false;
         }
+
+
+        //Add item to databse
         public async Task<bool> AddAsync_Item(Item data)
         {
             _itemDataset.Add(data);
 
             return await Task.FromResult(true);
         }
-
+        //update item in dabatbase
         public async Task<bool> UpdateAsync_Item(Item data)
         {
             var myData = _itemDataset.FirstOrDefault(arg => arg.Guid == data.Guid);
@@ -146,6 +151,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //delete item from database
         public async Task<bool> DeleteAsync_Item(Item data)
         {
             var myData = _itemDataset.FirstOrDefault(arg => arg.Guid == data.Guid);
@@ -154,17 +160,22 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //getItems from databse
         public async Task<Item> GetAsync_Item(string id)
         {
             return await Task.FromResult(_itemDataset.FirstOrDefault(s => s.Guid == id));
         }
 
+        //get all items from database
         public async Task<IEnumerable<Item>> GetAllAsync_Item(bool forceRefresh = false)
         {
             return await Task.FromResult(_itemDataset);
         }
 
+        #endregion
 
+        #region monster
+        //add monster to databse 
         public async Task<bool> AddAsync_Monster(Monster data)
         {
             _monsterDataset.Add(data);
@@ -172,6 +183,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //update monster in database 
         public async Task<bool> UpdateAsync_Monster(Monster data)
         {
             var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -185,6 +197,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //delete monster from database
         public async Task<bool> DeleteAsync_Monster(Monster data)
         {
             var myData = _monsterDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -193,17 +206,21 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //get monster from database
         public async Task<Monster> GetAsync_Monster(string id)
         {
             return await Task.FromResult(_monsterDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        //get all mosnters from database
         public async Task<IEnumerable<Monster>> GetAllAsync_Monster(bool forceRefresh = false)
         {
             return await Task.FromResult(_monsterDataset);
         }
 
+        #endregion
 
+        #region Score
         // Score
         public async Task<bool> AddAsync_Score(Score data)
         {
@@ -212,6 +229,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //update score in databse 
         public async Task<bool> UpdateAsync_Score(Score data)
         {
             var myData = _scoreDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -225,6 +243,7 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //delete data in database 
         public async Task<bool> DeleteAsync_Score(Score data)
         {
             var myData = _scoreDataset.FirstOrDefault(arg => arg.Id == data.Id);
@@ -233,15 +252,19 @@ namespace TheLastHero.Services
             return await Task.FromResult(true);
         }
 
+        //get all score in database
         public async Task<Score> GetAsync_Score(string id)
         {
             return await Task.FromResult(_scoreDataset.FirstOrDefault(s => s.Id == id));
         }
 
+        //get all score 
         public async Task<IEnumerable<Score>> GetAllAsync_Score(bool forceRefresh = false)
         {
             return await Task.FromResult(_scoreDataset);
         }
+
+        #endregion
 
 
         #region Character

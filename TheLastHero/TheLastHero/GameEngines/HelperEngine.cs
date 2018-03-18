@@ -5,10 +5,13 @@ using TheLastHero.Models;
 
 namespace TheLastHero.GameEngines
 {
+    //the helper engine's job is to have rolldice so that our game can call the rollDice function
     public static class HelperEngine
     {
+        //creates a random generator 
         private static Random rnd = new Random();
 
+        //rollDice function rolls die/dice and returns the value 
         public static int RollDice(int rolls, int dice)
         {
             if (rolls < 1)

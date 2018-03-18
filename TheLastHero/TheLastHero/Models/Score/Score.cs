@@ -3,11 +3,12 @@ using SQLite;
 
 namespace TheLastHero.Models
 {
+    //this is the key class that contains all the scoring related data 
     public class Score
     {
         [PrimaryKey]
         public string Id { get; set; }
-
+        //score name 
         public string Name { get; set; }
 
         //score total is going to be based on experiences 
@@ -20,8 +21,6 @@ namespace TheLastHero.Models
         public bool AutoBattle { get; set; }
 
         // The number of turns the battle took to finish
-
-        // Missign property, to add as part of the SQL lecture...
         public int TurnCount { get; set; }
 
         // The number of rounds the battle took to finish
@@ -42,6 +41,7 @@ namespace TheLastHero.Models
         // All of the items dropped and their stats. Needs to be in json format, so saving as a string
         public string ItemsDroppedList { get; set; }
 
+        //constructor builds the basic structure by assigning default values
         public Score()
         {
             Id = 
@@ -58,6 +58,7 @@ namespace TheLastHero.Models
             MonsterSlainNumber = 0;
         }
 
+        //updates local properties
         public void Update(Score newData)
         {
             if (newData == null)

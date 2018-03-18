@@ -5,6 +5,7 @@ using SQLite;
 
 namespace TheLastHero.Models
 {
+    //monster class to generate monsters
     public class Monster : Creature
     {
 
@@ -25,16 +26,13 @@ namespace TheLastHero.Models
         //default constructor
         public Monster()
         {
-            //UniqueDrop = new Item();
-            // Get the number of points at the next level, and set it for Experience Total...
-
-            //for testing purposes, every monster is set to level 3 exp = 900
-            ExperienceTotal = LevelTable.Instance.LevelDetailsList[2 + 1].Experience;
+            //every monster is set to level 3 exp = 900 to begin with 
+            ExperienceTotal = LevelTable.Instance.LevelDetailsList[3].Experience;
             ExperienceRemaining = ExperienceTotal;
 
         }
 
-        //overloaded constructor 
+        //overloaded constructor <- currently not being used
         //monster attributes will be based on the round being passed from battle engine
         //Ex: round 1 monster - weak attributes, but round 10 monster - strong attributes
         //@param level - level will be passed in depending on which round it is 
@@ -58,35 +56,7 @@ namespace TheLastHero.Models
             {
                 UniqueDropID = "";
             }
-            //3, 6, 9...rounds are boss rounds 
-            // This is not for initialize 3 times for UniqueDrop 
-            //every 3 rounds will be boss rounds with stronger monsters
-
-            //if (round % 3 == 0)
-            //{
-            //    //this indicates that it is a boss round
-            //    //attributes will be enhanced
-
-            //    Item UniqueDrop = new Item(round);
-
-            //}
-            //else
-            //{
-            //    Random rand = new Random();
-            //    int randNum = rand.Next(1, 10);
-
-            //    //50% of monsters will have items and the other 50% do not have
-            //    // drop items 
-            //    if (randNum < 6)
-            //    {
-            //        Item UniqueDrop = new Item(round);
-            //    }
-            //    else
-            //    {
-            //        bool None = true;
-            //        Item UniqueDrop = new Item(round, None);
-            //    }
-            //}
+           
         }
 
         //monster drops its item when it is killed
@@ -196,14 +166,7 @@ namespace TheLastHero.Models
 
         public string FormatOutput()
         {
-            //code below is for item 
-
-            //var UniqueOutput = "None";
-            //var myUnique = ItemsViewModel.Instance.GetItem(UniqueItem);
-            //if (myUnique != null)
-            //{
-            //    UniqueOutput = myUnique.FormatOutput();
-            //}
+            //code below is for monster 
 
 
             var myReturn = Name;
@@ -215,8 +178,6 @@ namespace TheLastHero.Models
             myReturn += " , Type: " + Type;
             myReturn += " , MoveingRange: " + MoveRange;
             myReturn += " , AttackRange: " + AtkRange;
-            //once the item is done, uncomment the line below 
-            //myReturn += " , Unique Item : " + UniqueOutput;
 
             return myReturn;
         }
@@ -304,33 +265,6 @@ namespace TheLastHero.Models
         }
 
         #endregion GetAttributes
-
-        #region Items
-        // Gets the unique item (if any) from this monster when it dies...
-        //public Item GetUniqueItem()
-        //{
-        //    var myReturn = ItemsViewModel.Instance.GetItem(UniqueItem);
-
-        //    return myReturn;
-        //}
-
-        //// Drop all the items the monster has
-        //public List<Item> DropAllItems()
-        //{
-        //    var myReturn = new List<Item>();
-
-        //    // Drop all Items
-        //    Item myItem;
-
-        //    myItem = ItemsViewModel.Instance.GetItem(UniqueItem);
-        //    if (myItem != null)
-        //    {
-        //        myReturn.Add(myItem);
-        //    }
-        //    return myReturn;
-        //}
-
-        #endregion Items
 
 
     }
