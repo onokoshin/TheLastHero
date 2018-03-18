@@ -37,5 +37,6 @@ namespace TheLastHero.Models
 
         public static bool EnableCriticalHitDamage = false;
         public static bool EnableMiss = false;
+        public static bool EnableCriticalMissProblems = false; 
     }
 }

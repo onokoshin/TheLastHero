@@ -27,7 +27,9 @@ namespace TheLastHero.Views
 
             var data = new Score
             {
-                Name = "Item 1",
+                Id = Guid.NewGuid().ToString(), 
+                Name = "Score Name",
+                ScoreTotal = 0
             };
 
             _viewModel = new ScoreDetailViewModel(data);

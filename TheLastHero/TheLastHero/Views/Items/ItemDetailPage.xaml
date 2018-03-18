@@ -13,6 +13,14 @@
                 <Label Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
+                <Label Text="Value:" FontSize="12" />
+                <Label Text="{Binding Data.Value}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Range:" FontSize="12" />
+                <Label Text="{Binding Data.Range}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
                 <Label Text="HP:" FontSize="12" />
                 <Label Text="{Binding Data.HP}" FontSize="12" TextColor="Blue" />
             </StackLayout>
@@ -45,20 +53,16 @@
                 <Label Text="{Binding Data.Luk}" FontSize="12" TextColor="Blue" />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <Label Text="Special Ability:" FontSize="12" />
-                <Label Text="{Binding Data.SpecialAbility}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Equippable Location:" FontSize="12" />
-                <Label Text="{Binding Data.EquippableLocation}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Equippable Location:" FontSize="12" />
-                <Label Text="{Binding Data.EquippableLocation}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
                 <Label Text="Image Source:" FontSize="12" />
                 <Label Text="{Binding Data.ImgSource}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Item Location:" FontSize="12" />
+                <Label Text="{Binding Data.Location}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Attribute:" FontSize="12" />
+                <Label Text="{Binding Data.Attribute}" FontSize="12" TextColor="Blue" />
             </StackLayout>
         </StackLayout>
     </ScrollView>

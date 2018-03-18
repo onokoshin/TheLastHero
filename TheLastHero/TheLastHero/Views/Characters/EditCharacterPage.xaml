@@ -4,89 +4,186 @@
         <ToolbarItem Text="Save" Clicked="Save_Clicked" />
         <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked" />
     </ContentPage.ToolbarItems>
-    <ScrollView>
-        <StackLayout Spacing="10" Padding="5">
-            <Image Source="{Binding Data.ImgSource}" />
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+
+            <Label Text="Character Create Page" FontSize="Large" />
             <StackLayout Orientation="Horizontal">
-                <Label Text="Name:" FontSize="12" />
-                <Entry Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />
+                <Label Text="Character Name " FontSize="Medium" />
+                <Entry Text="{Binding Data.Name}" FontSize="Medium" />
             </StackLayout>
+
             <StackLayout Orientation="Horizontal">
-                <Label Text="Type:" FontSize="12" />
-                <Entry Text="{Binding Data.Type}" FontSize="12" TextColor="Blue" />
+                <Label 
+                            Text="Level" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label 
+                            Text="{Binding Data.Lvl}" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            x:Name="LevelValue"
+                            VerticalOptions="Center"/>
+
+                    <Stepper 
+                            Value="{Binding Data.Lvl, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="20"
+                            Increment="1"
+                            ValueChanged="Lvl_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
+
             <StackLayout Orientation="Horizontal">
-                <Label Text="Friendly:" FontSize="12" />
-                <Entry Text="{Binding Data.Friendly}" FontSize="12" TextColor="Blue" />
+                <Label 
+                            Text="Health" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label 
+                            Text="{Binding Data.MaxHP}" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            x:Name="HealthValue"
+                            VerticalOptions="Center"/>
+
+                    <Stepper 
+                            Value="{Binding Data.MaxHP, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="200"
+                            Increment="10"
+                            ValueChanged="Health_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
+
             <StackLayout Orientation="Horizontal">
-                <Label Text="ImgSource:" FontSize="12" />
-                <Entry Text="{Binding Data.ImgSource}" FontSize="12" TextColor="Blue" />
+                <Label 
+                            Text="Attack" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label 
+                            Text="{Binding Data.Atk}" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            x:Name="AttackValue"
+                            VerticalOptions="Center"/>
+
+                    <Stepper 
+                            Value="{Binding Data.Atk, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="50"
+                            Increment="10"
+                            ValueChanged="Attack_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
+
             <StackLayout Orientation="Horizontal">
-                <Label Text="MaxHP:" FontSize="12" />
-                <Entry Text="{Binding Data.MaxHP}" FontSize="12" TextColor="Blue" />
+                <Label 
+                            Text="Defense" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label 
+                            Text="{Binding Data.Def}" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            x:Name="DefenseValue"
+                            VerticalOptions="Center"/>
+
+                    <Stepper 
+                            Value="{Binding Data.Def, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="50"
+                            Increment="10"
+                            ValueChanged="Defense_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
+
             <StackLayout Orientation="Horizontal">
-                <Label Text="CurrentHP:" FontSize="12" />
-                <Entry Text="{Binding Data.CurrentHP}" FontSize="12" TextColor="Blue" />
+                <Label 
+                            Text="Speed" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label 
+                            Text="{Binding Data.Spd}" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            x:Name="SpeedValue"
+                            VerticalOptions="Center"/>
+
+                    <Stepper 
+                            Value="{Binding Data.Spd, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="50"
+                            Increment="10"
+                            ValueChanged="Speed_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                </StackLayout>
             </StackLayout>
+
+            <!--<StackLayout Orientation="Horizontal">
+                <Label 
+                            Text="Move Range" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label 
+                            Text="{Binding Data.MoveRange}" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            x:Name="MoveRangeValue"
+                            VerticalOptions="Center"/>
+
+                    <Stepper 
+                            Value="{Binding Data.MoveRange, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="4"
+                            Increment="1"
+                            ValueChanged="MoveRange_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>
+
             <StackLayout Orientation="Horizontal">
-                <Label Text="MaxMP:" FontSize="12" />
-                <Entry Text="{Binding Data.MaxMP}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="CurrentMP:" FontSize="12" />
-                <Entry Text="{Binding Data.CurrentMP}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Lvl:" FontSize="12" />
-                <Entry Text="{Binding Data.Lvl}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Atk:" FontSize="12" />
-                <Entry Text="{Binding Data.Atk}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Def:" FontSize="12" />
-                <Entry Text="{Binding Data.Def}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Spd:" FontSize="12" />
-                <Entry Text="{Binding Data.Spd}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Luk:" FontSize="12" />
-                <Entry Text="{Binding Data.Luk}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="MoveRange:" FontSize="12" />
-                <Entry Text="{Binding Data.MoveRange}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="AtkRange:" FontSize="12" />
-                <Entry Text="{Binding Data.AtkRange}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="LiveStatus:" FontSize="12" />
-                <Entry Text="{Binding Data.LiveStatus}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="NextLevelExp:" FontSize="12" />
-                <Entry Text="{Binding Data.NextLevelExp}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="CurrentExp:" FontSize="12" />
-                <Entry Text="{Binding Data.CurrentExp}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="IsCapLevel:" FontSize="12" />
-                <Entry Text="{Binding Data.IsCapLevel}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="EquippedItem:" FontSize="12" />
-                <Entry Text="{Binding Data.EquippedItem}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
+                <Label 
+                            Text="Attack Range" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label 
+                            Text="{Binding Data.AtkRange}" 
+                            FontSize="Medium" 
+                            HorizontalOptions="Start"
+                            x:Name="AttackRangeValue"
+                            VerticalOptions="Center"/>
+
+                    <Stepper 
+                            Value="{Binding Data.AtkRange, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="4"
+                            Increment="1"
+                            ValueChanged="AttackRange_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                </StackLayout>
+            </StackLayout>-->
+
+            <Label Text="Description" FontSize="Medium" />
+            <Editor Text="{Binding Data.Description}" FontSize="Medium" Margin="0" />
+
         </StackLayout>
-    </ScrollView>
+    </ContentPage.Content>
 </ContentPage>

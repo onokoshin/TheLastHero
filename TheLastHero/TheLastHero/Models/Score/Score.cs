@@ -24,6 +24,9 @@ namespace TheLastHero.Models
         // Missign property, to add as part of the SQL lecture...
         public int TurnCount { get; set; }
 
+        // The number of rounds the battle took to finish
+        public int RoundCount { get; set; }
+
         // The count of monsters slain during battle
         public int MonsterSlainNumber { get; set; }
 
@@ -41,11 +44,18 @@ namespace TheLastHero.Models
 
         public Score()
         {
+            Id = 
+            Name = "Score Name"; 
             GameDate = DateTime.Now;    // Set to be now by default.
             AutoBattle = false;         //assume user battle
             CharacterAtDeathList = null;
             MonstersKilledList = null;
             ItemsDroppedList = null;
+
+            TurnCount = 0;
+            RoundCount = 0;
+            ExperienceGainedTotal = 0;
+            MonsterSlainNumber = 0;
         }
 
         public void Update(Score newData)
@@ -94,7 +104,7 @@ namespace TheLastHero.Models
             return true;
         }
 
-        // All an item to the list of items for score and their stats
+        //All an item to the list of items for score and their stats
         public bool AddItemToList(Item data)
         {
             if (data == null)

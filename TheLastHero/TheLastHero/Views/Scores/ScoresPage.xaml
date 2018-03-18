@@ -11,22 +11,22 @@
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding ImgSource}" />
+                                <!--<Image Source="{Binding ImgSource}" />-->
                                 <StackLayout VerticalOptions="Center">
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding Name}" TextColor="Purple" FontAttributes="Bold" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="18" />
                                     </StackLayout>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="ScoreTotal:" FontSize="12" />
+                                        <Label Text="Total Score:" FontSize="12" />
                                         <Label Text="{Binding ScoreTotal}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
                                         <Label Text="GameDate:" FontSize="12" />
                                         <Label Text="{Binding GameDate}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
                                         <Label Text="AutoBattle:" FontSize="12" />
                                         <Label Text="{Binding AutoBattle}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
-                                        <Label Text="MonsterSlainNumber:" FontSize="12" />
-                                        <Label Text="{Binding MonsterSlainNumber}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
+                                        <!--<Label Text="MonsterSlainNumber:" FontSize="12" />
+                                        <Label Text="{Binding MonsterSlainNumber}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />-->
                                     </StackLayout>
-                                    <StackLayout Orientation="Horizontal">
+                                    <!--<StackLayout Orientation="Horizontal">
                                         <Label Text="ExperienceGainedTotal:" FontSize="12" />
                                         <Label Text="{Binding ExperienceGainedTotal}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemTextStyle}" FontSize="12" />
                                         <Label Text="CharacterAtDeathList:" FontSize="12" />
@@ -35,7 +35,7 @@
                                         <Label Text="{Binding MonstersKilledList}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
                                         <Label Text="ItemsDropedList:" FontSize="12" />
                                         <Label Text="{Binding ItemsDropedList}" TextColor="Blue" LineBreakMode="NoWrap" Style="{DynamicResource ListItemDetailTextStyle}" FontSize="12" />
-                                    </StackLayout>
+                                    </StackLayout>-->
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

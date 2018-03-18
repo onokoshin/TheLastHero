@@ -29,6 +29,31 @@ namespace TheLastHero.Views
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
+
+
+            //assigns value to an appropriate attribute 
+            switch (Data.Attribute)
+            {
+                case AttributeEnum.Attack:
+                    Data.Atk = Data.Value;
+                    break;
+                case AttributeEnum.CurrentHealth:
+                    Data.HP = Data.Value;
+                    break;
+                case AttributeEnum.Defense:
+                    Data.Def = Data.Value;
+                    break;
+                case AttributeEnum.Speed:
+                    Data.Spd = Data.Value;
+                    break;
+                case AttributeEnum.MaxHealth:
+                    Data.HP = Data.Value;
+                    break;
+                default:
+                    break;
+
+            }
+
             MessagingCenter.Send(this, "EditData", Data);
 
             // removing the old ItemDetails page, 2 up counting this page
@@ -44,6 +69,18 @@ namespace TheLastHero.Views
         private async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        // The stepper function for Value
+        void Value_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            ValueValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        // The stepper function for Range
+        void Range_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            RangeValue.Text = String.Format("{0}", e.NewValue);
         }
     }
 }

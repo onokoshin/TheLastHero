@@ -16,7 +16,7 @@ namespace TheLastHero.Models
 
         // There will be 4 types of items: "Weapon", "Armor", "Ring",
         // "Consumable"
-        public string Type { get; set; }
+        public ItemTypeEnum Type { get; set; }
 
         // The name of the item
         public string Name { get; set; }

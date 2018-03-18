@@ -60,7 +60,10 @@ namespace TheLastHero.Views
             charactersViewModel = Data;
             InitializeComponent();
 
-            _viewModel = GameEngineViewModel.Instance;
+            // _viewModel = GameEngineViewModel.Instance;
+            _viewModel = new GameEngineViewModel();
+            _viewModel.gameOver = false;
+            _viewModel.magicRevive = true;
             _viewModel.MoveFirstCreature(charactersViewModel);
             BindingContext = _viewModel;
         }

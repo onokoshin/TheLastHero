@@ -30,6 +30,8 @@ namespace TheLastHero.GameEngines
         //public Queue<Creature> speedQueue { get; set; } = new Queue<Creature>();
         public Queue<Monster> monsterQueue { get; set; } = new Queue<Monster>();
         public Queue<Character> characterQueue { get; set; } = new Queue<Character>();
+        public Queue<Character> movedCharacters = new Queue<Character>();
+        public Queue<Monster> movedMonsters = new Queue<Monster>();
 
         // Make this a singleton so it only exist one time because holds all the data records in memory
         private static GameEngine _instance;

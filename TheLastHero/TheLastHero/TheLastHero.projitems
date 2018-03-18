@@ -221,6 +221,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\WebGlobal.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\HttpClientService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\JsonHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Item\ItemTypeEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Converter.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Views\MainPage.xaml">

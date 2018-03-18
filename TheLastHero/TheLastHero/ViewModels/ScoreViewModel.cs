@@ -68,6 +68,47 @@ namespace TheLastHero.ViewModels
             });
         }
 
+        // Call to database operation for delete
+        public async Task<bool> DeleteAsync(Score data)
+        {
+            Dataset.Remove(data);
+
+            await DataStore.DeleteAsync_Score(data);
+            return true;
+        }
+
+        // Call to database operation for add
+        public async Task<bool> AddAsync(Score data)
+        {
+            Dataset.Add(data);
+            await DataStore.AddAsync_Score(data);
+            return true;
+        }
+
+        // Call to database operation for update
+        public async Task<bool> UpdateAsync(Score data)
+        {
+            // Find the Score, then update it
+            var myData = Dataset.FirstOrDefault(arg => arg.Id == data.Id);
+            if (myData == null)
+            {
+                return false;
+            }
+
+            myData.Update(data);
+
+            _needsRefresh = true;
+            await DataStore.UpdateAsync_Score(data);
+            return true;
+        }
+
+        // Call to database to ensure most recent
+        public async Task<Score> GetAsync(string id)
+        {
+            var myData = await DataStore.GetAsync_Score(id);
+            return myData;
+        }
+
         // Return True if a refresh is needed
         // It sets the refresh flag to false
         public bool NeedsRefresh()

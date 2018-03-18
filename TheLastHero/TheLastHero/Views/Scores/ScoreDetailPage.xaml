@@ -7,6 +7,110 @@
     </ContentPage.ToolbarItems>
     <ScrollView>
         <StackLayout Spacing="10" Padding="5">
+            <!--<Image Source="{Binding Data.ImgSource}" />-->
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name:" FontSize="12" />
+                <Label Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ScoreTotal:" FontSize="12" />
+                <Label Text="{Binding Data.ScoreTotal}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="GameDate:" FontSize="12" />
+                <Label Text="{Binding Data.GameDate}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="AutoBattle:" FontSize="12" />
+                <Label Text="{Binding Data.AutoBattle}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Turn Count:" FontSize="12" />
+                <Label Text="{Binding Data.TurnCount}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Round Count:" FontSize="12" />
+                <Label Text="{Binding Data.RoundCount}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MonsterSlainNumber:" FontSize="12" />
+                <Label Text="{Binding Data.MonsterSlainNumber}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ExperienceGainedTotal:" FontSize="12" />
+                <Label Text="{Binding Data.ExperienceGainedTotal}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="CharacterAtDeathList:" FontSize="12" />
+                <Label Text="{Binding Data.CharacterAtDeathList}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="MonstersKilledList:" FontSize="12" />
+                <Label Text="{Binding Data.MonstersKilledList}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="ItemsDroppedList:" FontSize="12" />
+                <Label Text="{Binding Data.ItemsDroppedList}" FontSize="12" TextColor="Blue" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+    <!--<ScrollView>
+
+        <StackLayout Spacing="20" Padding="15">
+
+            <Label Text="Score Detail Page" FontSize="Medium" />
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Score:" Style="{StaticResource LabelLeft}" />
+                <Label Text="{Binding Data.ScoreTotal}" Style="{StaticResource LabelRight}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Game Date:"  />
+                <Label Text="{Binding Data.GameDate}" Style="{StaticResource LabelRight}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="AutoBattle:"  />
+                <Label Text="{Binding Data.AutoBattle}" Style="{StaticResource LabelRight}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of Rounds:"  />
+                <Label Text="{Binding Data.RoundCount}" Style="{StaticResource LabelRight}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of Turns:"  />
+                <Label Text="{Binding Data.TurnCount}" Style="{StaticResource LabelRight}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Number of Monsters Slain:"  />
+                <Label Text="{Binding Data.MonsterSlainNumber}" Style="{StaticResource LabelRight}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Total Experience Gained:"  />
+                <Label Text="{Binding Data.ExperienceGainedTotal}" Style="{StaticResource LabelRight}" />
+            </StackLayout>
+
+
+            <Label Text="Characters at Death:"  />
+            <Label Text="{Binding Data.CharacterAtDeathList}" Style="{StaticResource LabelLeft}" />
+
+            <Label Text="Monsters Killed:"  />
+            <Label Text="{Binding Data.MonstersKilledList}" Style="{StaticResource LabelLeft}" />
+
+            --><!--<Label Text="Items Dropped:"  />
+            <Label Text="{Binding Data.ItemsDroppedList}" Style="{StaticResource LabelLeft}" />--><!--
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>-->
+    <!--<ScrollView>
+        <StackLayout Spacing="10" Padding="5">
             <Image Source="{Binding Data.ImgSource}" />
             <StackLayout Orientation="Horizontal">
                 <Label Text="Name:" FontSize="12" />
@@ -46,4 +150,4 @@
             </StackLayout>
         </StackLayout>
     </ScrollView>
-</ContentPage>
+</ContentPage>-->

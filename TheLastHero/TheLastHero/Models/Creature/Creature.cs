@@ -106,6 +106,7 @@ namespace TheLastHero.Models
                 CurrentHP = 0;
                 // Death...
                 LiveStatus = false;
+
             }
         }
     }

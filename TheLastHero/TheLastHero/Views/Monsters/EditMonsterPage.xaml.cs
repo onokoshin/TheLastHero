@@ -30,6 +30,9 @@ namespace TheLastHero.Views
 
         private async void Save_Clicked(object sender, EventArgs e)
         {
+            //make sure current and max are the same 
+            Data.CurrentHP = Data.MaxHP;
+
             MessagingCenter.Send(this, "EditData", Data);
 
             // removing the old ItemDetails page, 2 up counting this page
@@ -46,5 +49,47 @@ namespace TheLastHero.Views
         {
             await Navigation.PopAsync();
         }
+
+        // The stepper function for Range
+        //void Lvl_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        //{
+        //    LevelValue.Text = String.Format("{0}", e.NewValue);
+        //}
+
+        // The stepper function for HP
+        void Health_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            HealthValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        // The stepper function for Attack
+        void Attack_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            AttackValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        // The stepper function for Defense
+        void Defense_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            DefenseValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        // The stepper function for Speed
+        void Speed_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        {
+            SpeedValue.Text = String.Format("{0}", e.NewValue);
+        }
+
+        // The stepper function for Moveing Range
+        //void MoveRange_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        //{
+        //    MoveRangeValue.Text = String.Format("{0}", e.NewValue);
+        //}
+
+        //// The stepper function for Attack Range
+        //void AttackRange_OnStepperValueChanged(object sender, ValueChangedEventArgs e)
+        //{
+        //    AttackRangeValue.Text = String.Format("{0}", e.NewValue);
+        //}
     }
 }

@@ -137,10 +137,19 @@ namespace TheLastHero.Models
             ExperienceRemaining = ExperienceTotal;
 
             Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[level].Attack;
-            Atk = LevelTable.Instance.LevelDetailsList[level].Attack;
+            if (Lvl < Character.CapLevel - 1)
+                Atk = LevelTable.Instance.LevelDetailsList[level].Attack;
+            else
+                Atk = LevelTable.Instance.LevelDetailsList[level].Attack * 100;
+            if (Lvl < Character.CapLevel - 1)
+                MaxHP = 100 + 10 * Lvl;    // 1/2 of what Characters can get per level.. 
+            else
+                MaxHP = (100 + 10 * Lvl) * 100;
+
+
             Def = LevelTable.Instance.LevelDetailsList[level].Defense;
             Spd = LevelTable.Instance.LevelDetailsList[level].Speed;
-            MaxHP = 100 + 10 * Lvl;    // 1/2 of what Characters can get per level.. 
+
             CurrentHP = MaxHP;
 
 
@@ -184,29 +193,6 @@ namespace TheLastHero.Models
             return pointsAllocate;
         }
 
-
-
-
-
-        // Take Damage
-        // If the damage recived, is > health, then death occurs
-        // Return the number of experience received for this attack 
-        // monsters give experience to characters.  Characters don't accept expereince from monsters
-        public void TakeDamage(int damage)
-        {
-            if (damage <= 0)
-            {
-                return;
-            }
-
-            CurrentHP = CurrentHP - damage;
-            if (CurrentHP <= 0)
-            {
-                CurrentHP = 0;
-                // Death...
-                LiveStatus = false;
-            }
-        }
 
         public string FormatOutput()
         {

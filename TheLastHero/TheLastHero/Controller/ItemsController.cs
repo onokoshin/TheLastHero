@@ -27,7 +27,7 @@ namespace TheLastHero.Controller
         }
 
         // Return the Default Image URI for the Local Image for an Item.
-        public static string DefaultImageURI = "Item.png";
+        public static string DefaultImageURI = "item.png";
 
         #region ServerCalls
         public async void GetItemsFromServer(int parameter = 1)

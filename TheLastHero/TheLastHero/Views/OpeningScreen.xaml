@@ -4,7 +4,7 @@
         <StackLayout Padding="50, 0, 50, 0">
             <Label Text="The Last Hero" Style="{DynamicResource TitleStyle}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="24" />
             <Image Source="StartPage.png" />
-            <Button Clicked="MainPageButton_OnClicked" Text="TEST TAB SCREENS" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
+            <Button Clicked="AutoBattleButton_OnClicked" Text="AUTO BATTLE" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             <Button Clicked="BattlePageButton_OnClicked" Text="BEGIN GAME" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             <Button Clicked="CharactersPageButton_OnClicked" Text="CHARACTERS" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />
             <Button Clicked="MonstersPageButton_OnClicked" Text="MONSTERS" VerticalOptions="Center" HorizontalOptions="Fill" BorderRadius="10" BackgroundColor="LightBlue" TextColor="White" FontAttributes="Bold" />

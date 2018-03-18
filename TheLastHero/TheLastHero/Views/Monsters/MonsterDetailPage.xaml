@@ -72,14 +72,6 @@
                 <Label Text="LiveStatus:" FontSize="12" />
                 <Label Text="{Binding Data.LiveStatus}" FontSize="12" TextColor="Blue" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="UniqueDrop:" FontSize="12" />
-                <Label Text="{Binding Data.UniqueDrop}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Drop:" FontSize="12" />
-                <Label Text="{Binding Data.Drop}" FontSize="12" TextColor="Blue" />
-            </StackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

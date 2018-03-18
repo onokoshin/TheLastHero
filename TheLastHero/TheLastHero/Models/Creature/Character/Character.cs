@@ -55,21 +55,6 @@ namespace TheLastHero.Models
 
         }
 
-
-
-        //This method would be triggered when currentExp is either equal or larger than nextLevelExp so that the character’s level will be increased by one
-        //public void LevelUp()
-        //{
-        //    //Level would only be increased if level is less than capLevel 
-        //    if (Lvl < CapLevel)
-        //    {
-
-        //        // read levelup map
-        //        // update attributes accordingly here
-        //        // atk += levelMap.get(atk, level)
-        //        Lvl += 1;
-        //    }
-        //}
         //We override this function from Creature in Character is because Character has weapon which Monster does not have.
         //Check How much damage a character has taken from a monster’s attack.
         //This is a reusable block of code and we could use it in different classes.
@@ -79,6 +64,22 @@ namespace TheLastHero.Models
             // int finalDmg = level + equipedItem.get(lefthand).getAtk() + atk
             // return finalDmg;
             return 0;
+        }
+
+        public void TakeDamageCriticalMiss(int damage)
+        {
+            if (damage <= 0)
+            {
+                return;
+            }
+
+            CurrentHP = CurrentHP - damage;
+            if (CurrentHP <= 0)
+            {
+                CurrentHP = 1;
+                // Death...
+                // character will never die from criticalMiss
+            }
         }
         //This void type method will help character to resign items. If characters get new items and this method will replace the new item for character.
         //This is a reusable block of code and we could use it in different classes.
@@ -92,19 +93,19 @@ namespace TheLastHero.Models
 
         }
 
+
         private void UpdateEquippedItemListString()
         {
             EquippedItemListString = "";
             foreach (string s in EquippedItemList)
-            {
                 EquippedItemListString += s;
-            }
+
         }
 
         public void RemoveItem(Item item, ItemLocationEnum location)
         {
             EquippedItem.Remove(location);
-            EquippedItemList.Remove(item.Name);
+            //EquippedItemList.Remove(item.Name);
             UpdateEquippedItemListString();
         }
 
@@ -212,34 +213,6 @@ namespace TheLastHero.Models
             }
         }
 
-        // Level up to a number, say Level 3
-        public int LevelUpToValue(int Value)
-        {
-            // Adjust the experience to the min for that level.
-            // That will trigger level up to happen
-
-            if (Value < 0)
-            {
-                // Skip, and return old level
-                return Lvl;
-            }
-
-            if (Value <= Lvl)
-            {
-                // Skip, and return old level
-                return Lvl;
-            }
-
-            if (Value > LevelTable.MaxLevel)
-            {
-                Value = LevelTable.MaxLevel;
-            }
-
-            AddExperience(LevelTable.Instance.LevelDetailsList[Value].Experience + 1);
-
-            return Lvl;
-        }
-
         // Add experience
         public void AddExperience(int newExperience)
         {
@@ -253,10 +226,12 @@ namespace TheLastHero.Models
             CurrentExp += newExperience;
 
             // Then check for Level UP
-            if (CurrentExp >= LevelTable.Instance.LevelDetailsList[Lvl].Experience)
+            if (CurrentExp >= LevelTable.Instance.LevelDetailsList[Lvl].Experience && Lvl < CapLevel)
             {
                 LevelUp();
             }
+            if (Lvl > CapLevel)
+                Lvl = CapLevel;
         }
 
 
@@ -393,8 +368,8 @@ namespace TheLastHero.Models
             myReturn += " , MoveingRange: " + MoveRange;
             myReturn += " , AttackRange: " + AtkRange;
             //Item section comes here 
-            //myReturn += " , Items : " + ItemSlotsFormatOutput();
-            myReturn += " Damage : " + totalDamage;
+            myReturn += " , Items : " + EquippedItemListString;
+            myReturn += ", Damage : " + totalDamage;
 
             return myReturn;
         }

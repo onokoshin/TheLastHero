@@ -9,56 +9,101 @@
             <StackLayout Spacing="10" Padding="5">
                 <Image Source="{Binding Data.ImgSource}" />
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Name:" FontSize="12" />
-                    <Entry Text="{Binding Data.Name}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Name:" FontSize="Small" />
+                    <Entry Text="{Binding Data.Name}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="HP:" FontSize="12" />
-                    <Entry Text="{Binding Data.HP}" FontSize="12" TextColor="Blue" />
+                    <Label 
+                            Text="Value"
+                            FontSize="Small" 
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Label 
+                            Text="{Binding Data.Value}" 
+                            FontSize="Small" 
+                            TextColor="Blue"
+                            HorizontalOptions="Start"
+                            x:Name="ValueValue"
+                            VerticalOptions="Center"/>
+
+                        <Stepper Value="{Binding Data.Value, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="20"
+                            Increment="1"
+                            ValueChanged="Value_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Type:" FontSize="12" />
-                    <Entry Text="{Binding Data.Type}" FontSize="12" TextColor="Blue" />
+                    <Label 
+                            Text="Range" 
+                            FontSize="Small" 
+                            HorizontalOptions="Start"/>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Label 
+                            Text="{Binding Data.Range}" 
+                            FontSize="Small" 
+                            HorizontalOptions="Start"
+                            TextColor="Blue"
+                            x:Name="RangeValue"
+                            VerticalOptions="Center"/>
+
+                        <Stepper 
+                            Value="{Binding Data.Range, Mode=TwoWay}"
+                            Minimum="0"
+                            Maximum="5"
+                            Increment="1"
+                            ValueChanged="Range_OnStepperValueChanged"
+                            HorizontalOptions="Start"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+               
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Type:" FontSize="Small" />
+                    <Label Text="{Binding Data.Type}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Level:" FontSize="12" />
-                    <Entry Text="{Binding Data.Lvl}" FontSize="12" TextColor="Blue" />
+                    <Label Text="HP:" FontSize="Small" />
+                    <Label Text="{Binding Data.HP}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="MP:" FontSize="12" />
-                    <Entry Text="{Binding Data.MP}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Level:" FontSize="Small" />
+                    <Label Text="{Binding Data.Lvl}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Atk:" FontSize="12" />
-                    <Entry Text="{Binding Data.Atk}" FontSize="12" TextColor="Blue" />
+                    <Label Text="MP:" FontSize="Small" />
+                    <Label Text="{Binding Data.MP}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Def:" FontSize="12" />
-                    <Entry Text="{Binding Data.Def}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Atk:" FontSize="Small" />
+                    <Label Text="{Binding Data.Atk}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Spd:" FontSize="12" />
-                    <Entry Text="{Binding Data.Spd}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Def:" FontSize="Small" />
+                    <Label Text="{Binding Data.Def}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Luk:" FontSize="12" />
-                    <Entry Text="{Binding Data.Luk}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Spd:" FontSize="Small" />
+                    <Label Text="{Binding Data.Spd}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Special Ability:" FontSize="12" />
-                    <Entry Text="{Binding Data.SpecialAbility}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Luk:" FontSize="Small" />
+                    <Label Text="{Binding Data.Luk}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Equippable Location:" FontSize="12" />
-                    <Entry Text="{Binding Data.EquippableLocation}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Image Source:" FontSize="Small" />
+                    <Label Text="{Binding Data.ImgSource}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Equippable Location:" FontSize="12" />
-                    <Entry Text="{Binding Data.EquippableLocation}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Item Location:" FontSize="Small" />
+                    <Label Text="{Binding Data.Location}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Image Source:" FontSize="12" />
-                    <Entry Text="{Binding Data.ImgSource}" FontSize="12" TextColor="Blue" />
+                    <Label Text="Attribute:" FontSize="Small" />
+                    <Label Text="{Binding Data.Attribute}" FontSize="Small" TextColor="Blue" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>
