@@ -66,11 +66,13 @@ namespace TheLastHero.Views
             _viewModel = new GameEngineViewModel();
             _viewModel.gameOver = false;
             _viewModel.gameEngine.ClearDialogCache();
+
             _viewModel.magicRevive = true;
             _viewModel.BattleScore.AutoBattle = false;
             _viewModel.gameEngine.currentRound = 1;
             _viewModel.GenerateNewMonsters();
             _viewModel.MoveFirstCreature(charactersViewModel);
+            _viewModel.gameEngine.ConsoleDialog1 = "";
             BindingContext = _viewModel;
         }
 

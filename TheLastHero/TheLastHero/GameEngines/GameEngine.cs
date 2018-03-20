@@ -57,6 +57,7 @@ namespace TheLastHero.GameEngines
         //updates game dialog 
         public void ClearDialogCache()
         {
+            
             for (int i = 0; i < 5; i++)
             {
                 DialogCache[i] = "";

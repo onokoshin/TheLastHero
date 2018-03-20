@@ -2407,7 +2407,7 @@ namespace TheLastHero.ViewModels
             itemViewModel = ItemsViewModel.Instance;
         }
 
-        // Apply default item for new characters
+        // Mike please read here Apply default item for new characters
         private void AssignItems(List<Item> itemPool, List<Character> party)
         {
             foreach (Item i in itemPool)
