@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using TheLastHero.Models;
 using TheLastHero.Views;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace TheLastHero.ViewModels
 {
@@ -31,6 +32,7 @@ namespace TheLastHero.ViewModels
         public ObservableCollection<Monster> Dataset { get; set; }
         public Command LoadDataCommand { get; set; }
 
+        public List<Monster> monsterParty { get; set; } = new List<Monster>();
         private bool _needsRefresh;
 
         public MonstersViewModel()
@@ -39,6 +41,7 @@ namespace TheLastHero.ViewModels
             Dataset = new ObservableCollection<Monster>();
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
 
+            monsterParty.Clear();
             MessagingCenter.Subscribe<DeleteMonsterPage, Monster>(this, "DeleteData", async (obj, data) =>
             {
                 Dataset.Remove(data);

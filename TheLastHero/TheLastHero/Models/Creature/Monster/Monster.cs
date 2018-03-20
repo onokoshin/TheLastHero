@@ -26,6 +26,10 @@ namespace TheLastHero.Models
         //default constructor
         public Monster()
         {
+           
+        }
+
+        public void AllocateExp(){
             //every monster is set to level 3 exp = 900 to begin with 
             ExperienceTotal = LevelTable.Instance.LevelDetailsList[3].Experience;
             ExperienceRemaining = ExperienceTotal;
@@ -106,13 +110,13 @@ namespace TheLastHero.Models
             ExperienceTotal = LevelTable.Instance.LevelDetailsList[level + 1].Experience;
             ExperienceRemaining = ExperienceTotal;
 
-            Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[level].Attack;
+            //Damage = GetLevelBasedDamage() + LevelTable.Instance.LevelDetailsList[level].Attack;
             if (Lvl < Character.CapLevel - 1)
-                Atk = LevelTable.Instance.LevelDetailsList[level].Attack;
+                Atk += LevelTable.Instance.LevelDetailsList[level].Attack;
             else
-                Atk = LevelTable.Instance.LevelDetailsList[level].Attack * 100;
+                Atk += LevelTable.Instance.LevelDetailsList[level].Attack * 100;
             if (Lvl < Character.CapLevel - 1)
-                MaxHP = 100 + 10 * Lvl;    // 1/2 of what Characters can get per level.. 
+                MaxHP = MaxHP + (10 * Lvl);    // 1/2 of what Characters can get per level.. 
             else
                 MaxHP = (100 + 10 * Lvl) * 100;
 

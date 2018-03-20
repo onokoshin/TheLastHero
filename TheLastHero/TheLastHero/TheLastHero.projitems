@@ -105,7 +105,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\Creature\Creature.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Inventory\Inventory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IDataStore.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\IFileHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\MockDataStore.cs" />
@@ -197,7 +196,6 @@
       <DependentUpon>NewScorePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\GameEngineViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Script.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\GameOver.xaml.cs">
       <DependentUpon>GameOver.xaml</DependentUpon>
     </Compile>
@@ -225,7 +223,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Models\Item\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Models\Inventory\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Creature\Character\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Creature\Monster\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\Battle\" />

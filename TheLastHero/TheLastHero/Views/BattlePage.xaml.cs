@@ -53,18 +53,23 @@ namespace TheLastHero.Views
         private GameEngineViewModel _viewModel;
 
         private CharactersViewModel charactersViewModel;
+        private MonstersViewModel monsterViewModel;
 
         //Constructor 
         public BattlePage(CharactersViewModel Data)
         {
             charactersViewModel = Data;
             InitializeComponent();
+            monsterViewModel = MonstersViewModel.Instance;
 
             // _viewModel = GameEngineViewModel.Instance;
             _viewModel = new GameEngineViewModel();
             _viewModel.gameOver = false;
             _viewModel.gameEngine.ClearDialogCache();
             _viewModel.magicRevive = true;
+            _viewModel.BattleScore.AutoBattle = false;
+            _viewModel.gameEngine.currentRound = 1;
+            _viewModel.GenerateNewMonsters();
             _viewModel.MoveFirstCreature(charactersViewModel);
             BindingContext = _viewModel;
         }
@@ -90,7 +95,6 @@ namespace TheLastHero.Views
             {
                 _viewModel.LoadDataCommand.Execute(null);
             }
-
             BindingContext = _viewModel;
         }
 
@@ -145,9 +149,10 @@ namespace TheLastHero.Views
 
             if (_viewModel.gameOver)
             {
+                //it's updated and working fine - koshin
                 Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
-                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
                 Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
             }
 
             BindingContext = null;

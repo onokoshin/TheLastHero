@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SQLite;
 using TheLastHero.GameEngines;
@@ -89,18 +90,18 @@ namespace TheLastHero.Models
         //updates EquippedItemList using this function
         private void UpdateEquippedItemListString()
         {
-           /* EquippedItemListString = "";
-            foreach (string s in EquippedItemList)
-                EquippedItemListString += s;
-            */
+            /* EquippedItemListString = "";
+             foreach (string s in EquippedItemList)
+                 EquippedItemListString += s;
+             */
         }
 
         //removes item from a character
-        public void RemoveItem(Item item, ItemLocationEnum location)
+        public List<Item> RemoveItem(List<Item> itemList, ItemLocationEnum location)
         {
-            EquippedItem.Remove(location);
-            //EquippedItemList.Remove(item.Name);
+            itemList.Add(EquippedItem.Where(e => e.Key == location).First().Value);
             UpdateEquippedItemListString();
+            return itemList;
         }
 
         //simple update function to makesure character is updated
@@ -243,15 +244,14 @@ namespace TheLastHero.Models
             myReturn += LevelTable.Instance.LevelDetailsList[Lvl].Attack;
 
             // Get Attack bonus from Items <-- uncomment this line of code when item is fully implemented
-            //myReturn += GetItemBonus(AttributeEnum.Attack);
-            int TestItemScore = 10;
-            myReturn += TestItemScore;
 
+            myReturn += GetItemBonus("Atk");
+           
             return myReturn;
         }
 
         // Get Speed
-        public int GetSpeed()
+        public int GetSpeed(Item item)
         {
             // Base value
             var myReturn = Spd;
@@ -260,13 +260,13 @@ namespace TheLastHero.Models
             myReturn += LevelTable.Instance.LevelDetailsList[Lvl].Speed;
 
             // Get bonus from Items  <-- uncomment this line of code when item is fully implemented
-            //myReturn += GetItemBonus(AttributeEnum.Speed);
+            myReturn += GetItemBonus("Spd");
 
             return myReturn;
         }
 
         // Get Defense
-        public int GetDefense()
+        public int GetDefense(Item item)
         {
             // Base value
             var myReturn = Def;
@@ -275,33 +275,68 @@ namespace TheLastHero.Models
             myReturn += LevelTable.Instance.LevelDetailsList[Lvl].Defense;
 
             // Get bonus from Items
-            //myReturn += GetItemBonus(AttributeEnum.Defense);
+            myReturn += GetItemBonus("Def");
 
             return myReturn;
         }
 
         // Get Max Health
-        public int GetHealthMax()
+        public int GetHealthMax(Item item)
         {
             // Base value
             var myReturn = MaxHP;
-
-            // Get bonus from Items
-            //myReturn += GetItemBonus(AttributeEnum.MaxHealth);
-
             return myReturn;
         }
 
+
         // Get Current Health
-        public int GetHealthCurrent()
+        public int GetHealthCurrent(Item item)
         {
             // Base value
             var myReturn = CurrentHP;
 
             // Get bonus from Items
-            //myReturn += GetItemBonus(AttributeEnum.CurrentHealth);
+            myReturn += GetItemBonus("HP");
 
             return myReturn;
+        }
+
+        private int GetItemBonus(String attribute)
+        {
+            int total = 0;
+
+            if (EquippedItem.Count() > 0)
+            {
+                if (attribute.Equals("Atk"))
+                {
+                    foreach (var p in EquippedItem)
+                    {
+                        total += p.Value.Atk;
+                    }
+                }
+                else if (attribute.Equals("Spd"))
+                {
+                    foreach (var p in EquippedItem)
+                    {
+                        total += p.Value.Spd;
+                    }
+                }
+                else if (attribute.Equals("Def"))
+                {
+                    foreach (var p in EquippedItem)
+                    {
+                        total += p.Value.Def;
+                    }
+                }
+                else if (attribute.Equals("HP"))
+                {
+                    foreach (var p in EquippedItem)
+                    {
+                        total += p.Value.HP;
+                    }
+                }
+            }
+            return total;
         }
 
         // Returns the Dice for the item

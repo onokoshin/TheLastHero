@@ -57,23 +57,29 @@ namespace TheLastHero.ViewModels
         public int DamageAmount = 0;
         public HitStatusEnum HitStatus = HitStatusEnum.Unknown;
 
-        // CharacterViewModel is used to pass selection of characters
+        // CharacterViewModel is used to pass selection of characters based on CRUDi
         private CharactersViewModel charViewModel;
+
+        // MonstersViewModel is used to pass existing monsters based on CRUDi 
+        private MonstersViewModel monViewModel;
+
+        private ItemsViewModel itemViewModel;
 
         // constructer of GameEngineViewModel
         // It will loads data from Datastore
         // also creates instances of gameEngine and battle class
         public GameEngineViewModel()
         {
-            CharacterDataset = new ObservableCollection<Character>();
-            MonsterDataset = new ObservableCollection<Monster>();
-            //CreatureDataset = new ObservableCollection<Creature>();
-            ItemDataset = new ObservableCollection<Item>();
+            //all viewModel references are pointing at the appropriate instances 
+            charViewModel = CharactersViewModel.Instance;
+            monViewModel = MonstersViewModel.Instance;
+            itemViewModel = ItemsViewModel.Instance;
+            CharacterDataset = charViewModel.Dataset;
+            MonsterDataset = monViewModel.Dataset;
+            ItemDataset = itemViewModel.Dataset;
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
             LoadDataCommandCharacterOnly = new Command(async () => await ExecuteLoadDataCommandCharacterOnly());
-
-            // assign items
-            //AssignItems();
+            LoadDataCommand.Execute(null);
 
             gameEngine = GameEngine.Instance;
             gameEngine.ClearDialogCache();
@@ -86,11 +92,19 @@ namespace TheLastHero.ViewModels
         // and attack range, and wait for player to click to send command
         public void MoveFirstCreature(CharactersViewModel dataFromBattlePage)
         {
+            gameEngine.currentRound = 1;
             charViewModel = dataFromBattlePage;
+            monViewModel = MonstersViewModel.Instance;
+            itemViewModel = ItemsViewModel.Instance;
+            CharacterDataset = charViewModel.Dataset;
+            MonsterDataset = monViewModel.Dataset;
+            ItemDataset = itemViewModel.Dataset;
+            LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+
             // read sqldatabase or mockdatabase
             LoadDataCommand.Execute(null);
             // start with level 1 by default
-            gameEngine.currentRound = 1;
+
             //create speedqueue and render map
             InitializeBattle();
             potionNum = 6;
@@ -260,6 +274,48 @@ namespace TheLastHero.ViewModels
                 }
                 foreach (var data in idataset)
                 {
+
+                    if (data.Location.Equals(ItemLocationEnum.Necklass))
+                    {
+                        data.EquippableLocation = "Necklass";
+                        data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.Feet))
+                    {
+                        data.EquippableLocation = "Feet";
+                        data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.PrimaryHand))
+                    {
+                        data.EquippableLocation = "PrimaryHand";
+                        data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.Unknown))
+                    {
+                        data.EquippableLocation = "Unknown";
+                        data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.Finger))
+                    {
+                        data.EquippableLocation = "Finger"; data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.Head))
+                    {
+                        data.EquippableLocation = "Head"; data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.LeftFinger))
+                    {
+                        data.EquippableLocation = "LeftFinger"; data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.RightFinger))
+                    {
+                        data.EquippableLocation = "RightFinger"; data.Atk = data.Damage;
+                    }
+                    else if (data.Location.Equals(ItemLocationEnum.OffHand))
+                    {
+                        data.EquippableLocation = "OffHand"; data.Atk = data.Damage;
+                    }
+
                     ItemDataset.Add(data);
                 }
                 //CreatureDataset = new ObservableCollection<Creature>(CreatureDataset.OrderByDescending(i => i.Spd));
@@ -274,6 +330,7 @@ namespace TheLastHero.ViewModels
                 IsBusy = false;
             }
         }
+
 
 
         // Return True if a refresh is needed
@@ -333,47 +390,20 @@ namespace TheLastHero.ViewModels
         // register them to gameEngine's MonsterQueue
         public void InitMonsterQueue()
         {
-            if (MonsterDataset.Count > 0)
+            if (monViewModel.monsterParty.Count > 0)
             {
                 gameEngine.monsterQueue.Clear();
 
                 int y = 0;
-                for (int i = 0; i < 6; i++)
+                foreach (var m in monViewModel.monsterParty)
                 {
-
-                    var randIndex = HelperEngine.RollDice(1, MonsterDataset.Count() - 1);
-                    Monster m = new Monster();
-                    Monster dataMonster = MonsterDataset[randIndex];
-
-                    //generate new guid and assign all the attributes 
-                    m.Id = Guid.NewGuid().ToString();
-                    m.xPosition = 4;
-                    m.yPosition = y;
-                    m.Friendly = dataMonster.Friendly;
-                    m.AtkRange = dataMonster.AtkRange;
-                    m.LiveStatus = dataMonster.LiveStatus;
-                    m.CurrentHP = dataMonster.CurrentHP;
-                    m.MaxHP = dataMonster.MaxHP;
-                    m.CurrentMP = dataMonster.CurrentMP;
-                    m.MaxMP = dataMonster.MaxMP;
-                    m.MoveRange = dataMonster.MoveRange;
-                    m.Drop = dataMonster.Drop;
-                    m.Luk = dataMonster.Luk;
-                    m.UniqueDropID = GenerateNewItem().Guid;
-                    m.Type = dataMonster.Type;
-                    m.ImgSource = dataMonster.ImgSource;
-
-                    //Basic Attribute updated 
-                    m.Lvl = dataMonster.Lvl;
-                    m.Atk = dataMonster.Atk;
-                    m.Def = dataMonster.Def;
-                    m.Spd = dataMonster.Spd;
-                    m.Name = dataMonster.Name;
                     gameEngine.monsterQueue.Enqueue(m);
                     y++;
                 }
             }
         }
+
+
 
         // Read item template from ItemDataset and create new item and register
         // them to gameEngine
@@ -447,85 +477,59 @@ namespace TheLastHero.ViewModels
 
         }
 
+
+
         // When a new round starts, this method will be called, and it creates
         // new monsters based on current round level and scale that monster to level.
         public void GenerateNewMonsters()
         {
-            MonsterDataset.Clear();
-            LevelTable levelTable = LevelTable.Instance;
-            LevelDetails levelDetails = levelTable.LevelDetailsList[gameEngine.currentRound];
+            monViewModel = MonstersViewModel.Instance;
+            itemViewModel = ItemsViewModel.Instance;
+            MonsterDataset = monViewModel.Dataset;
+            ItemDataset = itemViewModel.Dataset;
+            LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
+            LoadDataCommand.Execute(null);
+            monViewModel.monsterParty.Clear();
 
             for (int i = 0; i < 6; i++)
             {
+                //decide which monster in the dataset to get
+                var randIndex = HelperEngine.RollDice(1, MonsterDataset.Count() - 1);
                 Monster m = new Monster();
+                Monster dataMonster = MonsterDataset[randIndex];
+
+                //generate new guid and assign all the attributes 
                 m.Id = Guid.NewGuid().ToString();
-                m.Friendly = false;
-                m.AtkRange = 1;
-                m.LiveStatus = true;
-                m.CurrentMP = 100;
-                m.MaxMP = 100;
-                m.MoveRange = 1;
-                m.Drop = false;
-                m.Luk = 10;
                 m.xPosition = 4;
                 m.yPosition = i;
-                Random r = new Random();
+                m.Friendly = dataMonster.Friendly;
+                m.AtkRange = dataMonster.AtkRange;
+                m.LiveStatus = dataMonster.LiveStatus;
+                m.CurrentHP = dataMonster.CurrentHP;
+                m.MaxHP = dataMonster.MaxHP;
+                m.CurrentMP = dataMonster.CurrentMP;
+                m.MaxMP = dataMonster.MaxMP;
+                m.MoveRange = dataMonster.MoveRange;
+                m.Drop = dataMonster.Drop;
+                m.Luk = dataMonster.Luk;
                 m.UniqueDropID = GenerateNewItem().Guid;
+                m.Type = dataMonster.Type;
+                m.ImgSource = dataMonster.ImgSource;
 
-                int rnum = r.Next(1, 9);
-                switch (rnum)
-                {
-                    case 1:
-                        m.Name = "Wolf";
-                        m.Type = "Beast";
-                        m.ImgSource = "WolfLeft.png";
-                        break;
-                    case 2:
-                        m.Name = "Skeleton";
-                        m.Type = "Beast";
-                        m.ImgSource = "SkeletonLeft.png";
-                        break;
-                    case 3:
-                        m.Name = "Skeleton";
-                        m.Type = "Ghost";
-                        m.ImgSource = "SkeletonLeft2.png";
-                        break;
-                    case 4:
-                        m.Name = "Skeleton";
-                        m.Type = "Ghost";
-                        m.ImgSource = "SkeletonLeft3.png";
-                        break;
-                    case 5:
-                        m.Name = "Tiger";
-                        m.Type = "Beast";
-                        m.ImgSource = "TigerLeft.png";
-                        break;
-                    case 6:
-                        m.Name = "Raven";
-                        m.Type = "Beast";
-                        m.ImgSource = "RavenLeft.png";
-                        break;
-                    case 7:
-                        m.Name = "Heron";
-                        m.Type = "Beast";
-                        m.ImgSource = "HeronLeft.png";
-                        break;
-                    case 8:
-                        m.Name = "Hawk";
-                        m.Type = "Beast";
-                        m.ImgSource = "HawkLeft.png";
-                        break;
-                    case 9:
-                        m.Name = "Cat";
-                        m.Type = "Beast";
-                        m.ImgSource = "CatLeft.png";
-                        break;
-                    default:
-                        break;
-                }
+                //Basic Attribute updated 
+                m.Lvl = dataMonster.Lvl;
+                m.Atk = dataMonster.Atk;
+                m.Def = dataMonster.Def;
+                m.Spd = dataMonster.Spd;
+                m.Name = dataMonster.Name;
+
+                //monster level gets scaled with currentRound 
                 m.ScaleLevel(gameEngine.currentRound);
+                m.AllocateExp();
 
-                MonsterDataset.Add(m);
+                //add the monster to monsterParty List 
+                monViewModel.monsterParty.Add(m);
+
             }
 
         }
@@ -534,66 +538,45 @@ namespace TheLastHero.ViewModels
         // Auto create characters for player
         public void GenerateNewCharacters()
         {
-            CharacterDataset.Clear();
+            charViewModel.Party.Clear();
 
             for (int i = 0; i < 6; i++)
             {
-                Character m = new Character();
-                m.Id = Guid.NewGuid().ToString();
-                m.Friendly = true;
-                m.MaxHP = 100;
-                m.CurrentHP = 100;
-                m.AtkRange = 1;
-                m.Lvl = 1;
-                m.Def = 0;
-                m.Atk = 100;
-                m.Spd = 10;
-                m.LiveStatus = true;
-                m.CurrentMP = 100;
-                m.MaxMP = 100;
-                m.MoveRange = 2;
-                m.xPosition = 4;
-                m.yPosition = i;
-                Random r = new Random();
+                //decide which monster in the dataset to get
+                var randIndex = HelperEngine.RollDice(1, CharacterDataset.Count() - 1);
+                Character c = new Character();
+                Character dataCharacter = CharacterDataset[randIndex];
 
-                int rnum = r.Next(1, 6);
-                switch (rnum)
-                {
-                    case 1:
-                        m.Name = "Knight";
-                        m.Type = "Human";
-                        m.ImgSource = "KnightRight.png";
-                        break;
-                    case 2:
-                        m.Name = "Mage";
-                        m.Type = "Human";
-                        m.ImgSource = "MageRight.png";
-                        break;
-                    case 3:
-                        m.Name = "Archer";
-                        m.Type = "Human";
-                        m.ImgSource = "ArcherRight.png";
-                        break;
-                    case 4:
-                        m.Name = "Fighter";
-                        m.Type = "Human";
-                        m.ImgSource = "FighterRight.png";
-                        break;
-                    case 5:
-                        m.Name = "Thief";
-                        m.Type = "Human";
-                        m.ImgSource = "ThiefRight.png";
-                        break;
-                    case 6:
-                        m.Name = "Warrior";
-                        m.Type = "Human";
-                        m.ImgSource = "WarriorRight.png";
-                        break;
-                    default:
-                        break;
-                }
+                //generate new guid and assign all the attributes 
+                c.Id = Guid.NewGuid().ToString();
+                c.xPosition = 0;
+                c.yPosition = i;
+                c.Friendly = dataCharacter.Friendly;
+                c.AtkRange = dataCharacter.AtkRange;
+                c.LiveStatus = dataCharacter.LiveStatus;
+                c.CurrentHP = dataCharacter.CurrentHP;
+                c.MaxHP = dataCharacter.MaxHP;
+                c.CurrentMP = dataCharacter.CurrentMP;
+                c.MaxMP = dataCharacter.MaxMP;
+                c.MoveRange = dataCharacter.MoveRange;
+                c.Luk = dataCharacter.Luk;
+                c.Type = dataCharacter.Type;
+                c.ImgSource = dataCharacter.ImgSource;
+                c.NextLevelExp = dataCharacter.NextLevelExp;
+                c.CurrentExp = dataCharacter.CurrentExp;
+                c.EquippedItem = new Dictionary<ItemLocationEnum, Item>();
 
-                CharacterDataset.Add(m);
+                //Basic Attribute updated 
+                c.Lvl = dataCharacter.Lvl;
+                c.Atk = dataCharacter.Atk;
+                c.Def = dataCharacter.Def;
+                c.Spd = dataCharacter.Spd;
+                c.Name = dataCharacter.Name;
+
+
+                //insert these monsters into the monsterParty
+                charViewModel.Party.Add(c);
+
             }
 
         }
@@ -646,7 +629,7 @@ namespace TheLastHero.ViewModels
                     else if (gameEngine.movedMonsters.Where(z => z.Id.Equals(battle.battleMapId[x, y])).Count() > 0)
                         m = gameEngine.movedMonsters.Where(z => z.Id.Equals(battle.battleMapId[x, y])).First();
 
-                    PrintDialog(curCharacter + " is attacking " + m.Name);
+                    PrintDialog(curCharacter.Name + " is attacking " + m.Name);
                     // decrease target HP by = level attack + weapon attack  MIKE PLESASE READ HERE
                     ApplyDamageCTM(curCharacter, m);
                     //update character's hp in case he attacks himself
@@ -659,7 +642,7 @@ namespace TheLastHero.ViewModels
                         if (m.UniqueDropID != null)
                         {
                             Item drop = ItemDataset.Where(item => item.Guid.Equals(m.UniqueDropID)).First();
-                            curCharacter.EquipItem(drop, drop.Location);
+                            //curCharacter.EquipItem(drop, drop.Location);
                             AddItemToScore(drop);
 
                         }
@@ -881,6 +864,7 @@ namespace TheLastHero.ViewModels
                 // characterQueue is empty
                 if (endRound)
                 {
+                    AssignItems(battle.itemPool, characterViewModel.Party);
                     //count the scoring
                     BattleScore.RoundCount++;
                     useFocusAtk = false;
@@ -920,6 +904,13 @@ namespace TheLastHero.ViewModels
 
                     // Save the Score to the DataStore
                     ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
+
+                    //To keep track of how many games have been palyed
+                    GameGlobals.GameCount++;
+
+                    //clear Dialog at the end 
+                    gameEngine.ClearDialogCache();
+
                 }
                 else
                 {
@@ -1475,23 +1466,39 @@ namespace TheLastHero.ViewModels
         {//def need to be in calculation
             int dmg = (int)Math.Ceiling(m.Atk / 4.0);
             c.TakeDamage(dmg);
+            if (!BattleScore.AutoBattle)
+            {
+                PrintDialog(c.Name + " took " + dmg + " damage!");
+            }
 
-            PrintDialog(c.Name + " took " + dmg + " damage!");
 
 
             if (c.CurrentHP <= 0 && magicRevive && magicReviveTarget == magicReviveRandom.Next(1, 7))
             {
                 magicRevive = false;
                 c.CurrentHP = c.MaxHP;
-                PrintDialog(c.Name + " is so lucky he revived from dead!");
+                if (!BattleScore.AutoBattle)
+                {
+                    PrintDialog(c.Name + " is so lucky he revived from dead!");
+                }
+
+
+                c.LiveStatus = true;
             }
 
             if (!c.LiveStatus)
             {
                 BattleScore.AddCharacterToList(c);
                 //BattleScore.CharacterAtDeathList += c.FormatOutput() + "\n";
-                //this is for high score
-                BattleScore.ExperienceGainedTotal += c.CurrentExp;
+
+                // Mike please read here, this are the changes for item drop 
+                // when character dies
+                if (c.EquippedItem.Count() > 0)
+                {
+                    foreach (var pair in c.EquippedItem)
+                        battle.itemPool = c.RemoveItem(battle.itemPool, pair.Key);
+                    c.EquippedItem.Clear();
+                }
             }
         }
 
@@ -1501,59 +1508,42 @@ namespace TheLastHero.ViewModels
         private void ApplyDamageCTM(Character c, Monster m)
         {
             int exp = 0;
-            int dmg = 0;
+            int dmg = c.Lvl + c.GetAttack();
 
-            //if character equips weapon, the damage needs to be added. Else (no weapon), just use atk attribute 
-            if (c.EquippedItem.ContainsKey(ItemLocationEnum.PrimaryHand))
+            if (useFocusAtk)
             {
-                if (useFocusAtk)
-                {
-                    string minValueItemGUID = "";
-                    int minValue = 100;
-                    foreach (var i in c.EquippedItem)
-                    {
-                        if (i.Value.Value < minValue)
-                        {
-                            minValue = i.Value.Value;
-                            minValueItemGUID = i.Value.Guid;
-                        }
-                    }
-
-                    c.EquippedItem.Remove(c.EquippedItem.Where(rm => rm.Value.Guid.Equals(minValueItemGUID)).First().Value.Location);
-
-                    dmg = (int)Math.Ceiling(c.Atk / 4.0) * 2;
-                    PrintDialog("Focus Atttack! " + dmg + "Damage!");
-                }
-                else
-                {
-                    dmg = (int)Math.Ceiling(c.Atk / 4.0) + c.EquippedItem[ItemLocationEnum.PrimaryHand].Atk;
-                }
-
-                //using monster calculateExperienceEarned function to calculate appropriate amount of experience based on damage 
-                exp = m.CalculateExperienceEarned(dmg);
+                ExecuteFocusAtk(c);
+                dmg *= 2;
+                PrintDialog("Focus Atttack! " + dmg + "Damage!");
             }
-            else
-            {
-
-                dmg = (int)Math.Ceiling(c.Atk / 4.0);
-                exp = m.CalculateExperienceEarned(dmg);
-            }
-
             //Calculate miss/dodge based on calculation 
             dmg = CriticalOrMissCTM(c, m, dmg);
+            //calculate experience based on damage
+            exp = m.CalculateExperienceEarned(dmg);
+            //Add it to score at the end of each attack
+            BattleScore.ExperienceGainedTotal += exp;
 
+            //when damage is higher than 0, monster takes the damage
             if (dmg >= 0)
             {
                 //Instead of calculating damage here directly, i am using m.TakeDamage function. It also changes LiveStatus from true to false if CurrentHP < 0 
                 //m.CurrentHP -= dmg;
                 m.TakeDamage(dmg);
-                PrintDialog(m.Name + " took " + dmg + " damage!" + "\n"
+                if (!BattleScore.AutoBattle)
+                {
+                    PrintDialog(m.Name + " took " + dmg + " damage!" + "\n"
                             + "Monster LiveStatus: " + m.LiveStatus);
+                }
+
 
                 //check livestatus, if the monster is dead, do all the scoring work here
                 if (!m.LiveStatus)
                 {
-                    PrintDialog(m.Name + " is dead!!!");
+                    if (!BattleScore.AutoBattle)
+                    {
+                        PrintDialog(m.Name + " is dead!!!");
+                    }
+                    battle.itemPool.Add(dropItem(m.Id));
                     BattleScore.MonstersKilledList += m.FormatOutput() + "\n";
                     BattleScore.MonsterSlainNumber++;
                 }
@@ -1561,10 +1551,21 @@ namespace TheLastHero.ViewModels
                 // level up and experience earning functionalities
                 int curLevel = c.Lvl;
                 c.AddExperience(exp);
-                PrintDialog(c.Name + " Earned " + exp + " experience!");
+                if (!BattleScore.AutoBattle)
+                {
+                    PrintDialog(c.Name + " Earned " + exp + " experience!");
+                }
+
                 int updatedLevel = c.Lvl;
                 if (updatedLevel > curLevel)
-                    PrintDialog(c.Name + " has leveled up! " + c.Name + " is now Lvl:" + c.Lvl);
+                {
+                    if (!BattleScore.AutoBattle)
+                    {
+                        PrintDialog(c.Name + " has leveled up! " + c.Name + " is now Lvl:" + c.Lvl);
+                    }
+                }
+
+
             }
             //the dmg will be negative number in case it is critical miss 
             else
@@ -1573,11 +1574,19 @@ namespace TheLastHero.ViewModels
                 c.TakeDamageCriticalMiss(dmg);
                 if (c.CurrentHP != 1)
                 {
-                    PrintDialog(c.Name + " took " + dmg + " damage !");
+                    if (!BattleScore.AutoBattle)
+                    {
+                        PrintDialog(c.Name + " took " + dmg + " damage !");
+                    }
+
                 }
                 else
                 {
-                    PrintDialog(c.Name + " took its own attack. " + c.Name + "is barely alive!");
+                    if (!BattleScore.AutoBattle)
+                    {
+                        PrintDialog(c.Name + " took its own attack. " + c.Name + "is barely alive!");
+                    }
+
                 }
 
 
@@ -1588,6 +1597,21 @@ namespace TheLastHero.ViewModels
 
 
 
+        }
+
+        private void ExecuteFocusAtk(Character c)
+        {
+            string minValueItemGUID = "";
+            int minValue = 100;
+            foreach (var i in c.EquippedItem)
+            {
+                if (i.Value.Value < minValue)
+                {
+                    minValue = i.Value.Value;
+                    minValueItemGUID = i.Value.Guid;
+                }
+            }
+            c.EquippedItem.Remove(c.EquippedItem.Where(rm => rm.Value.Guid.Equals(minValueItemGUID)).First().Value.Location);
         }
 
         // Calculate attack and defense and compare them, beased on result
@@ -1607,20 +1631,32 @@ namespace TheLastHero.ViewModels
             if (HitSuccess == HitStatusEnum.CriticalHit)
             {
                 damage = damage * 2;
-                PrintDialog("The attack is a critical hit (2x damage)!");
+                if (!BattleScore.AutoBattle)
+                {
+                    PrintDialog("The attack is a critical hit (2x damage)!");
+                }
+
             }
             //if it was miss, damage will be decreased to 0
             else if (HitSuccess == HitStatusEnum.Miss)
             {
                 damage = 0;
-                PrintDialog("The attack is a miss!");
+                if (!BattleScore.AutoBattle)
+                {
+                    PrintDialog("The attack is a miss!");
+                }
+
             }
             else if (HitSuccess == HitStatusEnum.CriticalMiss)
             {
                 //critical miss = negative damage
                 int var = damage * 2;
                 damage -= var;
-                PrintDialog("The attack is a critical miss!");
+                if (!BattleScore.AutoBattle)
+                {
+                    PrintDialog("The attack is a critical miss!");
+                }
+
             }
 
             return damage;
@@ -1734,11 +1770,13 @@ namespace TheLastHero.ViewModels
         }
 
         // Retirns the dropped Item from monster by checking monsterID
-        public Item dropItem(int monsterID)
+        public Item dropItem(string monsterID)
         {
             // read monster from Dataset,
-            var result = MonsterDataset.Where(x => x.Id == gameEngine.monsterQueue.Peek().Id).First();
-            return ItemDataset.Where(i => i.Guid.Equals(result.UniqueDropID)).First();
+            var monster = monViewModel.monsterParty.Where(x => x.Id.Equals(monsterID)).First();
+            //return itemViewModel.Where(i => i.Guid.Equals(result.UniqueDropID)).First();
+            var result = itemViewModel.Dataset.Where(i => i.Guid.Equals(monster.UniqueDropID)).First();
+            return result;
         }
 
         // Read the map and try to find nearby character 
@@ -1878,6 +1916,7 @@ namespace TheLastHero.ViewModels
         {
 
             int round = gameEngine.currentRound;
+            battle.itemPool = new List<Item>();
             battle.SetAllSelection(Battle.HIGHLIGHTGREY);
             battle.SetAllTop("");
             battle.SetAllId("");
@@ -1908,32 +1947,90 @@ namespace TheLastHero.ViewModels
             RenderCharactersMonsters();
         }
 
-        // AUTO BATTLE!!!
-        public void AutoBattle()
+        //it checks to see whether we have enough characters in database 
+        public Boolean HaveEnoughCharacters()
         {
-            InitAutoBattle();
+            if (CharacterDataset.Count < 6)
+            {
+                return false;
+            }
 
-            CharacterDataset = new ObservableCollection<Character>();
-            MonsterDataset = new ObservableCollection<Monster>();
-            ItemDataset = new ObservableCollection<Item>();
+            return true;
+        }
+
+        //it checks to see there is at least one monster in database 
+        public Boolean HaveEnoughMonsters()
+        {
+            if (MonsterDataset.Count < 1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        //it checks to see there is at least one monster in database 
+        public Boolean HaveEnoughItems()
+        {
+            if (ItemDataset.Count < 1)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        // AUTO BATTLE!!!
+        public int AutoBattle()
+        {
+            gameEngine.currentRound = 1;
+            InitAutoBattle();
+            CharacterDataset = charViewModel.Dataset;
+            //CharacterDataset = new ObservableCollection<Character>();
+            MonsterDataset = monViewModel.Dataset;
+            ItemDataset = itemViewModel.Dataset;
             LoadDataCommand = new Command(async () => await ExecuteLoadDataCommand());
-            LoadDataCommandCharacterOnly = new Command(async () => await ExecuteLoadDataCommandCharacterOnly());
             LoadDataCommand.Execute(null);
+
+
+            //check characters numbers 
+            var EnoughCharacter = HaveEnoughCharacters();
+
+            if (!EnoughCharacter)
+            {
+                return -1;
+            }
+
+            //check Monster numbers 
+            var EnoughMonster = HaveEnoughMonsters();
+
+            if (!EnoughMonster)
+            {
+                return -2;
+            }
+
+            //check item numbers 
+            var EnoughItem = HaveEnoughItems();
+
+            if (!EnoughItem)
+            {
+                return -3;
+            }
+
+
+
+
+            //change generate new characters 
             GenerateNewCharacters();
 
-            charViewModel.Party.Clear();
-            for (int i = 0; i < 6; i++)
-            {
-                Character c = new Character();
-                c = CharacterDataset[i];
-                charViewModel.Party.Add(c);
-            }
+            //charViewModel.Party.Clear();
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    Character c = new Character();
+            //    c = CharacterDataset[i];
+            //    charViewModel.Party.Add(c);
+            //}
             GenerateNewMonsters();
-            // assign items
-
-            // AssignItems();
-
-            gameEngine.currentRound = 1;
             InitializeBattle();
             // read sqldatabase or mockdatabase
             //LoadDataCommand.Execute(null);
@@ -1998,7 +2095,7 @@ namespace TheLastHero.ViewModels
                     if (m.UniqueDropID != null)
                     {
                         Item drop = ItemDataset.Where(item => item.Guid.Equals(m.UniqueDropID)).First();
-                        curCharacter.EquipItem(drop, drop.Location);
+                        //curCharacter.EquipItem(drop, drop.Location);
                         AddItemToScore(drop);
                     }
 
@@ -2158,6 +2255,7 @@ namespace TheLastHero.ViewModels
                 // characterQueue is empty
                 if (endRound)
                 {
+                    AssignItems(battle.itemPool, characterViewModel.Party);
                     BattleScore.RoundCount++;
                     //reconstruct queue and build new battle...
                     battle = new Battle();
@@ -2231,6 +2329,11 @@ namespace TheLastHero.ViewModels
 
                     // Save the Score to the DataStore
                     ScoresViewModel.Instance.AddAsync(BattleScore).GetAwaiter().GetResult();
+
+                    //To keep track of how many games have been played
+                    GameGlobals.GameCount++;
+
+                    return 0;
                 }
                 else
                 {
@@ -2281,70 +2384,49 @@ namespace TheLastHero.ViewModels
             //Navigation.InsertPageBefore(new GameOver(), Navigation.NavigationStack[1]);
             //Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 1]);
             //Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+            return 0;
 
         }
 
         private void InitAutoBattle()
         {
-
+            gameEngine.currentRound = 1;
+            battle.itemPool = new List<Item>();
             gameEngine.movedMonsters.Clear();
             gameEngine.movedCharacters.Clear();
             gameEngine.characterQueue.Clear();
             gameEngine.monsterQueue.Clear();
             gameEngine.ClearDialogCache();
-            gameEngine.currentRound = 1;
+
             gameOver = false;
             magicRevive = true;
             BattleScore = new Score();
             BattleScore.AutoBattle = true;
             charViewModel = CharactersViewModel.Instance;
+            monViewModel = MonstersViewModel.Instance;
+            itemViewModel = ItemsViewModel.Instance;
         }
 
         // Apply default item for new characters
-        private void AssignItems()
+        private void AssignItems(List<Item> itemPool, List<Character> party)
         {
-            foreach (Character c in CharacterDataset)
+            foreach (Item i in itemPool)
             {
-                foreach (Item i in ItemDataset)
+                foreach (Character c in party)
                 {
-                    if (i.EquippableLocation.Equals("Head"))
+                    if (c.EquippedItem.ContainsKey(i.Location) && c.EquippedItem[i.Location].Value < i.Value)
                     {
-                        i.EquippedBy = c.Id;
-                        c.EquipItem(i, ItemLocationEnum.Head);
+                        c.EquippedItem[i.Location] = i;
+                        break;
                     }
-                    else if (i.EquippableLocation.Equals("Necklass"))
+                    else if (!c.EquippedItem.ContainsKey(i.Location))
                     {
-                        i.EquippedBy = c.Id;
-                        c.EquipItem(i, ItemLocationEnum.Necklass);
+                        c.EquippedItem[i.Location] = i;
+                        break;
                     }
-                    else if (i.EquippableLocation.Equals("Feet"))
-                    {
-                        i.EquippedBy = c.Id;
-                        c.EquipItem(i, ItemLocationEnum.Feet);
-                    }
-                    else if (i.EquippableLocation.Equals("PrimaryHand"))
-                    {
-                        i.EquippedBy = c.Id;
-                        c.EquipItem(i, ItemLocationEnum.PrimaryHand);
-                    }
-                    else if (i.EquippableLocation.Equals("OffHand"))
-                    {
-                        i.EquippedBy = c.Id;
-                        c.EquipItem(i, ItemLocationEnum.OffHand);
-                    }
-                    else if (i.EquippableLocation.Equals("LeftFinger"))
-                    {
-                        i.EquippedBy = c.Id;
-                        c.EquipItem(i, ItemLocationEnum.LeftFinger);
-                    }
-                    else if (i.EquippableLocation.Equals("RightFinger"))
-                    {
-                        i.EquippedBy = c.Id;
-                        c.EquipItem(i, ItemLocationEnum.RightFinger);
-                    }
-
                 }
             }
+
         }
 
     }

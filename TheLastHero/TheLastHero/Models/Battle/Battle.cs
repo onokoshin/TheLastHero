@@ -21,14 +21,14 @@ namespace TheLastHero.Models.Battle
         public string title { get; set; }
 
         // The data structure list contains selected six characters passed from    SelectCharacterPage
-        public List<Character> characters;
+        public List<Character> characters { get; set; }
 
         // The data structure list contains contains six monsters that will appear in each battle
         // The six monsters will be selected by using generateMonster() function 
-        public List<Monster> monsters;
+        public List<Monster> monsters { get; set; }
 
         // List of Items 
-        public List<Item> itemPool;
+        public List<Item> itemPool { get; set; }
 
         //use 2d array to instantiate a battlemap 6 x 5
         public string[,] battleMapTop = new string[5, 6];

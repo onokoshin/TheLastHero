@@ -44,8 +44,8 @@ namespace TheLastHero.Models
         //constructor builds the basic structure by assigning default values
         public Score()
         {
-            Id = 
-            Name = "Score Name"; 
+            Id = Guid.NewGuid().ToString();
+            Name = "Score" + GameGlobals.GameCount; 
             GameDate = DateTime.Now;    // Set to be now by default.
             AutoBattle = false;         //assume user battle
             CharacterAtDeathList = null;

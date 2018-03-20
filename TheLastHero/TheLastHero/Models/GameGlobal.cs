@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TheLastHero.Controller;
 
 // Global switches for the overall game to use...
 
@@ -8,6 +9,7 @@ namespace TheLastHero.Models
 {
     public static class GameGlobals
     {
+        public static int GameCount = 1; 
         // Turn on to force Rolls to be non random
         public static bool ForceRollsToNotRandom = false;
 
@@ -38,6 +40,36 @@ namespace TheLastHero.Models
         //these static bools control debug settings 
         public static bool EnableCriticalHitDamage = false;
         public static bool EnableMiss = false;
-        public static bool EnableCriticalMissProblems = false; 
+        public static bool EnableCriticalMissProblems = false;
+        public static string Output = ""; 
+
+        public static async void PostCallAsync()
+        {
+            var number = 10;    // 10 items
+            var level = 0;  // Max Value of 6
+            var attribute = AttributeEnum.Unknown;  // Any Attribute
+            var location = ItemLocationEnum.Unknown;    // Any Location
+            var random = true;  // Random between 1 and Level
+            var updateDataBase = true;  // Add them to the DB
+
+            var myDataList = await ItemsController.Instance.GetItemsFromGame(number, level, attribute, location, random, updateDataBase);
+
+            var myOutput = "No Results";
+
+            if (myDataList != null && myDataList.Count > 0)
+            {
+                // Reset the output
+                myOutput = "";
+
+                foreach (var item in myDataList)
+                {
+                    // Add them line by one, use \n to force new line for output display.
+                    myOutput += item.FormatOutput() + "\n";
+                }
+            }
+
+            Output = myOutput; 
+ 
+        }
     }
 }
